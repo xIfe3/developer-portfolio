@@ -27,10 +27,9 @@ const socials = [
 
 const Footer = () => (
   <footer style={s.footer}>
-    {/* Top rule */}
     <div style={s.topRule} />
 
-    <div style={s.inner}>
+    <div style={s.inner} className="footer-inner">
       {/* Brand col */}
       <div style={s.brandCol}>
         <p style={s.logo}>
@@ -44,7 +43,7 @@ const Footer = () => (
         </p>
         <p style={s.avail}>
           <span style={s.availDot} />
-          Open to Work — Remote Friendly
+          Open to Work – Remote Friendly
         </p>
       </div>
 
@@ -88,7 +87,6 @@ const Footer = () => (
           </li>
         </ul>
 
-        {/* Socials */}
         <div style={s.socialRow}>
           {socials.map((sc) => (
             <motion.a
@@ -107,18 +105,47 @@ const Footer = () => (
       </div>
     </div>
 
-    {/* Bottom bar */}
     <div style={s.bottomBar}>
-      <div style={s.bottomInner}>
+      <div style={s.bottomInner} className="footer-bottom-inner">
         <span style={s.copy}>
           © {new Date().getFullYear()} Ifeanyi Onyekwelu. All rights reserved.
         </span>
-        <div style={s.bottomRight}>
+        <div style={s.bottomRight} className="footer-bottom-right">
           <span style={s.bottomTag}>DESIGNED & BUILT BY xIfe3</span>
           <span style={s.bottomTag}>ENUGU, NG</span>
         </div>
       </div>
     </div>
+
+    <style>{`
+      @media (max-width: 1024px) {
+        .footer-inner {
+          grid-template-columns: 1fr 1fr !important;
+          gap: 40px !important;
+          padding: 56px 32px 44px !important;
+        }
+        .footer-inner > div:first-child {
+          grid-column: 1 / -1 !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .footer-inner {
+          grid-template-columns: 1fr !important;
+          gap: 36px !important;
+          padding: 48px 24px 36px !important;
+        }
+        .footer-bottom-inner {
+          flex-direction: column !important;
+          align-items: flex-start !important;
+          gap: 8px !important;
+        }
+        .footer-bottom-right {
+          flex-direction: column !important;
+          gap: 4px !important;
+        }
+      }
+    `}</style>
   </footer>
 );
 

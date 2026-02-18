@@ -59,13 +59,13 @@ const Skills = () => (
   <section id="skills" style={s.section}>
     <div style={s.sectionLabel}>
       <span style={s.labelLine} />
-      <span style={s.labelText}>03 — SKILLS & TECHNOLOGIES</span>
+      <span style={s.labelText}>03 – SKILLS & TECHNOLOGIES</span>
     </div>
 
     <div style={s.inner}>
-      {/* Heading */}
       <motion.div
         style={s.headingWrap}
+        className="skills-heading-wrap"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
@@ -77,13 +77,12 @@ const Skills = () => (
           <span style={s.accent}>STACK</span>
         </h2>
         <p style={s.sub}>
-          Technologies I&apos;ve been crafting with — from pixel-perfect UIs to
+          Technologies I&apos;ve been crafting with – from pixel-perfect UIs to
           on-chain contracts.
         </p>
       </motion.div>
 
-      {/* Columns */}
-      <div style={s.grid}>
+      <div style={s.grid} className="skills-grid">
         {skillsData.map((cat, ci) => (
           <motion.div
             key={cat.category}
@@ -93,7 +92,6 @@ const Skills = () => (
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: ci * 0.12 }}
           >
-            {/* Category header */}
             <div style={s.catHeader}>
               <span style={s.catNum}>{cat.index}</span>
               <span style={s.catName}>{cat.category.toUpperCase()}</span>
@@ -147,6 +145,19 @@ const Skills = () => (
         ))}
       </div>
     </div>
+
+    <style>{`
+      @media (max-width: 768px) {
+        #skills { padding: 80px 20px !important; }
+        .skills-grid {
+          grid-template-columns: 1fr !important;
+        }
+        .skills-heading-wrap {
+          flex-direction: column !important;
+          align-items: flex-start !important;
+        }
+      }
+    `}</style>
   </section>
 );
 

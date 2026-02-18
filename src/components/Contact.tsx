@@ -126,9 +126,9 @@ const Contact = () => {
         </div>
 
         <div style={s.inner}>
-          {/* Big heading */}
           <motion.div
             style={s.headingRow}
+            className="contact-heading-row"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -145,7 +145,7 @@ const Contact = () => {
             </p>
           </motion.div>
 
-          <div style={s.cols}>
+          <div style={s.cols} className="contact-cols">
             {/* ── LEFT: info ── */}
             <motion.div
               style={s.leftCol}
@@ -190,7 +190,6 @@ const Contact = () => {
                 ))}
               </div>
 
-              {/* Availability card */}
               <div style={s.availCard}>
                 <div style={s.availDot} />
                 <div>
@@ -211,7 +210,7 @@ const Contact = () => {
               transition={{ duration: 0.7, delay: 0.15 }}
             >
               <form ref={formRef} onSubmit={sendEmail} style={s.form}>
-                <div style={s.inputRow}>
+                <div style={s.inputRow} className="contact-input-row">
                   <Field
                     label="Your Name"
                     id="from_name"
@@ -277,6 +276,34 @@ const Contact = () => {
             </motion.div>
           </div>
         </div>
+
+        <style>{`
+          @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+          }
+
+          @media (max-width: 1024px) {
+            .contact-cols {
+              gap: 48px !important;
+            }
+          }
+
+          @media (max-width: 768px) {
+        #contact { padding: 80px 20px !important; }
+            .contact-cols {
+              grid-template-columns: 1fr !important;
+              gap: 48px !important;
+            }
+            .contact-heading-row {
+              flex-direction: column !important;
+              align-items: flex-start !important;
+            }
+            .contact-input-row {
+              flex-direction: column !important;
+            }
+          }
+        `}</style>
       </section>
     </>
   );

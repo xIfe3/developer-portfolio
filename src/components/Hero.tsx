@@ -29,15 +29,6 @@ const MarqueeStrip = () => (
         </span>
       ))}
     </div>
-    <style>{`
-      @keyframes marquee {
-        from { transform: translateX(0); }
-        to   { transform: translateX(-50%); }
-      }
-      .marquee-inner-anim {
-        animation: marquee 22s linear infinite;
-      }
-    `}</style>
   </div>
 );
 
@@ -113,19 +104,19 @@ const Hero = () => {
     <>
       <NoiseOverlay />
 
-      {/*
-        paddingTop: "64px" pushes the entire section content (including the
-        marquee) below the fixed header, so the header floats over the dark
-        #0a0a0a background — keeping the logo fully visible.
-      */}
-      <section id="home" ref={heroRef} style={styles.section}>
-        {/* ── MARQUEE — sits just below the header ── */}
+      <section
+        id="home"
+        ref={heroRef}
+        style={styles.section}
+        className="hero-section"
+      >
+        {/* ── MARQUEE ── */}
         <MarqueeStrip />
 
         {/* ── MAIN GRID ── */}
-        <div style={styles.grid}>
+        <div style={styles.grid} className="hero-grid">
           {/* LEFT */}
-          <div style={styles.leftCol}>
+          <div style={styles.leftCol} className="hero-left">
             <motion.p
               style={styles.eyebrow}
               initial={{ opacity: 0, x: -30 }}
@@ -138,6 +129,7 @@ const Hero = () => {
             <div style={styles.nameBlock}>
               <motion.div
                 style={styles.nameFirst}
+                className="hero-name"
                 initial={{ opacity: 0, y: 60 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -150,6 +142,7 @@ const Hero = () => {
               </motion.div>
               <motion.div
                 style={styles.nameLast}
+                className="hero-name"
                 initial={{ opacity: 0, y: 60 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -215,12 +208,14 @@ const Hero = () => {
           {/* RIGHT — photo */}
           <motion.div
             style={styles.rightCol}
+            className="hero-right"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             <motion.div
               style={styles.accentBox}
+              className="hero-accent-box"
               animate={{
                 rotate: [2, -2, 2],
                 transition: {
@@ -236,6 +231,7 @@ const Hero = () => {
                 ...styles.photoFrame,
                 transform: `rotateX(${-mousePos.y * 0.3}deg) rotateY(${mousePos.x * 0.3}deg)`,
               }}
+              className="hero-photo-frame"
             >
               <Image
                 src="/profile.jpg"
@@ -250,6 +246,7 @@ const Hero = () => {
 
             <motion.div
               style={{ ...styles.statCard, top: "12%", right: "-12%" }}
+              className="hero-stat hero-stat-1"
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1.0 }}
@@ -261,6 +258,7 @@ const Hero = () => {
 
             <motion.div
               style={{ ...styles.statCard, bottom: "18%", left: "-14%" }}
+              className="hero-stat hero-stat-2"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1.1 }}
@@ -275,6 +273,7 @@ const Hero = () => {
         {/* ── BOTTOM STRIP ── */}
         <motion.div
           style={styles.bottomStrip}
+          className="hero-bottom-strip"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.3 }}
@@ -286,6 +285,103 @@ const Hero = () => {
         <style>{`
           @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@700&family=Bebas+Neue&display=swap');
           #home * { box-sizing: border-box; }
+
+          @keyframes marquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+          }
+
+          /* ── Tablet ── */
+          @media (max-width: 1024px) {
+            .hero-grid {
+              padding: 40px 32px 32px !important;
+              gap: 20px !important;
+            }
+            .hero-stat-1 {
+              right: -4% !important;
+            }
+            .hero-stat-2 {
+              left: -4% !important;
+            }
+          }
+
+          /* ── Mobile ── */
+          @media (max-width: 768px) {
+            .hero-grid {
+              flex-direction: column !important;
+              padding: 32px 20px 24px !important;
+              align-items: center !important;
+              text-align: center !important;
+            }
+            .hero-left {
+              flex: unset !important;
+              width: 100% !important;
+              padding-right: 0 !important;
+              align-items: center !important;
+            }
+            .hero-left > p:first-child {
+              justify-content: center !important;
+            }
+            .hero-name {
+              font-size: clamp(60px, 18vw, 100px) !important;
+            }
+            .hero-left > p[style] {
+              max-width: 100% !important;
+              text-align: center !important;
+            }
+            .hero-right {
+              flex: unset !important;
+              width: 100% !important;
+              min-height: 360px !important;
+              max-width: 320px !important;
+              margin: 0 auto !important;
+            }
+            .hero-photo-frame {
+              width: 260px !important;
+              height: 340px !important;
+            }
+            .hero-accent-box {
+              inset: 16px !important;
+            }
+            .hero-stat {
+              position: static !important;
+              display: inline-flex !important;
+              flex-direction: column !important;
+            }
+            .hero-stat-1 {
+              position: absolute !important;
+              top: 8% !important;
+              right: 0 !important;
+            }
+            .hero-stat-2 {
+              position: absolute !important;
+              bottom: 8% !important;
+              left: 0 !important;
+            }
+            .hero-bottom-strip {
+              padding: 12px 20px !important;
+              flex-wrap: wrap !important;
+              gap: 8px !important;
+              justify-content: center !important;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .hero-grid {
+              padding: 24px 16px 20px !important;
+            }
+            .hero-name {
+              font-size: clamp(52px, 16vw, 80px) !important;
+            }
+            .hero-right {
+              max-width: 280px !important;
+              min-height: 300px !important;
+            }
+            .hero-photo-frame {
+              width: 220px !important;
+              height: 290px !important;
+            }
+          }
         `}</style>
       </section>
     </>
@@ -303,7 +399,6 @@ const styles: Record<string, React.CSSProperties> = {
     fontFamily: "'Space Grotesk', sans-serif",
     position: "relative" as const,
     overflow: "hidden",
-    /* ↓ KEY FIX: pushes all content (incl. marquee) below the 64px fixed header */
     paddingTop: "64px",
   },
   grid: {

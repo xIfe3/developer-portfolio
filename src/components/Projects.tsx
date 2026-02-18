@@ -56,13 +56,13 @@ const Projects = () => (
   <section id="projects" style={s.section}>
     <div style={s.sectionLabel}>
       <span style={s.labelLine} />
-      <span style={s.labelText}>04 — SELECTED WORK</span>
+      <span style={s.labelText}>04 – SELECTED WORK</span>
     </div>
 
     <div style={s.inner}>
-      {/* Heading row */}
       <motion.div
         style={s.headingRow}
+        className="projects-heading-row"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
@@ -74,13 +74,12 @@ const Projects = () => (
           <span style={s.accent}>PROJECTS</span>
         </h2>
         <p style={s.sub}>
-          A curated selection of things I&apos;ve built — from fintech
+          A curated selection of things I&apos;ve built – from fintech
           dashboards to on-chain marketplaces.
         </p>
       </motion.div>
 
-      {/* Featured row (2 large) */}
-      <div style={s.featuredRow}>
+      <div style={s.featuredRow} className="projects-featured-row">
         {projects
           .filter((p) => p.featured)
           .map((project, i) => (
@@ -93,8 +92,7 @@ const Projects = () => (
           ))}
       </div>
 
-      {/* Regular row */}
-      <div style={s.regularRow}>
+      <div style={s.regularRow} className="projects-regular-row">
         {projects
           .filter((p) => !p.featured)
           .map((project, i) => (
@@ -107,6 +105,22 @@ const Projects = () => (
           ))}
       </div>
     </div>
+
+    <style>{`
+      @media (max-width: 768px) {
+        #projects { padding: 80px 20px !important; }
+        .projects-heading-row {
+          flex-direction: column !important;
+          align-items: flex-start !important;
+        }
+        .projects-featured-row {
+          grid-template-columns: 1fr !important;
+        }
+        .projects-regular-row {
+          grid-template-columns: 1fr !important;
+        }
+      }
+    `}</style>
   </section>
 );
 
@@ -131,7 +145,6 @@ const ProjectCard = ({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Image */}
       <div style={{ ...s.imgWrap, height: large ? 280 : 200 }}>
         <Image
           src={project.image}
@@ -144,7 +157,6 @@ const ProjectCard = ({
             transform: hovered ? "scale(1.04)" : "scale(1)",
           }}
         />
-        {/* Overlay links */}
         <motion.div
           style={{
             ...s.imgOverlay,
@@ -171,11 +183,9 @@ const ProjectCard = ({
           </a>
         </motion.div>
 
-        {/* Featured chip */}
         {project.featured && <div style={s.featuredChip}>FEATURED ✦</div>}
       </div>
 
-      {/* Body */}
       <div style={s.cardBody}>
         <div style={s.cardTop}>
           <span style={s.projectNum}>{project.index}</span>

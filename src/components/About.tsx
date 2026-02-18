@@ -14,22 +14,22 @@ const infoItems = [
 
 const About = () => (
   <section id="about" style={s.section}>
-    {/* Section label */}
     <div style={s.sectionLabel}>
       <span style={s.labelLine} />
-      <span style={s.labelText}>02 — ABOUT</span>
+      <span style={s.labelText}>02 – ABOUT</span>
     </div>
 
-    <div style={s.inner}>
+    <div style={s.inner} className="about-inner">
       {/* ── LEFT: photo ── */}
       <motion.div
         style={s.photoCol}
+        className="about-photo-col"
         initial={{ opacity: 0, x: -40 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div style={s.photoWrap}>
+        <div style={s.photoWrap} className="about-photo-wrap">
           <Image
             src="/ifeanyi.jpg"
             alt="Ifeanyi Onyekwelu"
@@ -38,7 +38,6 @@ const About = () => (
             style={s.photo}
             priority
           />
-          {/* Corner accents */}
           <span
             style={{
               ...s.corner,
@@ -59,9 +58,9 @@ const About = () => (
           />
         </div>
 
-        {/* Floating badge */}
         <motion.div
           style={s.badge}
+          className="about-badge"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -79,6 +78,7 @@ const About = () => (
       {/* ── RIGHT: content ── */}
       <motion.div
         style={s.contentCol}
+        className="about-content-col"
         initial={{ opacity: 0, x: 40 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-80px" }}
@@ -101,14 +101,13 @@ const About = () => (
           applications that solve real-world problems.
         </p>
         <p style={{ ...s.body, marginTop: 16 }}>
-          My journey started 4 years ago — since then I&apos;ve worked across
+          My journey started 4 years ago – since then I&apos;ve worked across
           React, Next.js, Node.js and blockchain development. I&apos;m
           constantly expanding my skill set to stay at the forefront of web and
           mobile development.
         </p>
 
-        {/* Info grid */}
-        <div style={s.infoGrid}>
+        <div style={s.infoGrid} className="about-info-grid">
           {infoItems.map(({ label, value }) => (
             <div key={label} style={s.infoItem}>
               <span style={s.infoLabel}>{label}</span>
@@ -127,6 +126,56 @@ const About = () => (
         </motion.a>
       </motion.div>
     </div>
+
+    <style>{`
+      @media (max-width: 1024px) {
+        .about-inner {
+          gap: 48px !important;
+        }
+        .about-photo-col {
+          flex: 0 0 320px !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .about-inner {
+          flex-direction: column !important;
+          gap: 48px !important;
+        }
+        .about-photo-col {
+          flex: unset !important;
+          width: 100% !important;
+          max-width: 360px !important;
+          margin: 0 auto !important;
+        }
+        .about-photo-wrap {
+          width: 100% !important;
+        }
+        .about-badge {
+          right: -10px !important;
+          bottom: -10px !important;
+        }
+        .about-content-col {
+          flex: unset !important;
+          width: 100% !important;
+          padding-top: 8px !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        #about { padding: 80px 20px !important; }
+        #about .about-inner { margin-top: 0 !important; }
+      }
+
+      @media (max-width: 480px) {
+        .about-info-grid {
+          grid-template-columns: 1fr !important;
+        }
+        .about-photo-col {
+          max-width: 280px !important;
+        }
+      }
+    `}</style>
   </section>
 );
 

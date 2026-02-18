@@ -5,10 +5,10 @@ import React from "react";
 
 const experiences = [
   {
-    role: "Software Engineer — Full-Stack",
+    role: "Software Engineer – Full-Stack",
     company: "Babelos",
     location: "Remote",
-    period: "Sep 2025 — Present",
+    period: "Sep 2025 – Present",
     description:
       "Developing web applications using Next.js and NestJS with Docker-based microservices. Working with PostgreSQL and Redis for data management, implementing REST and GraphQL APIs. Contributing to UI/UX improvements and maintaining CI/CD pipelines with GitHub Actions.",
     technologies: [
@@ -21,10 +21,10 @@ const experiences = [
     ],
   },
   {
-    role: "Software Engineer — Full-Stack",
+    role: "Software Engineer – Full-Stack",
     company: "Kedusoft",
     location: "Remote",
-    period: "Sep 2024 — Jul 2025",
+    period: "Sep 2024 – Jul 2025",
     description:
       "Built SaaS and fintech platforms with payment integrations using Stripe and Paystack. Optimized database queries with PostgreSQL and implemented Redis caching. Deployed applications using Docker and GitHub Actions CI/CD.",
     technologies: [
@@ -42,7 +42,7 @@ const experiences = [
     role: "Software Developer",
     company: "World Brain Technology",
     location: "Enugu, NG",
-    period: "Feb 2024 — Aug 2024",
+    period: "Feb 2024 – Aug 2024",
     description:
       "Developed a SaaS platform for SMEs using React, Node.js, GraphQL, and PostgreSQL. Built dashboards for data visualization and insights. Worked with microservices architecture and deployed applications on AWS and GCP.",
     technologies: [
@@ -56,10 +56,10 @@ const experiences = [
     ],
   },
   {
-    role: "Lecturer — Software Development",
+    role: "Lecturer – Software Development",
     company: "Aptech Computer Education",
     location: "Enugu, NG",
-    period: "Sep 2022 — Dec 2023",
+    period: "Sep 2022 – Dec 2023",
     description:
       "Taught full-stack web development covering JavaScript, React, Node.js, and databases. Mentored students through hands-on projects and designed structured curriculum materials.",
     technologies: ["JavaScript", "React", "Node.js", "MongoDB", "MySQL"],
@@ -68,7 +68,7 @@ const experiences = [
     role: "Junior Developer Intern",
     company: "CV2 Career Internship",
     location: "Remote",
-    period: "Aug 2023 — Jan 2024",
+    period: "Aug 2023 – Jan 2024",
     description:
       "Contributed to a SaaS platform built with Python and Firebase. Implemented features, fixed bugs, and participated in code reviews. Gained experience with agile practices and CI/CD workflows.",
     technologies: ["Python", "Firebase", "Agile", "CI/CD"],
@@ -77,9 +77,9 @@ const experiences = [
     role: "Freelance Contract Developer",
     company: "BeeTec",
     location: "Remote",
-    period: "Apr 2022 — Aug 2022",
+    period: "Apr 2022 – Aug 2022",
     description:
-      "Worked on multiple client projects — built and deployed responsive web applications, integrated APIs, and optimized performance. Delivered on time while collaborating closely with remote teams.",
+      "Worked on multiple client projects – built and deployed responsive web applications, integrated APIs, and optimized performance. Delivered on time while collaborating closely with remote teams.",
     technologies: ["React", "Next.js", "Node.js", "TailwindCSS"],
   },
 ];
@@ -88,13 +88,13 @@ const Experience = () => (
   <section id="experience" style={s.section}>
     <div style={s.sectionLabel}>
       <span style={s.labelLine} />
-      <span style={s.labelText}>05 — WORK EXPERIENCE</span>
+      <span style={s.labelText}>05 – WORK EXPERIENCE</span>
     </div>
 
     <div style={s.inner}>
-      {/* Heading */}
       <motion.div
         style={s.headingRow}
+        className="exp-heading-row"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
@@ -111,15 +111,14 @@ const Experience = () => (
         </p>
       </motion.div>
 
-      {/* Timeline entries */}
-      <div style={s.timeline}>
-        {/* Vertical rail */}
-        <div style={s.rail} />
+      <div style={s.timeline} className="exp-timeline">
+        <div style={s.rail} className="exp-rail" />
 
         {experiences.map((exp, i) => (
           <motion.div
             key={i}
             style={s.entry}
+            className="exp-entry"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -129,16 +128,31 @@ const Experience = () => (
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            {/* Rail dot */}
-            <div style={s.dot}>
+            <div style={s.dot} className="exp-dot">
               <div style={s.dotInner} />
             </div>
 
-            {/* Period stamp */}
-            <div style={s.period}>{exp.period}</div>
+            <div style={s.period} className="exp-period">
+              {exp.period}
+            </div>
 
-            {/* Card */}
             <div style={s.card}>
+              {/* Mobile period badge shown inside card */}
+              <div
+                className="exp-period-mobile"
+                style={{
+                  display: "none",
+                  fontFamily: "'Space Mono', monospace",
+                  fontSize: "0.55rem",
+                  letterSpacing: "0.08em",
+                  color: "#b5f60a",
+                  fontWeight: 700,
+                  marginBottom: 12,
+                }}
+              >
+                {exp.period}
+              </div>
+
               <div style={s.cardHeader}>
                 <div>
                   <h3 style={s.role}>{exp.role}</h3>
@@ -167,6 +181,47 @@ const Experience = () => (
         ))}
       </div>
     </div>
+
+    <style>{`
+      @media (max-width: 1024px) {
+        .exp-timeline {
+          padding-left: 120px !important;
+        }
+        .exp-period {
+          left: -120px !important;
+          width: 80px !important;
+        }
+        .exp-rail {
+          left: 88px !important;
+        }
+        .exp-dot {
+          left: -32px !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        #experience { padding: 80px 20px !important; }
+        .exp-timeline {
+          padding-left: 0 !important;
+        }
+        .exp-rail {
+          display: none !important;
+        }
+        .exp-dot {
+          display: none !important;
+        }
+        .exp-period {
+          display: none !important;
+        }
+        .exp-period-mobile {
+          display: block !important;
+        }
+        .exp-heading-row {
+          flex-direction: column !important;
+          align-items: flex-start !important;
+        }
+      }
+    `}</style>
   </section>
 );
 
@@ -217,7 +272,6 @@ const s: Record<string, React.CSSProperties> = {
     maxWidth: 340,
     margin: 0,
   },
-
   timeline: { position: "relative" as const, paddingLeft: 160 },
   rail: {
     position: "absolute" as const,
