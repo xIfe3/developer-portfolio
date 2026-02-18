@@ -4,147 +4,273 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const Skills = () => {
-  const skillsData = [
-    {
-      category: "Frontend Development",
-      skills: [
-        { name: "HTML/CSS", level: "Expert", icon: "/icons/html5.svg" },
-        { name: "JavaScript", level: "Expert", icon: "/icons/javascript.svg" },
-        { name: "React", level: "Advanced", icon: "/icons/react.svg" },
-        { name: "Next.js", level: "Advanced", icon: "/icons/nextjs.svg" },
-        {
-          name: "TypeScript",
-          level: "Intermediate",
-          icon: "/icons/typescript.svg",
-        },
-      ],
-    },
-    {
-      category: "Backend Development",
-      skills: [
-        { name: "Node.js", level: "Advanced", icon: "/icons/nodejs.svg" },
-        { name: "GO", level: "Intermediate", icon: "/icons/go.svg" },
-        { name: "Python", level: "Intermediate", icon: "/icons/python.svg" },
-        { name: "FastAPI", level: "Intermediate", icon: "/icons/fastapi.png" },
-        {
-          name: "MySQL/PostgreSQL",
-          level: "Intermediate",
-          icon: "/icons/postgres.svg",
-        },
-      ],
-    },
-    {
-      category: "Other Technologies",
-      skills: [
-        { name: "Git/GitHub", level: "Advanced", icon: "/icons/github.svg" },
-        {
-          name: "Docker",
-          level: "Intermediate",
-          icon: "/icons/docker.svg",
-        },
-        {
-          name: "Solidity",
-          level: "Intermediate",
-          icon: "/icons/solidity.svg",
-        },
-        { name: "AWS", level: "Intermediate", icon: "/icons/aws.svg" },
-        {
-          name: "Tailwind CSS",
-          level: "Advanced",
-          icon: "/icons/tailwind.svg",
-        },
-      ],
-    },
-  ];
+const skillsData = [
+  {
+    category: "Frontend",
+    index: "01",
+    skills: [
+      { name: "HTML / CSS", level: "Expert", icon: "/icons/html5.svg" },
+      { name: "JavaScript", level: "Expert", icon: "/icons/javascript.svg" },
+      { name: "React", level: "Advanced", icon: "/icons/react.svg" },
+      { name: "Next.js", level: "Advanced", icon: "/icons/nextjs.svg" },
+      {
+        name: "TypeScript",
+        level: "Intermediate",
+        icon: "/icons/typescript.svg",
+      },
+    ],
+  },
+  {
+    category: "Backend",
+    index: "02",
+    skills: [
+      { name: "Node.js", level: "Advanced", icon: "/icons/nodejs.svg" },
+      { name: "Go", level: "Intermediate", icon: "/icons/go.svg" },
+      { name: "Python", level: "Intermediate", icon: "/icons/python.svg" },
+      { name: "FastAPI", level: "Intermediate", icon: "/icons/fastapi.png" },
+      {
+        name: "MySQL / Postgres",
+        level: "Intermediate",
+        icon: "/icons/postgres.svg",
+      },
+    ],
+  },
+  {
+    category: "DevOps & Web3",
+    index: "03",
+    skills: [
+      { name: "Git / GitHub", level: "Advanced", icon: "/icons/github.svg" },
+      { name: "Docker", level: "Intermediate", icon: "/icons/docker.svg" },
+      { name: "Solidity", level: "Intermediate", icon: "/icons/solidity.svg" },
+      { name: "AWS", level: "Intermediate", icon: "/icons/aws.svg" },
+      { name: "Tailwind CSS", level: "Advanced", icon: "/icons/tailwind.svg" },
+    ],
+  },
+];
 
-  const getLevelColor = (level: string) => {
-    switch (level) {
-      case "Expert":
-        return "bg-green-500/20 text-green-400";
-      case "Advanced":
-        return "bg-blue-500/20 text-blue-400";
-      case "Intermediate":
-        return "bg-amber-500/20 text-amber-400";
-      case "Beginner":
-        return "bg-gray-500/20 text-gray-400";
-      default:
-        return "bg-gray-500/20 text-gray-400";
-    }
-  };
+const levelMap: Record<string, { color: string; width: string }> = {
+  Expert: { color: "#b5f60a", width: "95%" },
+  Advanced: { color: "#b5f60a", width: "78%" },
+  Intermediate: { color: "#b5f60acc", width: "58%" },
+  Beginner: { color: "#b5f60a55", width: "35%" },
+};
 
-  return (
-    <section id="skills" className="py-20 px-4">
-      <div className="container mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold mb-4 text-white">
-            Skills & Technologies
-          </h2>
-          <div className="w-20 h-1 bg-amber-500 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Here are the technologies I&apos;ve been working with recently
-          </p>
-        </motion.div>
+const Skills = () => (
+  <section id="skills" style={s.section}>
+    <div style={s.sectionLabel}>
+      <span style={s.labelLine} />
+      <span style={s.labelText}>03 — SKILLS & TECHNOLOGIES</span>
+    </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {skillsData.map((category, categoryIndex) => (
-            <motion.div
-              key={categoryIndex}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, delay: categoryIndex * 0.1 }}
-              className="bg-gray-800/50 p-6 rounded-xl border border-gray-700"
-            >
-              <h3 className="text-xl font-semibold mb-6 text-white text-center">
-                {category.category}
-              </h3>
-              <div className="space-y-4">
-                {category.skills.map((skill, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="flex items-center p-3 rounded-lg bg-gray-900/50 hover:bg-gray-800/70 transition-colors"
-                  >
-                    <div className="flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center p-2 mr-4">
+    <div style={s.inner}>
+      {/* Heading */}
+      <motion.div
+        style={s.headingWrap}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7 }}
+      >
+        <h2 style={s.heading}>
+          MY TECH
+          <br />
+          <span style={s.accent}>STACK</span>
+        </h2>
+        <p style={s.sub}>
+          Technologies I&apos;ve been crafting with — from pixel-perfect UIs to
+          on-chain contracts.
+        </p>
+      </motion.div>
+
+      {/* Columns */}
+      <div style={s.grid}>
+        {skillsData.map((cat, ci) => (
+          <motion.div
+            key={cat.category}
+            style={s.col}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: ci * 0.12 }}
+          >
+            {/* Category header */}
+            <div style={s.catHeader}>
+              <span style={s.catNum}>{cat.index}</span>
+              <span style={s.catName}>{cat.category.toUpperCase()}</span>
+            </div>
+
+            <div style={s.skillList}>
+              {cat.skills.map((skill, si) => (
+                <motion.div
+                  key={skill.name}
+                  style={s.skillRow}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: si * 0.07 }}
+                >
+                  <div style={s.skillLeft}>
+                    <div style={s.iconBox}>
                       <Image
                         src={skill.icon}
                         alt={skill.name}
-                        width={25}
-                        height={25}
-                        className="w-full h-full object-contain"
+                        width={20}
+                        height={20}
+                        style={{ objectFit: "contain" }}
                       />
                     </div>
-                    <div className="flex-grow">
-                      <p className="font-medium text-white text-sm">
-                        {skill.name}
-                      </p>
-                    </div>
-                    <span
-                      className={`text-xs font-medium px-2 py-1 rounded-full ${getLevelColor(
-                        skill.level
-                      )}`}
-                    >
-                      {skill.level}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                    <span style={s.skillName}>{skill.name}</span>
+                  </div>
+
+                  <div style={s.barTrack}>
+                    <motion.div
+                      style={{
+                        ...s.barFill,
+                        background: levelMap[skill.level].color,
+                      }}
+                      initial={{ width: 0 }}
+                      whileInView={{ width: levelMap[skill.level].width }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.9,
+                        delay: 0.2 + si * 0.07,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                    />
+                  </div>
+
+                  <span style={s.levelTag}>{skill.level}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        ))}
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
+
+const s: Record<string, React.CSSProperties> = {
+  section: {
+    background: "#0a0a0a",
+    padding: "120px 48px",
+    fontFamily: "'Space Grotesk', sans-serif",
+  },
+  sectionLabel: {
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    maxWidth: 1300,
+    margin: "0 auto 64px",
+  },
+  labelLine: { display: "block", width: 40, height: 1, background: "#b5f60a" },
+  labelText: {
+    fontFamily: "'Space Mono', monospace",
+    fontSize: "0.65rem",
+    letterSpacing: "0.2em",
+    color: "#FFF",
+  },
+  inner: { maxWidth: 1300, margin: "0 auto" },
+  headingWrap: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    marginBottom: 64,
+    borderBottom: "1px solid #1a1a1a",
+    paddingBottom: 40,
+    gap: 40,
+    flexWrap: "wrap" as const,
+  },
+  heading: {
+    fontFamily: "'Bebas Neue', sans-serif",
+    fontSize: "clamp(56px, 7vw, 96px)",
+    color: "#f0ede6",
+    lineHeight: 0.9,
+    letterSpacing: "0.03em",
+    margin: 0,
+  },
+  accent: { color: "#b5f60a" },
+  sub: {
+    color: "#666",
+    fontSize: "0.9rem",
+    lineHeight: 1.7,
+    maxWidth: 340,
+    margin: 0,
+  },
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: 2,
+    background: "#1a1a1a",
+    border: "1px solid #1a1a1a",
+  },
+  col: { background: "#0a0a0a", padding: "36px 32px" },
+  catHeader: {
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    paddingBottom: 24,
+    marginBottom: 24,
+    borderBottom: "1px solid #1a1a1a",
+  },
+  catNum: {
+    fontFamily: "'Space Mono', monospace",
+    fontSize: "0.6rem",
+    color: "#b5f60a",
+    fontWeight: 700,
+    letterSpacing: "0.1em",
+  },
+  catName: {
+    fontFamily: "'Space Mono', monospace",
+    fontSize: "0.65rem",
+    letterSpacing: "0.18em",
+    color: "#f0ede6",
+    fontWeight: 700,
+  },
+  skillList: { display: "flex", flexDirection: "column" as const, gap: 20 },
+  skillRow: {
+    display: "grid",
+    gridTemplateColumns: "1fr auto",
+    rowGap: 8,
+    columnGap: 12,
+    alignItems: "center",
+  },
+  skillLeft: {
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    gridColumn: "1 / 2",
+  },
+  iconBox: {
+    width: 32,
+    height: 32,
+    background: "#fff",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 6,
+    flexShrink: 0,
+  },
+  skillName: { fontSize: "0.85rem", color: "#ccc", fontWeight: 500 },
+  barTrack: {
+    gridColumn: "1 / 2",
+    height: 2,
+    background: "#1e1e1e",
+    position: "relative" as const,
+    overflow: "hidden",
+  },
+  barFill: { position: "absolute" as const, top: 0, left: 0, height: "100%" },
+  levelTag: {
+    gridRow: "1 / 2",
+    gridColumn: "2 / 3",
+    fontFamily: "'Space Mono', monospace",
+    fontSize: "0.55rem",
+    letterSpacing: "0.1em",
+    color: "#fefae0",
+    fontWeight: 700,
+    whiteSpace: "nowrap" as const,
+    alignSelf: "center",
+  },
 };
 
 export default Skills;
