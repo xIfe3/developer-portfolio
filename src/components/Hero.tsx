@@ -13,8 +13,10 @@ const roles = [
   "SOFTWARE DEV",
   "FULL-STACK",
   "FRONTEND",
+  "BACKEND",
   "BLOCKCHAIN",
   "SMART CONTRACT",
+  "WORDPRESS",
 ];
 const strip = [...roles, ...roles];
 
