@@ -66,8 +66,8 @@ const Footer = () => (
         <p style={s.colHeading}>CONTACT</p>
         <ul style={s.navList}>
           <li>
-            <a href="mailto:me@xife3.space" style={s.navLink}>
-              me@xife3.space
+            <a href="mailto:ifeanyi@xife3.space" style={s.navLink}>
+              ifeanyi@xife3.space
             </a>
           </li>
           <li>

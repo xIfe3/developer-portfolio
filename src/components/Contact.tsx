@@ -28,8 +28,8 @@ const contactInfo = [
   {
     icon: <FaEnvelope />,
     label: "Email",
-    value: "me@xife3.space",
-    href: "mailto:me@xife3.space",
+    value: "ifeanyi@xife3.space",
+    href: "mailto:ifeanyi@xife3.space",
   },
   {
     icon: <FaPhone />,

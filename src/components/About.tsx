@@ -5,10 +5,10 @@ import Image from "next/image";
 
 const infoItems = [
   { label: "Name", value: "Ifeanyi Onyekwelu" },
-  { label: "Email", value: "me@xife3.space" },
+  { label: "Email", value: "ifeanyi@xife3.space" },
   { label: "Experience", value: "4+ Years" },
   { label: "Based In", value: "Enugu, Nigeria" },
-  { label: "Focus", value: "Web3 & Full-Stack" },
+  { label: "Focus", value: "Backend + Web3" },
   { label: "Availability", value: "Open to Work ✦" },
 ];
 
@@ -20,7 +20,7 @@ const About = () => (
     </div>
 
     <div style={s.inner} className="about-inner">
-      {/* ── LEFT: photo ── */}
+      {/* LEFT: photo */}
       <motion.div
         style={s.photoCol}
         className="about-photo-col"
@@ -75,7 +75,7 @@ const About = () => (
         </motion.div>
       </motion.div>
 
-      {/* ── RIGHT: content ── */}
+      {/* RIGHT: content */}
       <motion.div
         style={s.contentCol}
         className="about-content-col"
@@ -85,26 +85,28 @@ const About = () => (
         transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
       >
         <h2 style={s.heading}>
-          CRAFTING
+          BUILDING
           <br />
-          <span style={s.headingAccent}>DIGITAL</span>
+          <span style={s.headingAccent}>SYSTEMS</span>
           <br />
-          EXPERIENCES
+          THAT SCALE
         </h2>
 
         <div style={s.divider} />
 
         <p style={s.body}>
-          I&apos;m a passionate software developer with expertise in building
-          exceptional digital experiences. With a focus on modern web
-          technologies, I specialize in creating responsive, user-friendly
-          applications that solve real-world problems.
+          Startups don&apos;t fail from bad ideas — they fail from slow APIs,
+          broken backend logic, and products that can&apos;t scale past MVP. I
+          fix that. I&apos;m a full-stack developer specialising in backend
+          systems and Web3 integrations, with 4+ years building production-grade
+          platforms across fintech, SaaS, and blockchain.
         </p>
         <p style={{ ...s.body, marginTop: 16 }}>
-          My journey started 4 years ago – since then I&apos;ve worked across
-          React, Next.js, Node.js and blockchain development. I&apos;m
-          constantly expanding my skill set to stay at the forefront of web and
-          mobile development.
+          Whether it&apos;s architecting a microservices backend, integrating
+          payment gateways, or shipping a smart contract — I move fast, write
+          clean code, and deliver work you can actually ship. My edge: I
+          understand the full stack, so I don&apos;t create silos between
+          frontend and backend decisions.
         </p>
 
         <div style={s.infoGrid} className="about-info-grid">
@@ -129,51 +131,20 @@ const About = () => (
 
     <style>{`
       @media (max-width: 1024px) {
-        .about-inner {
-          gap: 48px !important;
-        }
-        .about-photo-col {
-          flex: 0 0 320px !important;
-        }
+        .about-inner { gap: 48px !important; }
+        .about-photo-col { flex: 0 0 320px !important; }
       }
-
-      @media (max-width: 768px) {
-        .about-inner {
-          flex-direction: column !important;
-          gap: 48px !important;
-        }
-        .about-photo-col {
-          flex: unset !important;
-          width: 100% !important;
-          max-width: 360px !important;
-          margin: 0 auto !important;
-        }
-        .about-photo-wrap {
-          width: 100% !important;
-        }
-        .about-badge {
-          right: -10px !important;
-          bottom: -10px !important;
-        }
-        .about-content-col {
-          flex: unset !important;
-          width: 100% !important;
-          padding-top: 8px !important;
-        }
-      }
-
       @media (max-width: 768px) {
         #about { padding: 80px 20px !important; }
-        #about .about-inner { margin-top: 0 !important; }
+        .about-inner { flex-direction: column !important; gap: 48px !important; }
+        .about-photo-col { flex: unset !important; width: 100% !important; max-width: 360px !important; margin: 0 auto !important; }
+        .about-photo-wrap { width: 100% !important; }
+        .about-badge { right: -10px !important; bottom: -10px !important; }
+        .about-content-col { flex: unset !important; width: 100% !important; padding-top: 8px !important; }
       }
-
       @media (max-width: 480px) {
-        .about-info-grid {
-          grid-template-columns: 1fr !important;
-        }
-        .about-photo-col {
-          max-width: 280px !important;
-        }
+        .about-info-grid { grid-template-columns: 1fr !important; }
+        .about-photo-col { max-width: 280px !important; }
       }
     `}</style>
   </section>

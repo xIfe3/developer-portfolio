@@ -8,6 +8,8 @@ const skillsData = [
   {
     category: "Frontend",
     index: "01",
+    description:
+      "Build pixel-perfect, responsive UIs with smooth interactions — from component systems to full web apps users actually enjoy using.",
     skills: [
       { name: "HTML / CSS", level: "Expert", icon: "/icons/html5.svg" },
       { name: "JavaScript", level: "Expert", icon: "/icons/javascript.svg" },
@@ -23,6 +25,8 @@ const skillsData = [
   {
     category: "Backend",
     index: "02",
+    description:
+      "Architect robust REST & GraphQL APIs, handle auth flows, integrate payment gateways, and build services that hold up at scale.",
     skills: [
       { name: "Node.js", level: "Advanced", icon: "/icons/nodejs.svg" },
       { name: "Go", level: "Intermediate", icon: "/icons/go.svg" },
@@ -38,6 +42,8 @@ const skillsData = [
   {
     category: "DevOps & Web3",
     index: "03",
+    description:
+      "Deploy containerised services, manage CI/CD pipelines, and ship on-chain products — from smart contracts to full dApp integrations.",
     skills: [
       { name: "Git / GitHub", level: "Advanced", icon: "/icons/github.svg" },
       { name: "Docker", level: "Intermediate", icon: "/icons/docker.svg" },
@@ -77,8 +83,8 @@ const Skills = () => (
           <span style={s.accent}>STACK</span>
         </h2>
         <p style={s.sub}>
-          Technologies I&apos;ve been crafting with – from pixel-perfect UIs to
-          on-chain contracts.
+          Not just a list of logos — here&apos;s what I actually do with each
+          set of tools.
         </p>
       </motion.div>
 
@@ -92,10 +98,14 @@ const Skills = () => (
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: ci * 0.12 }}
           >
+            {/* Category header */}
             <div style={s.catHeader}>
               <span style={s.catNum}>{cat.index}</span>
               <span style={s.catName}>{cat.category.toUpperCase()}</span>
             </div>
+
+            {/* Category description */}
+            <p style={s.catDesc}>{cat.description}</p>
 
             <div style={s.skillList}>
               {cat.skills.map((skill, si) => (
@@ -149,13 +159,8 @@ const Skills = () => (
     <style>{`
       @media (max-width: 768px) {
         #skills { padding: 80px 20px !important; }
-        .skills-grid {
-          grid-template-columns: 1fr !important;
-        }
-        .skills-heading-wrap {
-          flex-direction: column !important;
-          align-items: flex-start !important;
-        }
+        .skills-grid { grid-template-columns: 1fr !important; }
+        .skills-heading-wrap { flex-direction: column !important; align-items: flex-start !important; }
       }
     `}</style>
   </section>
@@ -220,8 +225,8 @@ const s: Record<string, React.CSSProperties> = {
     display: "flex",
     alignItems: "center",
     gap: 12,
-    paddingBottom: 24,
-    marginBottom: 24,
+    paddingBottom: 16,
+    marginBottom: 12,
     borderBottom: "1px solid #1a1a1a",
   },
   catNum: {
@@ -237,6 +242,13 @@ const s: Record<string, React.CSSProperties> = {
     letterSpacing: "0.18em",
     color: "#f0ede6",
     fontWeight: 700,
+  },
+  catDesc: {
+    fontSize: "0.8rem",
+    color: "#555",
+    lineHeight: 1.65,
+    margin: "0 0 24px",
+    fontStyle: "italic",
   },
   skillList: { display: "flex", flexDirection: "column" as const, gap: 20 },
   skillRow: {

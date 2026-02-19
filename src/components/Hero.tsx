@@ -8,15 +8,14 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 
-/* ─── Marquee strip ─────────────────────────────────────────────────── */
 const roles = [
-  "SOFTWARE DEV",
-  "FULL-STACK",
-  "FRONTEND",
-  "BACKEND",
-  "BLOCKCHAIN",
-  "SMART CONTRACT",
-  "WORDPRESS",
+  "FULL-STACK DEV",
+  "BACKEND APIs",
+  "WEB3 APPS",
+  "NEXT.JS",
+  "SMART CONTRACTS",
+  "SCALABLE SYSTEMS",
+  "NODE / NEST",
 ];
 const strip = [...roles, ...roles];
 
@@ -57,7 +56,6 @@ const marqueeStyles: Record<string, React.CSSProperties> = {
   },
 };
 
-/* ─── Noise overlay ─────────────────────────────────────────────────── */
 const NoiseOverlay = () => (
   <div
     style={{
@@ -71,7 +69,6 @@ const NoiseOverlay = () => (
   />
 );
 
-/* ─── Social links ─────────────────────────────────────────────────── */
 const socials = [
   {
     name: "LinkedIn",
@@ -82,7 +79,6 @@ const socials = [
   { name: "Twitter", url: "https://x.com/_xIfe3", icon: <FaXTwitter /> },
 ];
 
-/* ─── Hero ─────────────────────────────────────────────────────────── */
 const Hero = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const heroRef = useRef<HTMLElement>(null);
@@ -103,19 +99,15 @@ const Hero = () => {
   return (
     <>
       <NoiseOverlay />
-
       <section
         id="home"
         ref={heroRef}
         style={styles.section}
         className="hero-section"
       >
-        {/* ── MARQUEE ── */}
         <MarqueeStrip />
 
-        {/* ── MAIN GRID ── */}
         <div style={styles.grid} className="hero-grid">
-          {/* LEFT */}
           <div style={styles.leftCol} className="hero-left">
             <motion.p
               style={styles.eyebrow}
@@ -123,7 +115,8 @@ const Hero = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <span style={styles.eyebrowLine} /> DEVELOPER / NIGERIA
+              <span style={styles.eyebrowLine} /> BACKEND + WEB3 SPECIALIST ·
+              NIGERIA
             </motion.p>
 
             <div style={styles.nameBlock}>
@@ -161,8 +154,8 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
-              I craft fast, beautiful, and functional digital products — from
-              pixel-perfect UIs to on-chain smart contracts.
+              I help startups ship scalable web apps, fix backend bottlenecks,
+              and launch on-chain products — fast, clean, and production-ready.
             </motion.p>
 
             <motion.div
@@ -205,7 +198,6 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* RIGHT — photo */}
           <motion.div
             style={styles.rightCol}
             className="hero-right"
@@ -225,7 +217,6 @@ const Hero = () => {
                 },
               }}
             />
-
             <motion.div
               style={{
                 ...styles.photoFrame,
@@ -243,7 +234,6 @@ const Hero = () => {
               />
               <div style={styles.chip}>Available for work ✦</div>
             </motion.div>
-
             <motion.div
               style={{ ...styles.statCard, top: "12%", right: "-12%" }}
               className="hero-stat hero-stat-1"
@@ -255,7 +245,6 @@ const Hero = () => {
               <span style={styles.statNum}>4+</span>
               <span style={styles.statLabel}>Years Exp.</span>
             </motion.div>
-
             <motion.div
               style={{ ...styles.statCard, bottom: "18%", left: "-14%" }}
               className="hero-stat hero-stat-2"
@@ -270,7 +259,6 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* ── BOTTOM STRIP ── */}
         <motion.div
           style={styles.bottomStrip}
           className="hero-bottom-strip"
@@ -285,102 +273,25 @@ const Hero = () => {
         <style>{`
           @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@700&family=Bebas+Neue&display=swap');
           #home * { box-sizing: border-box; }
-
-          @keyframes marquee {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); }
-          }
-
-          /* ── Tablet ── */
-          @media (max-width: 1024px) {
-            .hero-grid {
-              padding: 40px 32px 32px !important;
-              gap: 20px !important;
-            }
-            .hero-stat-1 {
-              right: -4% !important;
-            }
-            .hero-stat-2 {
-              left: -4% !important;
-            }
-          }
-
-          /* ── Mobile ── */
+          @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+          @media (max-width: 1024px) { .hero-grid { padding: 40px 32px 32px !important; } .hero-stat-1 { right: -4% !important; } .hero-stat-2 { left: -4% !important; } }
           @media (max-width: 768px) {
-            .hero-grid {
-              flex-direction: column !important;
-              padding: 32px 20px 24px !important;
-              align-items: center !important;
-              text-align: center !important;
-            }
-            .hero-left {
-              flex: unset !important;
-              width: 100% !important;
-              padding-right: 0 !important;
-              align-items: center !important;
-            }
-            .hero-left > p:first-child {
-              justify-content: center !important;
-            }
-            .hero-name {
-              font-size: clamp(60px, 18vw, 100px) !important;
-            }
-            .hero-left > p[style] {
-              max-width: 100% !important;
-              text-align: center !important;
-            }
-            .hero-right {
-              flex: unset !important;
-              width: 100% !important;
-              min-height: 360px !important;
-              max-width: 320px !important;
-              margin: 0 auto !important;
-            }
-            .hero-photo-frame {
-              width: 260px !important;
-              height: 340px !important;
-            }
-            .hero-accent-box {
-              inset: 16px !important;
-            }
-            .hero-stat {
-              position: static !important;
-              display: inline-flex !important;
-              flex-direction: column !important;
-            }
-            .hero-stat-1 {
-              position: absolute !important;
-              top: 8% !important;
-              right: 0 !important;
-            }
-            .hero-stat-2 {
-              position: absolute !important;
-              bottom: 8% !important;
-              left: 0 !important;
-            }
-            .hero-bottom-strip {
-              padding: 12px 20px !important;
-              flex-wrap: wrap !important;
-              gap: 8px !important;
-              justify-content: center !important;
-            }
+            .hero-grid { flex-direction: column !important; padding: 32px 20px 24px !important; align-items: center !important; text-align: center !important; }
+            .hero-left { flex: unset !important; width: 100% !important; padding-right: 0 !important; align-items: center !important; }
+            .hero-left > p:first-child { justify-content: center !important; }
+            .hero-name { font-size: clamp(60px, 18vw, 100px) !important; }
+            .hero-right { flex: unset !important; width: 100% !important; min-height: 360px !important; max-width: 320px !important; margin: 0 auto !important; }
+            .hero-photo-frame { width: 260px !important; height: 340px !important; }
+            .hero-accent-box { inset: 16px !important; }
+            .hero-stat-1 { position: absolute !important; top: 8% !important; right: 0 !important; }
+            .hero-stat-2 { position: absolute !important; bottom: 8% !important; left: 0 !important; }
+            .hero-bottom-strip { padding: 12px 20px !important; flex-wrap: wrap !important; gap: 8px !important; justify-content: center !important; }
           }
-
           @media (max-width: 480px) {
-            .hero-grid {
-              padding: 24px 16px 20px !important;
-            }
-            .hero-name {
-              font-size: clamp(52px, 16vw, 80px) !important;
-            }
-            .hero-right {
-              max-width: 280px !important;
-              min-height: 300px !important;
-            }
-            .hero-photo-frame {
-              width: 220px !important;
-              height: 290px !important;
-            }
+            .hero-grid { padding: 24px 16px 20px !important; }
+            .hero-name { font-size: clamp(52px, 16vw, 80px) !important; }
+            .hero-right { max-width: 280px !important; min-height: 300px !important; }
+            .hero-photo-frame { width: 220px !important; height: 290px !important; }
           }
         `}</style>
       </section>
@@ -388,7 +299,6 @@ const Hero = () => {
   );
 };
 
-/* ─── Styles ─────────────────────────────────────────────────────────── */
 const styles: Record<string, React.CSSProperties> = {
   section: {
     minHeight: "100vh",
