@@ -6,7 +6,7 @@ export const metadata = {
   title: "xIfe3 - Full-Stack & Web3 Developer",
   description: "Welcome to my developer portfolio!",
   icons: {
-    icon: "/favicon.jpg",
+    icon: "/favicon.png",
   },
 };
 

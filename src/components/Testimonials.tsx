@@ -6,40 +6,40 @@ import { FaQuoteLeft } from "react-icons/fa";
 
 const testimonials = [
   {
-    name: "Adaeze Okafor",
+    name: "Nnamdi",
     role: "Co-Founder & CEO",
     company: "Kedusoft",
-    avatar: "AO",
+    avatar: "Nn",
     quote:
       "Ifeanyi joined us mid-sprint and hit the ground running — no hand-holding needed. He rebuilt our payment integration with Stripe and Paystack in under two weeks, fixing edge cases that had been causing silent failures for months. If you need someone who understands fintech complexity and still ships fast, he's your guy.",
     tags: ["Fintech", "Payment APIs", "Next.js"],
   },
   {
-    name: "Chukwuemeka Eze",
-    role: "Lead Engineer",
+    name: "Godson Pius",
+    role: "Co-Founder & CEO",
     company: "World Brain Technology",
-    avatar: "CE",
+    avatar: "GP",
     quote:
       "What stood out about Ifeanyi wasn't just the code quality — it was the thinking behind it. He proposed the microservices split that cut our API response times by nearly half, and he documented everything properly. Rare combination of speed and precision.",
-    tags: ["Microservices", "GraphQL", "AWS"],
+    tags: ["Microservices", "GraphQL", "AWS", "Python"],
   },
   {
-    name: "Blessing Nwosu",
+    name: "Rev Fr Christopher",
     role: "Product Manager",
     company: "ReginaNostra Schools",
-    avatar: "BN",
+    avatar: "RC",
     quote:
-      "We came to Ifeanyi with a very specific problem — our school management system was a mess of spreadsheets and WhatsApp groups. He built us a proper platform from scratch, trained the staff, and was still reachable for questions weeks after delivery. Genuinely impressed.",
+      "When our school launched in mid-2025, we urgently needed a proper school management website. I reached out to Ifeanyi, and he delivered a complete platform from scratch. He didn’t just build it — he also trained our staff and stayed available even after launch to make sure everything worked smoothly. We were very satisfied with the result.",
     tags: ["SaaS", "Full-Stack", "Stakeholder Mgmt"],
   },
   {
-    name: "Samuel Achebe",
+    name: "Samuel",
     role: "Blockchain Developer",
     company: "MintVerse",
-    avatar: "SA",
+    avatar: "S",
     quote:
       "Ifeanyi handled our IPFS integration and NFT contract interactions on the backend — stuff most devs avoid because it's messy. He not only got it working, he made it stable under load. The marketplace ran a successful launch with zero critical incidents.",
-    tags: ["Solidity", "IPFS", "Web3"],
+    tags: ["Solidity", "IPFS", "Web3", "NFT"],
   },
 ];
 
