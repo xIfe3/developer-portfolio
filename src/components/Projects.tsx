@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt, FaPaintBrush } from "react-icons/fa";
 import Image from "next/image";
 import React from "react";
 
@@ -15,6 +15,7 @@ const projects = [
     githubUrl: "https://github.com/xIfe3/hedgeon-finance",
     liveUrl: "https://hedgeon-finance-ifekels-projects.vercel.app/",
     featured: true,
+    concept: false,
     index: "01",
   },
   {
@@ -26,6 +27,7 @@ const projects = [
     githubUrl: "https://github.com/xIfe3/regina-nostras-schools",
     liveUrl: "https://www.reginanostraschools.com/",
     featured: false,
+    concept: false,
     index: "02",
   },
   {
@@ -37,6 +39,7 @@ const projects = [
     githubUrl: "https://github.com/xIfe3/10-10-realty-group",
     liveUrl: "https://1010-realty-group.vercel.app/",
     featured: false,
+    concept: false,
     index: "03",
   },
   {
@@ -48,7 +51,32 @@ const projects = [
     githubUrl: "https://github.com/xIfe3/mintverse",
     liveUrl: "https://mintverse.art/",
     featured: true,
+    concept: false,
     index: "04",
+  },
+  {
+    title: "Wanderlust Smart City",
+    description:
+      "UI/UX case study for a smart city dashboard delivering real-time environmental data — weather, air quality, noise, and traffic — through a clean, widget-based mobile interface. Designed for clarity, glanceability, and offline resilience.",
+    technologies: ["Swift", "SwiftUI", "CoreData", "UI/UX"],
+    image: "/projects/wanderlust.png",
+    githubUrl: "",
+    liveUrl: "",
+    featured: false,
+    concept: true,
+    index: "05",
+  },
+  {
+    title: "Bookify Travel & Hotels",
+    description:
+      "UI/UX concept for a hotel and travel booking app. Designed a seamless search-to-booking flow with curated destination deals, interactive stay previews, and a clean card-based UI — focused on reducing decision fatigue and driving conversions.",
+    technologies: ["React Native", "TypeScript", "Mapbox", "UI/UX"],
+    image: "/projects/bookify.png",
+    githubUrl: "",
+    liveUrl: "",
+    featured: false,
+    concept: true,
+    index: "06",
   },
 ];
 
@@ -150,50 +178,71 @@ const ProjectCard = ({
           }}
         />
         <motion.div style={{ ...s.imgOverlay, opacity: hovered ? 1 : 0 }}>
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={s.overlayBtn}
-            aria-label="GitHub"
-          >
-            <FaGithub />
-          </a>
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={s.overlayBtn}
-            aria-label="Live"
-          >
-            <FaExternalLinkAlt />
-          </a>
+          {project.concept ? (
+            <div style={s.conceptOverlayLabel}>
+              <FaPaintBrush style={{ fontSize: "0.8rem" }} />
+              <span>UI/UX CONCEPT</span>
+            </div>
+          ) : (
+            <>
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={s.overlayBtn}
+                aria-label="GitHub"
+              >
+                <FaGithub />
+              </a>
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={s.overlayBtn}
+                aria-label="Live"
+              >
+                <FaExternalLinkAlt />
+              </a>
+            </>
+          )}
         </motion.div>
-        {project.featured && <div style={s.featuredChip}>FEATURED ✦</div>}
+        {project.concept ? (
+          <div style={s.conceptChip}>CONCEPT ✦</div>
+        ) : (
+          project.featured && <div style={s.featuredChip}>FEATURED ✦</div>
+        )}
       </div>
 
       <div style={s.cardBody}>
         <div style={s.cardTop}>
           <span style={s.projectNum}>{project.index}</span>
           <div style={s.cardLinks}>
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={s.linkIcon}
-              aria-label="GitHub"
-            >
-              <FaGithub />
-            </a>
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={s.linkIcon}
-              aria-label="Live"
-            >
-              <FaExternalLinkAlt />
-            </a>
+            {project.concept ? (
+              <span style={s.conceptBadge}>
+                <FaPaintBrush style={{ fontSize: "0.55rem" }} /> CONCEPT
+              </span>
+            ) : (
+              <>
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={s.linkIcon}
+                  aria-label="GitHub"
+                >
+                  <FaGithub />
+                </a>
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={s.linkIcon}
+                  aria-label="Live"
+                >
+                  <FaExternalLinkAlt />
+                </a>
+              </>
+            )}
           </div>
         </div>
         <h3 style={s.projectTitle}>{project.title}</h3>
@@ -315,6 +364,41 @@ const s: Record<string, React.CSSProperties> = {
     fontWeight: 700,
     letterSpacing: "0.12em",
     padding: "5px 10px",
+  },
+  conceptOverlayLabel: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    color: "#b5f60a",
+    fontFamily: "'Space Mono', monospace",
+    fontSize: "0.7rem",
+    fontWeight: 700,
+    letterSpacing: "0.12em",
+  },
+  conceptChip: {
+    position: "absolute" as const,
+    top: 16,
+    left: 16,
+    background: "rgba(181, 246, 10, 0.15)",
+    color: "#b5f60a",
+    fontFamily: "'Space Mono', monospace",
+    fontSize: "0.58rem",
+    fontWeight: 700,
+    letterSpacing: "0.12em",
+    padding: "5px 10px",
+    border: "1px solid #b5f60a44",
+    backdropFilter: "blur(4px)",
+  },
+  conceptBadge: {
+    display: "flex",
+    alignItems: "center",
+    gap: 5,
+    fontFamily: "'Space Mono', monospace",
+    fontSize: "0.55rem",
+    letterSpacing: "0.1em",
+    color: "#b5f60a",
+    opacity: 0.7,
+    fontWeight: 700,
   },
   cardBody: { padding: "24px 24px 28px" },
   cardTop: {

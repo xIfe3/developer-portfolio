@@ -12,13 +12,13 @@ const skillsData = [
       "Build pixel-perfect, responsive UIs with smooth interactions — from component systems to full web apps users actually enjoy using.",
     skills: [
       { name: "HTML / CSS", level: "Expert", icon: "/icons/html5.svg" },
-      { name: "JavaScript", level: "Expert", icon: "/icons/javascript.svg" },
+      { name: "JavaScript", level: "Expert", icon: "/icons/JavaScript.svg" },
       { name: "React", level: "Advanced", icon: "/icons/react.svg" },
       { name: "Next.js", level: "Advanced", icon: "/icons/nextjs.svg" },
       {
         name: "TypeScript",
         level: "Intermediate",
-        icon: "/icons/typescript.svg",
+        icon: "/icons/typeScript.svg",
       },
     ],
   },
