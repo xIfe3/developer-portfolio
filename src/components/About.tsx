@@ -2,149 +2,161 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import React from "react";
 
-const infoItems = [
+const facts = [
   { label: "Name", value: "Ifeanyi Onyekwelu" },
-  { label: "Email", value: "ifeanyi@xife3.space" },
-  { label: "Experience", value: "4+ Years" },
-  { label: "Based In", value: "Enugu, Nigeria" },
-  { label: "Focus", value: "Backend + Web3" },
-  { label: "Availability", value: "Open to Work ✦" },
+  { label: "Role", value: "Full-Stack Engineer" },
+  { label: "Experience", value: "5+ years in production" },
+  { label: "Based in", value: "Enugu, Nigeria (UTC+1)" },
+  { label: "Focus", value: "Full-stack · AI integration" },
+  { label: "Availability", value: "Remote · worldwide" },
+];
+
+const highlights = [
+  {
+    title: "Backend architecture",
+    body: "REST & GraphQL APIs, microservices, payment integrations, and databases that scale past MVP without a rewrite.",
+  },
+  {
+    title: "AI integration",
+    body: "LLM-powered features with LangChain, RAG pipelines, embeddings, and agentic workflows wired into real product UX.",
+  },
+  {
+    title: "Frontend craft",
+    body: "Typed React and Next.js apps, design systems, and interfaces that stay performant under real-world data loads.",
+  },
 ];
 
 const About = () => (
   <section id="about" style={s.section}>
-    <div style={s.sectionLabel}>
-      <span style={s.labelLine} />
-      <span style={s.labelText}>02 – ABOUT</span>
-    </div>
-
     <div style={s.inner} className="about-inner">
-      {/* LEFT: photo */}
-      <motion.div
-        style={s.photoCol}
-        className="about-photo-col"
-        initial={{ opacity: 0, x: -40 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <div style={s.photoWrap} className="about-photo-wrap">
-          <Image
-            src="/ifeanyi.jpg"
-            alt="Ifeanyi Onyekwelu"
-            width={500}
-            height={600}
-            style={s.photo}
-            priority
-          />
-          <span
-            style={{
-              ...s.corner,
-              top: -10,
-              left: -10,
-              borderTopWidth: 2,
-              borderLeftWidth: 2,
-            }}
-          />
-          <span
-            style={{
-              ...s.corner,
-              bottom: -10,
-              right: -10,
-              borderBottomWidth: 2,
-              borderRightWidth: 2,
-            }}
-          />
-        </div>
+      {/* Label */}
+      <div style={s.labelRow}>
+        <span style={s.labelLine} />
+        <span style={s.labelText}>01 / About</span>
+      </div>
 
+      <div style={s.grid} className="about-grid">
+        {/* Left: portrait */}
         <motion.div
-          style={s.badge}
-          className="about-badge"
-          initial={{ opacity: 0, y: 20 }}
+          style={s.leftCol}
+          className="about-left"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
         >
-          <span style={s.badgeNum}>4+</span>
-          <span style={s.badgeLabel}>
-            Years of
-            <br />
-            Experience
-          </span>
-        </motion.div>
-      </motion.div>
-
-      {/* RIGHT: content */}
-      <motion.div
-        style={s.contentCol}
-        className="about-content-col"
-        initial={{ opacity: 0, x: 40 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <h2 style={s.heading}>
-          BUILDING
-          <br />
-          <span style={s.headingAccent}>SYSTEMS</span>
-          <br />
-          THAT SCALE
-        </h2>
-
-        <div style={s.divider} />
-
-        <p style={s.body}>
-          Startups don&apos;t fail from bad ideas — they fail from slow APIs,
-          broken backend logic, and products that can&apos;t scale past MVP. I
-          fix that. I&apos;m a full-stack developer specialising in backend
-          systems and Web3 integrations, with 4+ years building production-grade
-          platforms across fintech, SaaS, and blockchain.
-        </p>
-        <p style={{ ...s.body, marginTop: 16 }}>
-          Whether it&apos;s architecting a microservices backend, integrating
-          payment gateways, or shipping a smart contract — I move fast, write
-          clean code, and deliver work you can actually ship. My edge: I
-          understand the full stack, so I don&apos;t create silos between
-          frontend and backend decisions.
-        </p>
-
-        <div style={s.infoGrid} className="about-info-grid">
-          {infoItems.map(({ label, value }) => (
-            <div key={label} style={s.infoItem}>
-              <span style={s.infoLabel}>{label}</span>
-              <span style={s.infoValue}>{value}</span>
+          <div style={s.photoWrap}>
+            <Image
+              src="/ifeanyi.png"
+              alt="Ifeanyi Onyekwelu"
+              width={520}
+              height={640}
+              style={s.photo}
+              priority
+            />
+            <div style={s.photoBadge}>
+              <div style={s.photoBadgeNum}>5+</div>
+              <div style={s.photoBadgeLabel}>
+                years
+                <br />
+                shipping
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
 
-        <motion.a
-          href="#contact"
-          style={s.cta}
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.97 }}
+          {/* Signature / credentials block */}
+          <div style={s.credBlock}>
+            <p style={s.credTitle}>Current focus</p>
+            <p style={s.credBody}>
+              Shipping full-stack web platforms and integrating LLM-powered
+              features — LangChain workflows, RAG over product data, and
+              assistants that feel like part of the UX, not a gimmick.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Right: content */}
+        <motion.div
+          style={s.rightCol}
+          className="about-right"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, delay: 0.1 }}
         >
-          LET&apos;S WORK TOGETHER →
-        </motion.a>
-      </motion.div>
+          <h2 style={s.heading}>
+            I build software that <em style={s.em}>outlives</em> the sprint that
+            shipped it.
+          </h2>
+
+          <div style={s.body}>
+            <p>
+              Over <strong>five years</strong> as a full-stack engineer, I&apos;ve
+              shipped products across fintech, SaaS, and education — the kind of
+              codebases where a 2am pager rotation is the real design review.
+              Lately, I&apos;m deep in AI integration: LangChain pipelines, RAG,
+              and LLM features wired into real product flows.
+            </p>
+            <p>
+              My edge is judgement. I don&apos;t just close tickets; I reshape
+              the parts of the system that keep failing, document the why, and
+              leave the codebase in a better state than I found it. I&apos;ve
+              shipped light Web3 work too — on-chain minting, IPFS — but that&apos;s
+              past work, not my day-to-day focus.
+            </p>
+          </div>
+
+          {/* Highlights */}
+          <div style={s.highlights}>
+            {highlights.map((h, i) => (
+              <motion.div
+                key={h.title}
+                style={s.hCard}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.15 + i * 0.08, duration: 0.5 }}
+              >
+                <div style={s.hBar} />
+                <p style={s.hTitle}>{h.title}</p>
+                <p style={s.hBody}>{h.body}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Facts table */}
+          <div style={s.facts} className="about-facts">
+            {facts.map((f) => (
+              <div key={f.label} style={s.fact}>
+                <span style={s.factLabel}>{f.label}</span>
+                <span style={s.factValue}>{f.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <div style={s.ctaRow}>
+            <a href="#contact" style={s.ctaPrimary}>
+              Work with me
+              <span style={s.arrow}>→</span>
+            </a>
+            <a href="#projects" style={s.ctaLink}>
+              See recent work
+            </a>
+          </div>
+        </motion.div>
+      </div>
     </div>
 
     <style>{`
       @media (max-width: 1024px) {
-        .about-inner { gap: 48px !important; }
-        .about-photo-col { flex: 0 0 320px !important; }
+        .about-grid { grid-template-columns: 1fr !important; gap: 56px !important; }
+        .about-left { max-width: 480px !important; margin: 0 auto !important; }
       }
-      @media (max-width: 768px) {
-        #about { padding: 80px 20px !important; }
-        .about-inner { flex-direction: column !important; gap: 48px !important; }
-        .about-photo-col { flex: unset !important; width: 100% !important; max-width: 360px !important; margin: 0 auto !important; }
-        .about-photo-wrap { width: 100% !important; }
-        .about-badge { right: -10px !important; bottom: -10px !important; }
-        .about-content-col { flex: unset !important; width: 100% !important; padding-top: 8px !important; }
-      }
-      @media (max-width: 480px) {
-        .about-info-grid { grid-template-columns: 1fr !important; }
-        .about-photo-col { max-width: 280px !important; }
+      @media (max-width: 640px) {
+        .about-inner { padding: 96px 20px !important; }
+        .about-facts { grid-template-columns: 1fr !important; }
       }
     `}</style>
   </section>
@@ -152,133 +164,219 @@ const About = () => (
 
 const s: Record<string, React.CSSProperties> = {
   section: {
-    background: "#0d0d0d",
-    padding: "120px 48px",
-    position: "relative",
-    fontFamily: "'Space Grotesk', sans-serif",
-  },
-  sectionLabel: {
-    display: "flex",
-    alignItems: "center",
-    gap: 12,
-    marginBottom: 64,
-    maxWidth: 1300,
-    margin: "0 auto 64px",
-  },
-  labelLine: { display: "block", width: 40, height: 1, background: "#b5f60a" },
-  labelText: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.65rem",
-    letterSpacing: "0.2em",
-    color: "#FFF",
+    background: "var(--ink-900)",
+    borderTop: "1px solid var(--line)",
+    fontFamily: "var(--font-sans)",
   },
   inner: {
-    maxWidth: 1300,
+    maxWidth: 1280,
     margin: "0 auto",
-    display: "flex",
-    gap: 80,
-    alignItems: "flex-start",
+    padding: "140px 56px",
   },
-  photoCol: { flex: "0 0 420px", position: "relative" },
+  labelRow: {
+    display: "flex",
+    alignItems: "center",
+    gap: 14,
+    marginBottom: 56,
+  },
+  labelLine: {
+    display: "block",
+    width: 48,
+    height: 1,
+    background: "var(--accent)",
+  },
+  labelText: {
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.72rem",
+    color: "var(--muted)",
+    letterSpacing: "0.15em",
+    textTransform: "uppercase" as const,
+  },
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "0.9fr 1.2fr",
+    gap: 80,
+    alignItems: "start",
+  },
+  leftCol: {
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: 32,
+    position: "sticky" as const,
+    top: 100,
+  },
   photoWrap: {
     position: "relative",
-    clipPath:
-      "polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px))",
+    borderRadius: 20,
     overflow: "hidden",
-    background: "#141414",
+    border: "1px solid var(--line)",
+    background: "var(--ink-850)",
   },
   photo: {
     width: "100%",
     height: "auto",
     display: "block",
-    filter: "grayscale(15%) contrast(1.05)",
+    filter: "contrast(1.03) saturate(0.9)",
   },
-  corner: {
+  photoBadge: {
     position: "absolute",
-    width: 28,
-    height: 28,
-    borderColor: "#b5f60a",
-    borderStyle: "solid",
-    borderWidth: 0,
-  } as React.CSSProperties,
-  badge: {
-    position: "absolute",
-    bottom: -20,
-    right: -20,
-    background: "#b5f60a",
+    right: -14,
+    bottom: -14,
+    background: "var(--accent)",
+    color: "var(--ink-950)",
     padding: "16px 20px",
     display: "flex",
-    gap: 12,
     alignItems: "center",
+    gap: 14,
+    borderRadius: 12,
+    boxShadow: "0 12px 30px rgba(224, 164, 88, 0.25)",
   },
-  badgeNum: {
-    fontFamily: "'Bebas Neue', sans-serif",
-    fontSize: "2.8rem",
-    color: "#0a0a0a",
+  photoBadgeNum: {
+    fontFamily: "var(--font-display)",
+    fontSize: "2.6rem",
+    fontWeight: 400,
     lineHeight: 1,
+    letterSpacing: "-0.03em",
   },
-  badgeLabel: {
-    fontFamily: "'Space Mono', monospace",
+  photoBadgeLabel: {
+    fontFamily: "var(--font-mono)",
     fontSize: "0.6rem",
     fontWeight: 700,
-    color: "#0a0a0a",
-    lineHeight: 1.5,
-    letterSpacing: "0.05em",
+    lineHeight: 1.4,
+    letterSpacing: "0.06em",
+    textTransform: "uppercase" as const,
   },
-  contentCol: { flex: 1, paddingTop: 16 },
-  heading: {
-    fontFamily: "'Bebas Neue', sans-serif",
-    fontSize: "clamp(52px, 6vw, 88px)",
-    color: "#f0ede6",
-    lineHeight: 0.9,
-    letterSpacing: "0.03em",
+  credBlock: {
+    padding: "24px 24px",
+    border: "1px solid var(--line)",
+    borderRadius: 14,
+    background: "rgba(255,255,255,0.02)",
+  },
+  credTitle: {
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.65rem",
+    letterSpacing: "0.14em",
+    color: "var(--accent)",
+    textTransform: "uppercase" as const,
+    margin: "0 0 10px",
+    fontWeight: 700,
+  },
+  credBody: {
+    color: "var(--cream-soft)",
+    fontSize: "0.9rem",
+    lineHeight: 1.7,
     margin: 0,
   },
-  headingAccent: { color: "#b5f60a" },
-  divider: {
-    width: "100%",
-    height: 1,
-    background: "#1e1e1e",
-    margin: "32px 0",
+  rightCol: { display: "flex", flexDirection: "column" as const, gap: 40 },
+  heading: {
+    fontFamily: "var(--font-display)",
+    fontSize: "clamp(30px, 4vw, 56px)",
+    fontWeight: 400,
+    lineHeight: 1.1,
+    letterSpacing: "-0.025em",
+    color: "var(--cream)",
+    margin: 0,
+    maxWidth: "18ch",
   },
-  body: { color: "#888", fontSize: "0.95rem", lineHeight: 1.8, margin: 0 },
-  infoGrid: {
+  em: { color: "var(--accent)", fontStyle: "italic", fontWeight: 400 },
+  body: {
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: 16,
+    color: "var(--cream-soft)",
+    fontSize: "1rem",
+    lineHeight: 1.75,
+    maxWidth: "58ch",
+  },
+  highlights: {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: "0",
-    margin: "36px 0",
-    border: "1px solid #1a1a1a",
+    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    gap: 16,
   },
-  infoItem: {
+  hCard: {
+    padding: "20px 20px 22px",
+    border: "1px solid var(--line)",
+    borderRadius: 12,
+    background: "rgba(255,255,255,0.015)",
+    position: "relative",
+  },
+  hBar: {
+    width: 24,
+    height: 2,
+    background: "var(--accent)",
+    marginBottom: 12,
+  },
+  hTitle: {
+    fontFamily: "var(--font-sans)",
+    fontSize: "0.92rem",
+    fontWeight: 600,
+    color: "var(--cream)",
+    margin: "0 0 8px",
+    letterSpacing: "-0.01em",
+  },
+  hBody: {
+    fontSize: "0.82rem",
+    color: "var(--muted)",
+    lineHeight: 1.6,
+    margin: 0,
+  },
+  facts: {
+    display: "grid",
+    gridTemplateColumns: "repeat(2, 1fr)",
+    border: "1px solid var(--line)",
+    borderRadius: 12,
+    overflow: "hidden",
+  },
+  fact: {
     padding: "16px 20px",
-    borderBottom: "1px solid #1a1a1a",
-    borderRight: "1px solid #1a1a1a",
+    borderBottom: "1px solid var(--line-soft)",
+    borderRight: "1px solid var(--line-soft)",
     display: "flex",
     flexDirection: "column" as const,
     gap: 4,
   },
-  infoLabel: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.58rem",
-    letterSpacing: "0.15em",
-    color: "#b5f60a",
+  factLabel: {
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.6rem",
+    letterSpacing: "0.14em",
+    color: "var(--accent)",
+    textTransform: "uppercase" as const,
     fontWeight: 700,
   },
-  infoValue: { fontSize: "0.9rem", color: "#f0ede6", fontWeight: 500 },
-  cta: {
-    display: "inline-block",
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.72rem",
-    fontWeight: 700,
-    letterSpacing: "0.12em",
-    color: "#0a0a0a",
-    background: "#b5f60a",
-    padding: "14px 28px",
+  factValue: {
+    fontSize: "0.9rem",
+    color: "var(--cream)",
+    fontWeight: 500,
+  },
+  ctaRow: {
+    display: "flex",
+    alignItems: "center",
+    gap: 24,
+    flexWrap: "wrap" as const,
+  },
+  ctaPrimary: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 12,
+    fontSize: "0.92rem",
+    fontWeight: 600,
+    padding: "14px 24px",
+    color: "var(--ink-950)",
+    background: "var(--accent)",
     textDecoration: "none",
-    clipPath:
-      "polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))",
-    transition: "opacity 0.2s",
+    borderRadius: 999,
+    letterSpacing: "-0.01em",
+    boxShadow: "0 10px 30px rgba(224, 164, 88, 0.22)",
   },
+  ctaLink: {
+    fontSize: "0.9rem",
+    color: "var(--cream-soft)",
+    textDecoration: "none",
+    borderBottom: "1px solid var(--line)",
+    paddingBottom: 2,
+    transition: "color 0.2s, border-color 0.2s",
+  },
+  arrow: { fontSize: "1rem" },
 };
 
 export default About;

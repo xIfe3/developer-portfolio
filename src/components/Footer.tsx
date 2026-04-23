@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaArrowUp } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import React from "react";
 import Link from "next/link";
@@ -9,10 +9,10 @@ import Link from "next/link";
 const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
+  { name: "Expertise", href: "#skills" },
+  { name: "Work", href: "#projects" },
   { name: "Experience", href: "#experience" },
-  { name: "Testimonials", href: "#testimonials" },
+  { name: "Clients", href: "#testimonials" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -28,29 +28,50 @@ const socials = [
 
 const Footer = () => (
   <footer style={s.footer}>
-    <div style={s.topRule} />
+    {/* Giant name band */}
+    <div style={s.nameBand}>
+      <motion.h2
+        style={s.nameText}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      >
+        Let&apos;s build something <em style={s.em}>that lasts</em>.
+      </motion.h2>
+      <motion.a
+        href="#contact"
+        style={s.bandCta}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2 }}
+      >
+        Start a conversation
+        <span style={s.bandArrow}>↗</span>
+      </motion.a>
+    </div>
 
     <div style={s.inner} className="footer-inner">
-      {/* Brand col */}
       <div style={s.brandCol}>
-        <p style={s.logo}>
-          <span style={s.bracket}>[</span>xIfe3<span style={s.bracket}>]</span>
-          <span style={s.dot} />
-        </p>
+        <div style={s.logo}>
+          <span style={s.logoMark}>IO</span>
+          <span style={s.logoName}>
+            Ifeanyi <span style={s.logoSurname}>Onyekwelu</span>
+          </span>
+        </div>
         <p style={s.tagline}>
-          Full-Stack & Blockchain Developer
-          <br />
-          based in Enugu, Nigeria.
+          Full-Stack Engineer · AI Integration —<br />
+          based in Enugu, Nigeria · working remote worldwide.
         </p>
         <p style={s.avail}>
           <span style={s.availDot} />
-          Open to Work – Remote Friendly
+          Available for new engagements
         </p>
       </div>
 
-      {/* Nav col */}
       <div style={s.navCol}>
-        <p style={s.colHeading}>NAVIGATION</p>
+        <p style={s.colHeading}>Sitemap</p>
         <ul style={s.navList}>
           {navLinks.map((l) => (
             <li key={l.name}>
@@ -62,9 +83,8 @@ const Footer = () => (
         </ul>
       </div>
 
-      {/* Contact col */}
       <div style={s.navCol}>
-        <p style={s.colHeading}>CONTACT</p>
+        <p style={s.colHeading}>Contact</p>
         <ul style={s.navList}>
           <li>
             <a href="mailto:ifeanyi@xife3.space" style={s.navLink}>
@@ -97,7 +117,12 @@ const Footer = () => (
               rel="noopener noreferrer"
               style={s.socialIcon}
               aria-label={sc.label}
-              whileHover={{ color: "#b5f60a", borderColor: "#b5f60a33" }}
+              whileHover={{
+                y: -2,
+                color: "var(--ink-950)",
+                background: "var(--accent)",
+                borderColor: "var(--accent)",
+              }}
             >
               {sc.icon}
             </motion.a>
@@ -109,11 +134,13 @@ const Footer = () => (
     <div style={s.bottomBar}>
       <div style={s.bottomInner} className="footer-bottom-inner">
         <span style={s.copy}>
-          © {new Date().getFullYear()} Ifeanyi Onyekwelu. All rights reserved.
+          © {new Date().getFullYear()} Ifeanyi Onyekwelu — All rights reserved.
         </span>
         <div style={s.bottomRight} className="footer-bottom-right">
-          <span style={s.bottomTag}>DESIGNED & BUILT BY xIfe3</span>
-          <span style={s.bottomTag}>ENUGU, NG</span>
+          <span style={s.bottomTag}>Designed &amp; built in Enugu</span>
+          <a href="#home" style={s.toTop} aria-label="Back to top">
+            <FaArrowUp />
+          </a>
         </div>
       </div>
     </div>
@@ -129,21 +156,16 @@ const Footer = () => (
           grid-column: 1 / -1 !important;
         }
       }
-
-      @media (max-width: 768px) {
+      @media (max-width: 640px) {
         .footer-inner {
           grid-template-columns: 1fr !important;
           gap: 36px !important;
-          padding: 48px 24px 36px !important;
+          padding: 48px 20px 32px !important;
         }
         .footer-bottom-inner {
           flex-direction: column !important;
           align-items: flex-start !important;
-          gap: 8px !important;
-        }
-        .footer-bottom-right {
-          flex-direction: column !important;
-          gap: 4px !important;
+          gap: 12px !important;
         }
       }
     `}</style>
@@ -152,67 +174,112 @@ const Footer = () => (
 
 const s: Record<string, React.CSSProperties> = {
   footer: {
-    background: "#080808",
-    fontFamily: "'Space Grotesk', sans-serif",
+    background: "var(--ink-950)",
+    borderTop: "1px solid var(--line)",
+    fontFamily: "var(--font-sans)",
   },
-  topRule: {
-    height: 1,
-    background: "linear-gradient(90deg, #b5f60a, transparent)",
-  },
-  inner: {
-    maxWidth: 1300,
+  nameBand: {
+    maxWidth: 1280,
     margin: "0 auto",
+    padding: "80px 56px 64px",
+    display: "flex",
+    alignItems: "flex-end",
+    justifyContent: "space-between",
+    gap: 40,
+    flexWrap: "wrap" as const,
+    borderBottom: "1px solid var(--line)",
+  },
+  nameText: {
+    fontFamily: "var(--font-display)",
+    fontSize: "clamp(40px, 6vw, 80px)",
+    fontWeight: 400,
+    letterSpacing: "-0.03em",
+    color: "var(--cream)",
+    lineHeight: 1.05,
+    margin: 0,
+    maxWidth: "14ch",
+  },
+  em: { color: "var(--accent)", fontStyle: "italic", fontWeight: 400 },
+  bandCta: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 12,
+    padding: "16px 28px",
+    background: "var(--accent)",
+    color: "var(--ink-950)",
+    fontSize: "0.95rem",
+    fontWeight: 600,
+    textDecoration: "none",
+    borderRadius: 999,
+    letterSpacing: "-0.01em",
+    boxShadow: "0 12px 30px rgba(224, 164, 88, 0.25)",
+  },
+  bandArrow: { fontSize: "1.05rem" },
+  inner: {
+    maxWidth: 1280,
+    margin: "0 auto",
+    padding: "56px 56px 48px",
     display: "grid",
     gridTemplateColumns: "1.6fr 1fr 1fr",
-    gap: 60,
-    padding: "72px 48px 56px",
+    gap: 64,
   },
-  brandCol: { display: "flex", flexDirection: "column" as const, gap: 16 },
-  logo: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "1.2rem",
+  brandCol: { display: "flex", flexDirection: "column" as const, gap: 20 },
+  logo: { display: "flex", alignItems: "center", gap: 12 },
+  logoMark: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    background: "linear-gradient(135deg, var(--accent), var(--accent-deep))",
+    color: "var(--ink-950)",
+    fontFamily: "var(--font-display)",
+    fontSize: "0.95rem",
     fontWeight: 700,
-    color: "#f0ede6",
-    margin: 0,
     display: "flex",
     alignItems: "center",
-    gap: 3,
+    justifyContent: "center",
+    letterSpacing: "-0.02em",
   },
-  bracket: { color: "#b5f60a", fontWeight: 400 },
-  dot: {
-    display: "inline-block",
-    width: 6,
-    height: 6,
-    background: "#b5f60a",
-    borderRadius: "50%",
-    marginLeft: 6,
+  logoName: {
+    fontFamily: "var(--font-sans)",
+    fontSize: "0.95rem",
+    fontWeight: 600,
+    color: "var(--cream)",
+    letterSpacing: "-0.01em",
   },
-  tagline: { color: "#FFF", fontSize: "0.85rem", lineHeight: 1.7, margin: 0 },
+  logoSurname: { color: "var(--muted)", fontWeight: 500 },
+  tagline: {
+    color: "var(--cream-soft)",
+    fontSize: "0.9rem",
+    lineHeight: 1.7,
+    margin: 0,
+    maxWidth: 340,
+  },
   avail: {
     display: "flex",
     alignItems: "center",
-    gap: 8,
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.58rem",
+    gap: 10,
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.65rem",
     letterSpacing: "0.12em",
-    color: "#b5f60a",
+    color: "var(--accent)",
     fontWeight: 700,
+    textTransform: "uppercase" as const,
     margin: 0,
   },
   availDot: {
-    width: 6,
-    height: 6,
-    background: "#b5f60a",
+    width: 7,
+    height: 7,
     borderRadius: "50%",
-    flexShrink: 0,
-    boxShadow: "0 0 6px #b5f60a",
+    background: "var(--accent)",
+    boxShadow: "0 0 10px var(--accent)",
   },
   navCol: { display: "flex", flexDirection: "column" as const, gap: 20 },
   colHeading: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.6rem",
-    letterSpacing: "0.2em",
-    color: "#FFF",
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.66rem",
+    letterSpacing: "0.14em",
+    color: "var(--muted)",
+    textTransform: "uppercase" as const,
     fontWeight: 700,
     margin: 0,
   },
@@ -225,32 +292,33 @@ const s: Record<string, React.CSSProperties> = {
     gap: 12,
   },
   navLink: {
-    fontFamily: "'Space Grotesk', sans-serif",
+    fontFamily: "var(--font-sans)",
     fontSize: "0.88rem",
-    color: "#888",
+    color: "var(--cream-soft)",
     textDecoration: "none",
     transition: "color 0.2s",
   },
-  socialRow: { display: "flex", gap: 10, marginTop: 8 },
+  socialRow: { display: "flex", gap: 10, marginTop: 12 },
   socialIcon: {
-    width: 34,
-    height: 34,
-    background: "#0f0f0f",
-    border: "1px solid #1a1a1a",
+    width: 36,
+    height: 36,
+    borderRadius: "50%",
+    background: "var(--ink-850)",
+    border: "1px solid var(--line)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    color: "#FFF",
+    color: "var(--cream-soft)",
     fontSize: "0.85rem",
     textDecoration: "none",
-    transition: "color 0.2s, border-color 0.2s",
+    transition: "all 0.2s",
   },
   bottomBar: {
-    borderTop: "1px solid #111",
-    padding: "16px 48px",
+    borderTop: "1px solid var(--line)",
+    padding: "20px 56px",
   },
   bottomInner: {
-    maxWidth: 1300,
+    maxWidth: 1280,
     margin: "0 auto",
     display: "flex",
     justifyContent: "space-between",
@@ -259,18 +327,37 @@ const s: Record<string, React.CSSProperties> = {
     gap: 12,
   },
   copy: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.58rem",
-    color: "#fefae0",
-    letterSpacing: "0.08em",
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.66rem",
+    color: "var(--muted-2)",
+    letterSpacing: "0.04em",
   },
-  bottomRight: { display: "flex", gap: 24 },
+  bottomRight: {
+    display: "flex",
+    alignItems: "center",
+    gap: 20,
+  },
   bottomTag: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.55rem",
-    color: "#fefae0",
-    letterSpacing: "0.15em",
-    fontWeight: 700,
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.62rem",
+    color: "var(--muted-2)",
+    letterSpacing: "0.12em",
+    textTransform: "uppercase" as const,
+    fontWeight: 600,
+  },
+  toTop: {
+    width: 36,
+    height: 36,
+    borderRadius: "50%",
+    background: "transparent",
+    border: "1px solid var(--line)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "var(--cream-soft)",
+    fontSize: "0.8rem",
+    textDecoration: "none",
+    transition: "all 0.25s",
   },
 };
 

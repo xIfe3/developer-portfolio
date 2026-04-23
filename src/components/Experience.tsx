@@ -5,46 +5,58 @@ import React from "react";
 
 const experiences = [
   {
-    role: "Software Engineer – Full-Stack",
+    role: "Software Engineer · Full-Stack",
     company: "Babelos",
     location: "Remote",
-    period: "Sep 2025 – Present",
+    period: "Sep 2025 — Present",
     description:
-      "Developing web applications using Next.js and NestJS with Docker-based microservices. Working with PostgreSQL and Redis for data management, implementing REST and GraphQL APIs. Contributing to UI/UX improvements and maintaining CI/CD pipelines with GitHub Actions.",
+      "Building a production SaaS on Next.js + NestJS with Dockerised microservices. Designing PostgreSQL schemas, Redis caching, REST/GraphQL surfaces, and integrating LLM-powered features into the product.",
+    achievements: [
+      "Wired LangChain-based assistant into the product UX",
+      "Owned GraphQL schema design for a multi-tenant surface",
+    ],
     technologies: [
       "Next.js",
+      "NestJS",
       "TypeScript",
       "PostgreSQL",
       "Redis",
+      "LangChain",
       "Docker",
-      "Nest.js",
     ],
   },
   {
-    role: "Software Engineer – Full-Stack",
+    role: "Software Engineer · Full-Stack",
     company: "Kedusoft",
     location: "Remote",
-    period: "Sep 2024 – Jul 2025",
+    period: "Sep 2024 — Jul 2025",
     description:
-      "Built SaaS and fintech platforms with payment integrations using Stripe and Paystack. Optimized database queries with PostgreSQL and implemented Redis caching. Deployed applications using Docker and GitHub Actions CI/CD.",
+      "Built SaaS and fintech platforms with Stripe and Paystack payment integrations. Optimised PostgreSQL queries, added Redis caching, and deployed via Docker + GitHub Actions CI/CD.",
+    achievements: [
+      "Rebuilt payment layer eliminating silent failures",
+      "Cut API response times via targeted query and cache optimisation",
+    ],
     technologies: [
       "React",
       "TypeScript",
       "PostgreSQL",
       "Redis",
       "Docker",
-      "Kubernetes",
       "Stripe",
       "Paystack",
     ],
   },
   {
-    role: "Software Developer",
+    role: "Software Engineer · Full-Stack",
     company: "World Brain Technology",
     location: "Enugu, NG",
-    period: "Feb 2024 – Aug 2024",
+    period: "Feb 2024 — Aug 2024",
     description:
-      "Developed a SaaS platform for SMEs using React, Node.js, GraphQL, and PostgreSQL. Built dashboards for data visualization and insights. Worked with microservices architecture and deployed applications on AWS and GCP.",
+      "Built a SaaS platform for SMEs using React, Node.js, GraphQL, and PostgreSQL. Designed dashboards for data visualisation and deployed to AWS + GCP.",
+    achievements: [
+      "Proposed services split cutting API latency by ~45%",
+      "Stood up observability stack for early incident detection",
+    ],
     technologies: [
       "React",
       "Node.js",
@@ -56,118 +68,127 @@ const experiences = [
     ],
   },
   {
-    role: "Lecturer – Software Development",
-    company: "Aptech Computer Education",
-    location: "Enugu, NG",
-    period: "Sep 2022 – Dec 2023",
-    description:
-      "Taught full-stack web development covering JavaScript, React, Node.js, and databases. Mentored students through hands-on projects and designed structured curriculum materials.",
-    technologies: ["JavaScript", "React", "Node.js", "MongoDB", "MySQL"],
-  },
-  {
     role: "Junior Developer Intern",
     company: "CV2 Career Internship",
     location: "Remote",
-    period: "Aug 2023 – Jan 2024",
+    period: "Aug 2023 — Jan 2024",
     description:
-      "Contributed to a SaaS platform built with Python and Firebase. Implemented features, fixed bugs, and participated in code reviews. Gained experience with agile practices and CI/CD workflows.",
+      "Contributed to a SaaS platform built with Python and Firebase. Shipped features, fixed bugs, and participated in code reviews — hands-on exposure to agile workflows and CI/CD.",
+    achievements: [],
     technologies: ["Python", "Firebase", "Agile", "CI/CD"],
+  },
+  {
+    role: "Lecturer · Software Development",
+    company: "Aptech Computer Education",
+    location: "Enugu, NG",
+    period: "Sep 2022 — Dec 2023",
+    description:
+      "Taught full-stack web development — JavaScript, React, Node.js, and databases. Mentored students through hands-on projects and designed structured curriculum materials.",
+    achievements: [
+      "Designed curriculum graduates still reference on the job",
+      "Mentored dozens of students into junior dev roles",
+    ],
+    technologies: ["JavaScript", "React", "Node.js", "MongoDB", "MySQL"],
   },
   {
     role: "Freelance Contract Developer",
     company: "BeeTec",
     location: "Remote",
-    period: "Apr 2022 – Aug 2022",
+    period: "Apr 2022 — Aug 2022",
     description:
-      "Worked on multiple client projects – built and deployed responsive web applications, integrated APIs, and optimized performance. Delivered on time while collaborating closely with remote teams.",
+      "Delivered client projects end-to-end — built and deployed responsive web applications, integrated third-party APIs, and optimised performance against tight deadlines while collaborating with remote teams.",
+    achievements: [
+      "Shipped multiple production sites inside a 4-month sprint",
+      "Built recurring client relationships from one-off gigs",
+    ],
     technologies: ["React", "Next.js", "Node.js", "TailwindCSS"],
   },
 ];
 
 const Experience = () => (
   <section id="experience" style={s.section}>
-    <div style={s.sectionLabel}>
-      <span style={s.labelLine} />
-      <span style={s.labelText}>05 – WORK EXPERIENCE</span>
-    </div>
+    <div style={s.inner} className="exp-inner">
+      <div style={s.labelRow}>
+        <span style={s.labelLine} />
+        <span style={s.labelText}>04 / Career</span>
+      </div>
 
-    <div style={s.inner}>
-      <motion.div
-        style={s.headingRow}
-        className="exp-heading-row"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.7 }}
-      >
-        <h2 style={s.heading}>
-          PROFESSIONAL
-          <br />
-          <span style={s.accent}>JOURNEY</span>
-        </h2>
-        <p style={s.sub}>
-          Companies I&apos;ve built for, teams I&apos;ve shipped with, and
-          products I&apos;ve taken from 0 to production.
-        </p>
-      </motion.div>
+      <div style={s.headRow} className="exp-head">
+        <motion.h2
+          style={s.heading}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          Five years of <em style={s.em}>production</em> receipts.
+        </motion.h2>
+        <motion.p
+          style={s.sub}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+        >
+          The teams I&apos;ve shipped with, the codebases I&apos;ve owned,
+          and the products I&apos;ve taken from messy first commit to
+          production load.
+        </motion.p>
+      </div>
 
       <div style={s.timeline} className="exp-timeline">
         <div style={s.rail} className="exp-rail" />
 
         {experiences.map((exp, i) => (
           <motion.div
-            key={i}
+            key={exp.company + exp.period}
             style={s.entry}
             className="exp-entry"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{
               duration: 0.6,
-              delay: i * 0.08,
+              delay: i * 0.06,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            <div style={s.dot} className="exp-dot">
-              <div style={s.dotInner} />
+            <div style={s.marker} className="exp-marker">
+              <div style={s.markerDot} />
             </div>
 
-            <div style={s.period} className="exp-period">
+            <div style={s.periodCol} className="exp-period-col">
               {exp.period}
             </div>
 
             <div style={s.card}>
-              {/* Mobile period badge shown inside card */}
-              <div
-                className="exp-period-mobile"
-                style={{
-                  display: "none",
-                  fontFamily: "'Space Mono', monospace",
-                  fontSize: "0.55rem",
-                  letterSpacing: "0.08em",
-                  color: "#b5f60a",
-                  fontWeight: 700,
-                  marginBottom: 12,
-                }}
-              >
-                {exp.period}
-              </div>
-
-              <div style={s.cardHeader}>
+              <div style={s.cardTop}>
                 <div>
                   <h3 style={s.role}>{exp.role}</h3>
                   <p style={s.company}>
-                    {exp.company}
-                    <span style={s.locationDot}>·</span>
-                    {exp.location}
+                    <span style={s.companyName}>{exp.company}</span>
+                    <span style={s.dot}>·</span>
+                    <span style={s.location}>{exp.location}</span>
+                  </p>
+                  <p style={s.periodMobile} className="exp-period-mobile">
+                    {exp.period}
                   </p>
                 </div>
-                <span style={s.indexChip}>0{i + 1}</span>
+                <span style={s.idx}>{String(i + 1).padStart(2, "0")}</span>
               </div>
 
-              <div style={s.divider} />
-
               <p style={s.desc}>{exp.description}</p>
+
+              {exp.achievements.length > 0 && (
+                <ul style={s.achievements}>
+                  {exp.achievements.map((a) => (
+                    <li key={a} style={s.achItem}>
+                      <span style={s.achCheck}>✓</span>
+                      <span>{a}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
 
               <div style={s.techRow}>
                 {exp.technologies.map((t) => (
@@ -183,43 +204,19 @@ const Experience = () => (
     </div>
 
     <style>{`
+      .exp-period-mobile { display: none; }
       @media (max-width: 1024px) {
-        .exp-timeline {
-          padding-left: 120px !important;
-        }
-        .exp-period {
-          left: -120px !important;
-          width: 80px !important;
-        }
-        .exp-rail {
-          left: 88px !important;
-        }
-        .exp-dot {
-          left: -32px !important;
-        }
+        .exp-head { grid-template-columns: 1fr !important; gap: 16px !important; }
       }
-
-      @media (max-width: 768px) {
-        #experience { padding: 80px 20px !important; }
-        .exp-timeline {
-          padding-left: 0 !important;
-        }
-        .exp-rail {
-          display: none !important;
-        }
-        .exp-dot {
-          display: none !important;
-        }
-        .exp-period {
-          display: none !important;
-        }
-        .exp-period-mobile {
-          display: block !important;
-        }
-        .exp-heading-row {
-          flex-direction: column !important;
-          align-items: flex-start !important;
-        }
+      @media (max-width: 880px) {
+        .exp-timeline { padding-left: 0 !important; }
+        .exp-rail { display: none !important; }
+        .exp-marker { display: none !important; }
+        .exp-period-col { display: none !important; }
+        .exp-period-mobile { display: block !important; }
+      }
+      @media (max-width: 640px) {
+        .exp-inner { padding: 96px 20px !important; }
       }
     `}</style>
   </section>
@@ -227,95 +224,120 @@ const Experience = () => (
 
 const s: Record<string, React.CSSProperties> = {
   section: {
-    background: "#0a0a0a",
-    padding: "120px 48px",
-    fontFamily: "'Space Grotesk', sans-serif",
+    background: "var(--ink-950)",
+    borderTop: "1px solid var(--line)",
+    fontFamily: "var(--font-sans)",
   },
-  sectionLabel: {
+  inner: {
+    maxWidth: 1280,
+    margin: "0 auto",
+    padding: "140px 56px",
+  },
+  labelRow: {
     display: "flex",
     alignItems: "center",
-    gap: 12,
-    maxWidth: 1300,
-    margin: "0 auto 64px",
+    gap: 14,
+    marginBottom: 40,
   },
-  labelLine: { display: "block", width: 40, height: 1, background: "#b5f60a" },
+  labelLine: {
+    display: "block",
+    width: 48,
+    height: 1,
+    background: "var(--accent)",
+  },
   labelText: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.65rem",
-    letterSpacing: "0.2em",
-    color: "#FFF",
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.72rem",
+    color: "var(--muted)",
+    letterSpacing: "0.15em",
+    textTransform: "uppercase" as const,
   },
-  inner: { maxWidth: 1300, margin: "0 auto" },
-  headingRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "flex-end",
-    marginBottom: 80,
-    borderBottom: "1px solid #1a1a1a",
-    paddingBottom: 40,
-    gap: 40,
-    flexWrap: "wrap" as const,
+  headRow: {
+    display: "grid",
+    gridTemplateColumns: "1.3fr 1fr",
+    gap: 64,
+    alignItems: "end",
+    paddingBottom: 48,
+    borderBottom: "1px solid var(--line)",
+    marginBottom: 72,
   },
   heading: {
-    fontFamily: "'Bebas Neue', sans-serif",
-    fontSize: "clamp(56px, 7vw, 96px)",
-    color: "#f0ede6",
-    lineHeight: 0.9,
-    letterSpacing: "0.03em",
+    fontFamily: "var(--font-display)",
+    fontSize: "clamp(32px, 4.5vw, 60px)",
+    fontWeight: 400,
+    lineHeight: 1.05,
+    letterSpacing: "-0.025em",
+    color: "var(--cream)",
     margin: 0,
+    maxWidth: "16ch",
   },
-  accent: { color: "#b5f60a" },
+  em: { color: "var(--accent)", fontStyle: "italic", fontWeight: 400 },
   sub: {
-    color: "#666",
-    fontSize: "0.9rem",
+    color: "var(--cream-soft)",
+    fontSize: "0.98rem",
     lineHeight: 1.7,
-    maxWidth: 340,
     margin: 0,
+    maxWidth: 460,
   },
-  timeline: { position: "relative" as const, paddingLeft: 160 },
+  timeline: {
+    position: "relative",
+    paddingLeft: 220,
+  },
   rail: {
-    position: "absolute" as const,
-    left: 120,
-    top: 0,
-    bottom: 0,
+    position: "absolute",
+    left: 160,
+    top: 28,
+    bottom: 28,
     width: 1,
-    background: "#1e1e1e",
+    background:
+      "linear-gradient(180deg, transparent, var(--line) 10%, var(--line) 90%, transparent)",
   },
   entry: {
-    position: "relative" as const,
-    marginBottom: 0,
-    paddingBottom: 0,
+    position: "relative",
+    paddingBottom: 40,
+    marginBottom: 40,
+    borderBottom: "1px solid var(--line-soft)",
   },
-  dot: {
-    position: "absolute" as const,
-    left: -44,
-    top: 28,
-    width: 12,
-    height: 12,
-    border: "1.5px solid #b5f60a",
+  marker: {
+    position: "absolute",
+    left: -68,
+    top: 30,
+    width: 14,
+    height: 14,
+    borderRadius: "50%",
+    border: "2px solid var(--accent)",
+    background: "var(--ink-950)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    background: "#0a0a0a",
   },
-  dotInner: { width: 4, height: 4, background: "#b5f60a" },
-  period: {
-    position: "absolute" as const,
-    left: -160,
+  markerDot: {
+    width: 5,
+    height: 5,
+    borderRadius: "50%",
+    background: "var(--accent)",
+  },
+  periodCol: {
+    position: "absolute",
+    left: -220,
     top: 28,
-    width: 100,
+    width: 140,
     textAlign: "right" as const,
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.55rem",
-    letterSpacing: "0.08em",
-    color: "#fefae0",
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.7rem",
+    color: "var(--accent)",
+    letterSpacing: "0.05em",
     lineHeight: 1.5,
+    fontWeight: 600,
   },
   card: {
-    borderBottom: "1px solid #1a1a1a",
-    padding: "28px 0 36px",
+    padding: "28px 32px 32px",
+    background:
+      "linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005))",
+    border: "1px solid var(--line)",
+    borderRadius: 16,
   },
-  cardHeader: {
+  cardTop: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "flex-start",
@@ -323,47 +345,86 @@ const s: Record<string, React.CSSProperties> = {
     marginBottom: 16,
   },
   role: {
-    fontFamily: "'Bebas Neue', sans-serif",
-    fontSize: "1.5rem",
-    color: "#f0ede6",
-    letterSpacing: "0.04em",
-    margin: "0 0 4px",
+    fontFamily: "var(--font-display)",
+    fontSize: "1.35rem",
+    color: "var(--cream)",
+    letterSpacing: "-0.02em",
+    fontWeight: 400,
+    margin: "0 0 6px",
+    lineHeight: 1.2,
   },
   company: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.65rem",
-    color: "#b5f60a",
-    letterSpacing: "0.1em",
-    fontWeight: 700,
+    fontFamily: "var(--font-sans)",
+    fontSize: "0.88rem",
+    color: "var(--cream-soft)",
+    fontWeight: 500,
     margin: 0,
     display: "flex",
     alignItems: "center",
     gap: 8,
+    flexWrap: "wrap" as const,
   },
-  locationDot: { color: "#fefae0" },
-  indexChip: {
-    fontFamily: "'Bebas Neue', sans-serif",
-    fontSize: "2.5rem",
-    color: "#1a1a1a",
+  companyName: { color: "var(--accent)", fontWeight: 600 },
+  dot: { color: "var(--muted-2)" },
+  location: { color: "var(--muted)", fontSize: "0.82rem" },
+  periodMobile: {
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.65rem",
+    color: "var(--muted)",
+    letterSpacing: "0.08em",
+    margin: "10px 0 0",
+  },
+  idx: {
+    fontFamily: "var(--font-display)",
+    fontSize: "2.2rem",
+    color: "var(--line)",
     lineHeight: 1,
     flexShrink: 0,
+    fontStyle: "italic",
   },
-  divider: { width: 40, height: 1, background: "#b5f60a", margin: "16px 0" },
   desc: {
-    color: "#777",
-    fontSize: "0.88rem",
+    color: "var(--cream-soft)",
+    fontSize: "0.92rem",
     lineHeight: 1.75,
-    margin: "0 0 20px",
+    margin: "0 0 18px",
   },
-  techRow: { display: "flex", flexWrap: "wrap" as const, gap: 6 },
-  techTag: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.55rem",
-    letterSpacing: "0.08em",
-    color: "#b5f60a",
-    border: "1px solid #b5f60a33",
-    padding: "4px 10px",
+  achievements: {
+    listStyle: "none",
+    padding: 0,
+    margin: "0 0 20px",
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: 8,
+  },
+  achItem: {
+    display: "flex",
+    alignItems: "flex-start",
+    gap: 10,
+    fontSize: "0.85rem",
+    color: "var(--muted)",
+    lineHeight: 1.6,
+  },
+  achCheck: {
+    color: "var(--accent)",
     fontWeight: 700,
+    flexShrink: 0,
+    marginTop: 1,
+  },
+  techRow: {
+    display: "flex",
+    flexWrap: "wrap" as const,
+    gap: 6,
+  },
+  techTag: {
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.6rem",
+    letterSpacing: "0.04em",
+    color: "var(--cream-soft)",
+    border: "1px solid var(--line)",
+    background: "rgba(255,255,255,0.02)",
+    padding: "4px 10px",
+    borderRadius: 999,
+    fontWeight: 500,
   },
 };
 

@@ -1,73 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
 import { FaGithub, FaLinkedin, FaPaperPlane, FaDownload } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-
-const roles = [
-  "FULL-STACK DEV",
-  "BACKEND APIs",
-  "WEB3 APPS",
-  "NEXT.JS",
-  "SMART CONTRACTS",
-  "SCALABLE SYSTEMS",
-  "NODE / NEST",
-];
-const strip = [...roles, ...roles];
-
-const MarqueeStrip = () => (
-  <div style={marqueeStyles.wrap}>
-    <div style={marqueeStyles.inner}>
-      {strip.map((r, i) => (
-        <span key={i} style={marqueeStyles.item}>
-          {r} <span style={{ color: "#0a0a0a" }}>✦</span>
-        </span>
-      ))}
-    </div>
-  </div>
-);
-
-const marqueeStyles: Record<string, React.CSSProperties> = {
-  wrap: {
-    overflow: "hidden",
-    background: "#b5f60a",
-    color: "#0a0a0a",
-    padding: "10px 0",
-    width: "100%",
-  },
-  inner: {
-    display: "flex",
-    whiteSpace: "nowrap" as const,
-    animation: "marquee 22s linear infinite",
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.75rem",
-    fontWeight: 700,
-    letterSpacing: "0.15em",
-  },
-  item: {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 16,
-    padding: "0 24px",
-  },
-};
-
-const NoiseOverlay = () => (
-  <div
-    style={{
-      position: "fixed",
-      inset: 0,
-      pointerEvents: "none",
-      zIndex: 999,
-      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
-      opacity: 0.03,
-    }}
-  />
-);
 
 const socials = [
   {
@@ -79,416 +17,475 @@ const socials = [
   { name: "Twitter", url: "https://x.com/_xIfe3", icon: <FaXTwitter /> },
 ];
 
+const marks = [
+  "Babelos",
+  "Kedusoft",
+  "World Brain Tech",
+  "ReginaNostra",
+  "1010 Realty",
+  "Hedgeon Finance",
+];
+
 const Hero = () => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const heroRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const move = (e: MouseEvent) => {
-      const rect = heroRef.current?.getBoundingClientRect();
-      if (!rect) return;
-      setMousePos({
-        x: ((e.clientX - rect.left) / rect.width - 0.5) * 20,
-        y: ((e.clientY - rect.top) / rect.height - 0.5) * 20,
-      });
-    };
-    window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
-  }, []);
-
   return (
-    <>
-      <NoiseOverlay />
-      <section
-        id="home"
-        ref={heroRef}
-        style={styles.section}
-        className="hero-section"
-      >
-        <MarqueeStrip />
+    <section id="home" style={s.section} className="hero">
+      {/* Ambient grid + glow */}
+      <div style={s.grid} aria-hidden />
+      <div style={s.glow} aria-hidden />
 
-        <div style={styles.grid} className="hero-grid">
-          <div style={styles.leftCol} className="hero-left">
-            <motion.p
-              style={styles.eyebrow}
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <span style={styles.eyebrowLine} /> BACKEND + WEB3 SPECIALIST ·
-              NIGERIA
-            </motion.p>
+      <div style={s.container} className="hero-container">
+        {/* Eyebrow */}
+        <motion.div
+          style={s.eyebrow}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <span style={s.ePulse} />
+          <span style={s.eText}>
+            Available for senior roles · freelance engagements
+          </span>
+        </motion.div>
 
-            <div style={styles.nameBlock}>
-              <motion.div
-                style={styles.nameFirst}
-                className="hero-name"
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  delay: 0.35,
-                  duration: 0.7,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                IFEANYI
-              </motion.div>
-              <motion.div
-                style={styles.nameLast}
-                className="hero-name"
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  delay: 0.5,
-                  duration: 0.7,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                ONYEKWELU
-              </motion.div>
-            </div>
+        {/* Headline */}
+        <motion.h1
+          style={s.headline}
+          className="hero-headline"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        >
+          Engineering{" "}
+          <span style={s.italic}>
+            <em>reliable</em>
+          </span>{" "}
+          software
+          <br />
+          for teams that{" "}
+          <span style={s.underline}>ship at scale</span>.
+        </motion.h1>
 
-            <motion.p
-              style={styles.tagline}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-            >
-              I help startups ship scalable web apps, fix backend bottlenecks,
-              and launch on-chain products — fast, clean, and production-ready.
-            </motion.p>
+        {/* Sub */}
+        <motion.p
+          style={s.sub}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25, duration: 0.7 }}
+        >
+          I&apos;m <strong style={s.strong}>Ifeanyi Onyekwelu</strong> — a
+          full-stack engineer with{" "}
+          <strong style={s.strong}>5+ years</strong> building production web
+          platforms for fintech, SaaS, and education teams. Currently focused
+          on{" "}
+          <strong style={s.strong}>
+            AI-integrated products
+          </strong>{" "}
+          — LLMs, LangChain, and workflows that ship.
+        </motion.p>
 
-            <motion.div
-              style={styles.ctaRow}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-            >
-              <a href="#contact" style={styles.ctaPrimary}>
-                <FaPaperPlane style={{ fontSize: 14 }} /> Got a project?
-              </a>
-              <a
-                href="/IFEANYI ONYEKWELU.pdf"
+        {/* CTA row */}
+        <motion.div
+          style={s.ctaRow}
+          className="hero-cta-row"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.7 }}
+        >
+          <a href="#contact" style={s.ctaPrimary}>
+            <FaPaperPlane style={{ fontSize: 13 }} />
+            Start a project
+          </a>
+          <a
+            href="/IFEANYI ONYEKWELU.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={s.ctaSecondary}
+          >
+            <FaDownload style={{ fontSize: 13 }} />
+            Download resume
+          </a>
+          <div style={s.socials}>
+            {socials.map((x) => (
+              <Link
+                key={x.name}
+                href={x.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={styles.ctaSecondary}
+                style={s.socialIcon}
+                aria-label={x.name}
               >
-                <FaDownload style={{ fontSize: 14 }} /> Resume
-              </a>
-            </motion.div>
-
-            <motion.div
-              style={styles.socialRow}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.1 }}
-            >
-              {socials.map((s) => (
-                <Link
-                  key={s.name}
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={styles.socialIcon}
-                  aria-label={s.name}
-                >
-                  {s.icon}
-                </Link>
-              ))}
-            </motion.div>
+                {x.icon}
+              </Link>
+            ))}
           </div>
+        </motion.div>
 
+        {/* Stats + portrait row */}
+        <div style={s.belowFold} className="hero-below">
+          {/* Stats */}
           <motion.div
-            style={styles.rightCol}
-            className="hero-right"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            style={s.statsCol}
+            className="hero-stats"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.7 }}
           >
-            <motion.div
-              style={styles.accentBox}
-              className="hero-accent-box"
-              animate={{
-                rotate: [2, -2, 2],
-                transition: {
-                  repeat: Infinity,
-                  duration: 6,
-                  ease: "easeInOut",
-                },
-              }}
-            />
-            <motion.div
-              style={{
-                ...styles.photoFrame,
-                transform: `rotateX(${-mousePos.y * 0.3}deg) rotateY(${mousePos.x * 0.3}deg)`,
-              }}
-              className="hero-photo-frame"
-            >
+            <StatCell num="5+" label="Years engineering" />
+            <StatCell num="25+" label="Shipped projects" />
+            <StatCell num="10+" label="Production clients" />
+            <StatCell num="99.9%" label="Uptime delivered" last />
+          </motion.div>
+
+          {/* Portrait */}
+          <motion.div
+            style={s.portraitWrap}
+            className="hero-portrait"
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.35, duration: 0.9 }}
+          >
+            <div style={s.portraitRing} />
+            <div style={s.portraitFrame}>
               <Image
                 src="/profile.jpg"
                 alt="Ifeanyi Onyekwelu"
-                width={420}
-                height={520}
-                style={styles.photo}
+                width={520}
+                height={640}
                 priority
+                style={s.portraitImg}
               />
-              <div style={styles.chip}>Available for work ✦</div>
-            </motion.div>
-            <motion.div
-              style={{ ...styles.statCard, top: "12%", right: "-12%" }}
-              className="hero-stat hero-stat-1"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.0 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <span style={styles.statNum}>4+</span>
-              <span style={styles.statLabel}>Years Exp.</span>
-            </motion.div>
-            <motion.div
-              style={{ ...styles.statCard, bottom: "18%", left: "-14%" }}
-              className="hero-stat hero-stat-2"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.1 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <span style={styles.statNum}>20+</span>
-              <span style={styles.statLabel}>Projects</span>
-            </motion.div>
+              <div style={s.portraitBadge}>
+                <span style={s.pulseDot} />
+                <span>Available — Q2 / Q3</span>
+              </div>
+            </div>
           </motion.div>
         </div>
 
+        {/* Trust strip */}
         <motion.div
-          style={styles.bottomStrip}
-          className="hero-bottom-strip"
+          style={s.trust}
+          className="hero-trust"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.3 }}
+          transition={{ delay: 0.9, duration: 0.8 }}
         >
-          <span style={styles.stripText}>ENUGU, NIGERIA — OPEN TO REMOTE</span>
-          <span style={styles.stripText}>© {new Date().getFullYear()}</span>
+          <span style={s.trustLabel}>Trusted by teams at</span>
+          <div style={s.trustMarks}>
+            {marks.map((m) => (
+              <span key={m} style={s.trustMark}>
+                {m}
+              </span>
+            ))}
+          </div>
         </motion.div>
+      </div>
 
-        <style>{`
-          @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@700&family=Bebas+Neue&display=swap');
-          #home * { box-sizing: border-box; }
-          @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-          @media (max-width: 1024px) { .hero-grid { padding: 40px 32px 32px !important; } .hero-stat-1 { right: -4% !important; } .hero-stat-2 { left: -4% !important; } }
-          @media (max-width: 768px) {
-            .hero-grid { flex-direction: column !important; padding: 32px 20px 24px !important; align-items: center !important; text-align: center !important; }
-            .hero-left { flex: unset !important; width: 100% !important; padding-right: 0 !important; align-items: center !important; }
-            .hero-left > p:first-child { justify-content: center !important; }
-            .hero-name { font-size: clamp(60px, 18vw, 100px) !important; }
-            .hero-right { flex: unset !important; width: 100% !important; min-height: 360px !important; max-width: 320px !important; margin: 0 auto !important; }
-            .hero-photo-frame { width: 260px !important; height: 340px !important; }
-            .hero-accent-box { inset: 16px !important; }
-            .hero-stat-1 { position: absolute !important; top: 8% !important; right: 0 !important; }
-            .hero-stat-2 { position: absolute !important; bottom: 8% !important; left: 0 !important; }
-            .hero-bottom-strip { padding: 12px 20px !important; flex-wrap: wrap !important; gap: 8px !important; justify-content: center !important; }
-          }
-          @media (max-width: 480px) {
-            .hero-grid { padding: 24px 16px 20px !important; }
-            .hero-name { font-size: clamp(52px, 16vw, 80px) !important; }
-            .hero-right { max-width: 280px !important; min-height: 300px !important; }
-            .hero-photo-frame { width: 220px !important; height: 290px !important; }
-          }
-        `}</style>
-      </section>
-    </>
+      <style>{`
+        .hero-headline em { font-style: italic; font-weight: 400; }
+        @media (max-width: 1080px) {
+          .hero-below { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .hero-portrait { max-width: 440px !important; margin: 0 auto !important; }
+        }
+        @media (max-width: 720px) {
+          .hero-container { padding: 120px 20px 72px !important; }
+          .hero-cta-row { flex-wrap: wrap !important; gap: 14px !important; }
+          .hero-stats { grid-template-columns: repeat(2, 1fr) !important; }
+          .hero-trust { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+        }
+      `}</style>
+    </section>
   );
 };
 
-const styles: Record<string, React.CSSProperties> = {
+const StatCell = ({
+  num,
+  label,
+  last,
+}: {
+  num: string;
+  label: string;
+  last?: boolean;
+}) => (
+  <div style={{ ...s.statCell, borderRight: last ? "none" : s.statCell.borderRight }}>
+    <div style={s.statNum}>{num}</div>
+    <div style={s.statLabel}>{label}</div>
+  </div>
+);
+
+const s: Record<string, React.CSSProperties> = {
   section: {
+    position: "relative",
     minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column" as const,
-    background: "#0a0a0a",
-    color: "#f0ede6",
-    fontFamily: "'Space Grotesk', sans-serif",
-    position: "relative" as const,
+    background: "var(--ink-950)",
+    color: "var(--cream)",
     overflow: "hidden",
-    paddingTop: "64px",
+    fontFamily: "var(--font-sans)",
   },
   grid: {
-    display: "flex",
-    flex: 1,
-    maxWidth: "1400px",
+    position: "absolute",
+    inset: 0,
+    pointerEvents: "none",
+    backgroundImage:
+      "linear-gradient(var(--line-soft) 1px, transparent 1px), linear-gradient(90deg, var(--line-soft) 1px, transparent 1px)",
+    backgroundSize: "56px 56px",
+    maskImage:
+      "radial-gradient(ellipse at 50% 30%, black 20%, transparent 75%)",
+    WebkitMaskImage:
+      "radial-gradient(ellipse at 50% 30%, black 20%, transparent 75%)",
+    opacity: 0.5,
+  },
+  glow: {
+    position: "absolute",
+    top: "-20%",
+    right: "-10%",
+    width: 720,
+    height: 720,
+    background:
+      "radial-gradient(circle at center, var(--accent-glow), transparent 70%)",
+    filter: "blur(40px)",
+    pointerEvents: "none",
+  },
+  container: {
+    position: "relative",
+    maxWidth: 1280,
     margin: "0 auto",
-    width: "100%",
-    padding: "60px 48px 40px",
-    alignItems: "center",
-    justifyContent: "space-between",
-    gap: 0,
-  },
-  leftCol: {
-    flex: "1 1 55%",
-    display: "flex",
-    flexDirection: "column" as const,
-    gap: "28px",
-    paddingRight: "32px",
-  },
-  rightCol: {
-    flex: "1 1 42%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    position: "relative" as const,
-    minHeight: "520px",
+    padding: "140px 56px 88px",
   },
   eyebrow: {
-    display: "flex",
+    display: "inline-flex",
     alignItems: "center",
-    gap: "12px",
-    fontFamily: "'Space Mono', monospace",
+    gap: 10,
+    padding: "8px 16px",
+    background: "rgba(255,255,255,0.02)",
+    border: "1px solid var(--line)",
+    borderRadius: 999,
+    marginBottom: 36,
+  },
+  ePulse: {
+    width: 7,
+    height: 7,
+    borderRadius: "50%",
+    background: "var(--accent)",
+    boxShadow: "0 0 10px var(--accent)",
+  },
+  eText: {
+    fontFamily: "var(--font-mono)",
     fontSize: "0.7rem",
-    letterSpacing: "0.2em",
-    color: "#888",
-    margin: 0,
+    color: "var(--cream-soft)",
+    letterSpacing: "0.05em",
   },
-  eyebrowLine: {
-    display: "inline-block",
-    width: "32px",
-    height: "1px",
-    background: "#b5f60a",
+  headline: {
+    fontFamily: "var(--font-display)",
+    fontSize: "clamp(44px, 7.2vw, 100px)",
+    lineHeight: 1.02,
+    letterSpacing: "-0.035em",
+    color: "var(--cream)",
+    fontWeight: 400,
+    margin: "0 0 24px",
+    maxWidth: "14ch",
   },
-  nameBlock: { lineHeight: 0.88, margin: "8px 0" },
-  nameFirst: {
-    display: "block",
-    fontFamily: "'Bebas Neue', sans-serif",
-    fontSize: "clamp(80px, 10vw, 148px)",
-    color: "#f0ede6",
-    letterSpacing: "0.02em",
-  },
-  nameLast: {
-    display: "block",
-    fontFamily: "'Bebas Neue', sans-serif",
-    fontSize: "clamp(80px, 10vw, 148px)",
-    color: "#b5f60a",
-    letterSpacing: "0.02em",
-  },
-  tagline: {
-    fontSize: "1rem",
-    color: "#999",
-    lineHeight: 1.7,
-    maxWidth: "440px",
-    margin: 0,
+  italic: {
+    color: "var(--accent)",
+    fontStyle: "italic",
     fontWeight: 400,
   },
-  ctaRow: { display: "flex", gap: "14px", flexWrap: "wrap" as const },
+  underline: {
+    position: "relative",
+    display: "inline-block",
+    color: "var(--cream)",
+    backgroundImage:
+      "linear-gradient(transparent 85%, var(--accent-glow) 85%, var(--accent-glow) 95%, transparent 95%)",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "100% 100%",
+  },
+  sub: {
+    fontSize: "1.05rem",
+    lineHeight: 1.7,
+    color: "var(--cream-soft)",
+    maxWidth: 620,
+    margin: "0 0 40px",
+  },
+  strong: { color: "var(--cream)", fontWeight: 600 },
+  ctaRow: {
+    display: "flex",
+    alignItems: "center",
+    gap: 16,
+    flexWrap: "wrap" as const,
+    marginBottom: 72,
+  },
   ctaPrimary: {
     display: "inline-flex",
     alignItems: "center",
-    gap: "8px",
-    background: "#b5f60a",
-    color: "#0a0a0a",
-    fontWeight: 700,
-    fontSize: "0.85rem",
-    padding: "14px 28px",
+    gap: 10,
+    fontSize: "0.92rem",
+    fontWeight: 600,
+    padding: "14px 24px",
+    color: "var(--ink-950)",
+    background: "var(--accent)",
     textDecoration: "none",
-    letterSpacing: "0.05em",
-    transition: "all 0.2s",
-    fontFamily: "'Space Mono', monospace",
-    clipPath:
-      "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
+    borderRadius: 999,
+    letterSpacing: "-0.01em",
+    boxShadow: "0 10px 30px rgba(224, 164, 88, 0.22)",
+    transition: "transform 0.2s, box-shadow 0.2s",
   },
   ctaSecondary: {
     display: "inline-flex",
     alignItems: "center",
-    gap: "8px",
+    gap: 10,
+    fontSize: "0.92rem",
+    fontWeight: 500,
+    padding: "13px 22px",
+    color: "var(--cream)",
     background: "transparent",
-    color: "#f0ede6",
-    fontWeight: 700,
-    fontSize: "0.85rem",
-    padding: "13px 28px",
+    border: "1px solid var(--line)",
     textDecoration: "none",
-    letterSpacing: "0.05em",
-    border: "1px solid #444",
-    transition: "all 0.2s",
-    fontFamily: "'Space Mono', monospace",
-    clipPath:
-      "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
+    borderRadius: 999,
+    letterSpacing: "-0.01em",
+    transition: "border-color 0.2s, color 0.2s",
   },
-  socialRow: { display: "flex", gap: "20px", marginTop: "4px" },
+  socials: {
+    display: "flex",
+    gap: 14,
+    marginLeft: 8,
+    paddingLeft: 20,
+    borderLeft: "1px solid var(--line)",
+  },
   socialIcon: {
-    color: "#aaa",
-    fontSize: "1.3rem",
+    width: 38,
+    height: 38,
+    borderRadius: "50%",
+    border: "1px solid var(--line)",
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "var(--cream-soft)",
+    fontSize: "0.95rem",
     textDecoration: "none",
-    transition: "color 0.2s",
+    transition: "all 0.2s",
   },
-  accentBox: {
-    position: "absolute" as const,
-    inset: "24px",
-    border: "1.5px solid #b5f60a22",
-    pointerEvents: "none" as const,
-    zIndex: 0,
+  belowFold: {
+    display: "grid",
+    gridTemplateColumns: "1.3fr 1fr",
+    gap: 64,
+    alignItems: "center",
+    marginBottom: 64,
   },
-  photoFrame: {
-    position: "relative" as const,
-    width: "340px",
-    height: "440px",
-    zIndex: 1,
-    transition: "transform 0.1s ease-out",
-    clipPath:
-      "polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px))",
+  statsCol: {
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)",
+    border: "1px solid var(--line)",
+    borderRadius: 16,
+    background:
+      "linear-gradient(180deg, rgba(255,255,255,0.02), transparent)",
     overflow: "hidden",
-    background: "#141414",
   },
-  photo: {
+  statCell: {
+    padding: "28px 24px",
+    borderRight: "1px solid var(--line)",
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: 8,
+  },
+  statNum: {
+    fontFamily: "var(--font-display)",
+    fontSize: "2.4rem",
+    fontWeight: 400,
+    color: "var(--cream)",
+    lineHeight: 1,
+    letterSpacing: "-0.03em",
+  },
+  statLabel: {
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.65rem",
+    color: "var(--muted)",
+    letterSpacing: "0.06em",
+    textTransform: "uppercase" as const,
+  },
+  portraitWrap: {
+    position: "relative",
+    width: "100%",
+    maxWidth: 440,
+    aspectRatio: "4 / 5",
+    marginLeft: "auto",
+  },
+  portraitRing: {
+    position: "absolute",
+    inset: -12,
+    borderRadius: 24,
+    background:
+      "linear-gradient(135deg, var(--accent) 0%, transparent 40%, transparent 60%, var(--accent) 100%)",
+    opacity: 0.3,
+    filter: "blur(1px)",
+  },
+  portraitFrame: {
+    position: "relative",
+    width: "100%",
+    height: "100%",
+    borderRadius: 20,
+    overflow: "hidden",
+    border: "1px solid var(--line)",
+    background: "var(--ink-850)",
+  },
+  portraitImg: {
     width: "100%",
     height: "100%",
     objectFit: "cover" as const,
-    objectPosition: "top",
-    filter: "grayscale(15%) contrast(1.05)",
+    objectPosition: "top center",
+    filter: "contrast(1.03) saturate(0.92)",
   },
-  chip: {
-    position: "absolute" as const,
-    bottom: "16px",
-    left: "16px",
-    background: "#b5f60a",
-    color: "#0a0a0a",
+  portraitBadge: {
+    position: "absolute",
+    left: 16,
+    bottom: 16,
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 10,
+    padding: "8px 14px",
+    background: "rgba(7,8,10,0.75)",
+    backdropFilter: "blur(10px)",
+    WebkitBackdropFilter: "blur(10px)",
+    border: "1px solid var(--line)",
+    borderRadius: 999,
+    fontFamily: "var(--font-mono)",
     fontSize: "0.65rem",
-    fontFamily: "'Space Mono', monospace",
-    fontWeight: 700,
+    color: "var(--cream-soft)",
+    letterSpacing: "0.05em",
+  },
+  pulseDot: {
+    width: 7,
+    height: 7,
+    borderRadius: "50%",
+    background: "var(--accent)",
+    boxShadow: "0 0 8px var(--accent)",
+  },
+  trust: {
+    display: "flex",
+    alignItems: "center",
+    gap: 32,
+    padding: "24px 0",
+    borderTop: "1px solid var(--line)",
+  },
+  trustLabel: {
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.66rem",
+    color: "var(--muted-2)",
     letterSpacing: "0.12em",
-    padding: "6px 12px",
+    textTransform: "uppercase" as const,
+    whiteSpace: "nowrap" as const,
   },
-  statCard: {
-    position: "absolute" as const,
-    background: "#111",
-    border: "1px solid #222",
-    padding: "14px 20px",
+  trustMarks: {
     display: "flex",
-    flexDirection: "column" as const,
-    gap: "2px",
-    zIndex: 2,
-    cursor: "default",
-  },
-  statNum: {
-    fontFamily: "'Bebas Neue', sans-serif",
-    fontSize: "2.2rem",
-    color: "#b5f60a",
-    lineHeight: 1,
-  },
-  statLabel: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.6rem",
-    color: "#666",
-    letterSpacing: "0.1em",
-  },
-  bottomStrip: {
-    borderTop: "1px solid #1a1a1a",
-    padding: "12px 48px",
-    display: "flex",
-    justifyContent: "space-between",
+    gap: 32,
+    flexWrap: "wrap" as const,
     alignItems: "center",
   },
-  stripText: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.62rem",
-    color: "#444",
-    letterSpacing: "0.15em",
+  trustMark: {
+    fontFamily: "var(--font-display)",
+    fontSize: "1.1rem",
+    color: "var(--cream-soft)",
+    letterSpacing: "-0.01em",
+    opacity: 0.75,
   },
 };
 
