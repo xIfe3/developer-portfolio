@@ -12,7 +12,13 @@ import Testimonials from "@/components/Testimonials";
 
 const Portfolio = () => {
   return (
-    <div className="bg-gray-900 text-white min-h-screen">
+    <div
+      style={{
+        background: "var(--ink-950)",
+        color: "var(--cream)",
+        minHeight: "100vh",
+      }}
+    >
       <Header />
       <main>
         <Hero />

@@ -7,10 +7,10 @@ import Link from "next/link";
 const menuItems = [
   { name: "Home", link: "#home" },
   { name: "About", link: "#about" },
-  { name: "Skills", link: "#skills" },
-  { name: "Projects", link: "#projects" },
+  { name: "Expertise", link: "#skills" },
+  { name: "Work", link: "#projects" },
   { name: "Experience", link: "#experience" },
-  { name: "Testimonials", link: "#testimonials" },
+  { name: "Clients", link: "#testimonials" },
   { name: "Contact", link: "#contact" },
 ];
 
@@ -21,12 +21,9 @@ const Header = () => {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
-    const onResize = () => setIsMobile(window.innerWidth < 768);
-
-    // Set initial values
+    const onResize = () => setIsMobile(window.innerWidth < 900);
     onScroll();
     onResize();
-
     window.addEventListener("scroll", onScroll);
     window.addEventListener("resize", onResize);
     return () => {
@@ -38,33 +35,35 @@ const Header = () => {
   return (
     <>
       <motion.header
+        className="io-header"
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         style={{
           ...styles.header,
-          background: scrolled ? "rgba(10,10,10,0.92)" : "transparent",
+          background: scrolled ? "rgba(7,8,10,0.85)" : "transparent",
           borderBottom: scrolled
-            ? "1px solid #1a1a1a"
+            ? "1px solid var(--line)"
             : "1px solid transparent",
-          backdropFilter: scrolled ? "blur(12px)" : "none",
+          backdropFilter: scrolled ? "blur(16px) saturate(140%)" : "none",
+          WebkitBackdropFilter: scrolled
+            ? "blur(16px) saturate(140%)"
+            : "none",
         }}
       >
-        {/* ── LOGO ── */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.25 }}
+          transition={{ delay: 0.2 }}
         >
           <Link href="#home" style={styles.logo} aria-label="Home">
-            <span style={styles.logoBracket}>[</span>
-            xIfe3
-            <span style={styles.logoBracket}>]</span>
-            <span style={styles.logoDot} />
+            <span style={styles.logoMark}>IO</span>
+            <span style={styles.logoName}>
+              Ifeanyi <span style={styles.logoSurname}>Onyekwelu</span>
+            </span>
           </Link>
         </motion.div>
 
-        {/* ── DESKTOP NAV — hidden on mobile via JS, shown on desktop ── */}
         {!isMobile && (
           <nav>
             <motion.ul
@@ -74,26 +73,38 @@ const Header = () => {
               variants={{
                 hidden: {},
                 show: {
-                  transition: { staggerChildren: 0.1, delayChildren: 0.4 },
+                  transition: { staggerChildren: 0.07, delayChildren: 0.35 },
                 },
               }}
             >
-              {menuItems.map((item, i) => (
+              {menuItems.map((item) => (
                 <motion.li
                   key={item.name}
                   variants={{
-                    hidden: { opacity: 0, y: -12 },
+                    hidden: { opacity: 0, y: -10 },
                     show: { opacity: 1, y: 0 },
                   }}
                 >
-                  <NavLink item={item} index={i} />
+                  <NavLink item={item} />
                 </motion.li>
               ))}
             </motion.ul>
           </nav>
         )}
 
-        {/* ── MOBILE BURGER — hidden on desktop ── */}
+        {!isMobile && (
+          <motion.a
+            href="#contact"
+            style={styles.cta}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6 }}
+          >
+            <span style={styles.ctaDot} />
+            Hire me
+          </motion.a>
+        )}
+
         {isMobile && (
           <button
             onClick={() => setMobileMenuOpen((o) => !o)}
@@ -106,7 +117,12 @@ const Header = () => {
         )}
       </motion.header>
 
-      {/* ── MOBILE DRAWER ── */}
+      <style>{`
+        @media (max-width: 900px) {
+          .io-header { padding: 16px 20px !important; }
+        }
+      `}</style>
+
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -117,15 +133,13 @@ const Header = () => {
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             style={styles.mobileDrawer}
           >
-            <span style={styles.drawerCorner} />
-
             <ul style={styles.mobileList}>
               {menuItems.map((item, i) => (
                 <motion.li
                   key={item.name}
                   initial={{ opacity: 0, x: -24 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.07 + 0.1 }}
+                  transition={{ delay: i * 0.06 + 0.1 }}
                   style={styles.mobileItem}
                 >
                   <Link
@@ -133,15 +147,29 @@ const Header = () => {
                     style={styles.mobileLink}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <span style={styles.mobileLinkNum}>0{i + 1}</span>
-                    {item.name}
+                    <span style={styles.mobileLinkNum}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span style={styles.mobileLinkText}>{item.name}</span>
                     <span style={styles.mobileLinkArrow}>→</span>
                   </Link>
                 </motion.li>
               ))}
             </ul>
 
-            <p style={styles.drawerFooter}>ENUGU, NG — OPEN TO REMOTE</p>
+            <div style={styles.drawerFoot}>
+              <a
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                style={styles.drawerCta}
+              >
+                <span style={styles.ctaDot} />
+                Hire me
+              </a>
+              <p style={styles.drawerFooterText}>
+                Enugu, NG · Available for remote work
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -149,73 +177,53 @@ const Header = () => {
   );
 };
 
-/* ─── Desktop nav link ─────────────────────────────────────────────── */
-const NavLink = ({
-  item,
-  index,
-}: {
-  item: { name: string; link: string };
-  index: number;
-}) => {
+const NavLink = ({ item }: { item: { name: string; link: string } }) => {
   const [hovered, setHovered] = useState(false);
-
   return (
     <Link
       href={item.link}
       style={{
         ...styles.navLink,
-        color: hovered ? "#f0ede6" : "#888",
+        color: hovered ? "var(--cream)" : "var(--cream-soft)",
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <span style={styles.navLinkNum}>0{index + 1}.</span>
       {item.name}
       <motion.span
         style={styles.navUnderline}
         animate={{ scaleX: hovered ? 1 : 0 }}
-        transition={{ duration: 0.25 }}
+        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
       />
     </Link>
   );
 };
 
-/* ─── Burger icon ──────────────────────────────────────────────────── */
 const BurgerIcon = ({ open }: { open: boolean }) => (
-  <svg width="28" height="18" viewBox="0 0 28 18" fill="none">
+  <svg width="26" height="16" viewBox="0 0 26 16" fill="none">
     <motion.line
       x1="0"
       y1="2"
-      x2="28"
+      x2="26"
       y2="2"
-      stroke="#f0ede6"
+      stroke="var(--cream)"
       strokeWidth="1.5"
-      animate={open ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-      style={{ originX: "14px", originY: "2px" }}
+      animate={open ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+      style={{ originX: "13px", originY: "2px" }}
     />
     <motion.line
       x1="0"
-      y1="9"
-      x2="28"
-      y2="9"
-      stroke="#b5f60a"
+      y1="14"
+      x2="26"
+      y2="14"
+      stroke="var(--accent)"
       strokeWidth="1.5"
-      animate={open ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
-    />
-    <motion.line
-      x1="0"
-      y1="16"
-      x2="28"
-      y2="16"
-      stroke="#f0ede6"
-      strokeWidth="1.5"
-      animate={open ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-      style={{ originX: "14px", originY: "16px" }}
+      animate={open ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+      style={{ originX: "13px", originY: "14px" }}
     />
   </svg>
 );
 
-/* ─── Styles ───────────────────────────────────────────────────────── */
 const styles: Record<string, React.CSSProperties> = {
   header: {
     position: "fixed",
@@ -226,69 +234,95 @@ const styles: Record<string, React.CSSProperties> = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: "18px 48px",
+    padding: "18px 56px",
     transition: "background 0.4s, border-color 0.4s",
-    /* header is exactly 64px tall (18px top + ~28px content + 18px bottom)
-       matching the paddingTop: "64px" offset on the Hero section         */
   },
   logo: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "1.15rem",
-    fontWeight: 700,
-    color: "#f0ede6",
-    textDecoration: "none",
-    letterSpacing: "0.05em",
     display: "flex",
     alignItems: "center",
-    gap: "2px",
+    gap: 12,
+    textDecoration: "none",
   },
-  logoBracket: { color: "#b5f60a", fontWeight: 400 },
-  logoDot: {
-    display: "inline-block",
-    width: "6px",
-    height: "6px",
-    borderRadius: "50%",
-    background: "#b5f60a",
-    marginLeft: "6px",
-    marginBottom: "2px",
+  logoMark: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    background: "linear-gradient(135deg, var(--accent), var(--accent-deep))",
+    color: "var(--ink-950)",
+    fontFamily: "var(--font-display)",
+    fontSize: "0.95rem",
+    fontWeight: 700,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    letterSpacing: "-0.02em",
+    boxShadow: "0 4px 16px rgba(224, 164, 88, 0.25)",
   },
+  logoName: {
+    fontFamily: "var(--font-sans)",
+    fontSize: "0.95rem",
+    fontWeight: 600,
+    color: "var(--cream)",
+    letterSpacing: "-0.01em",
+  },
+  logoSurname: { color: "var(--muted)", fontWeight: 500 },
   navList: {
     display: "flex",
     listStyle: "none",
     margin: 0,
     padding: 0,
-    gap: "36px",
+    gap: 34,
     alignItems: "center",
   },
   navLink: {
     position: "relative",
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.72rem",
-    fontWeight: 700,
-    letterSpacing: "0.12em",
+    fontFamily: "var(--font-sans)",
+    fontSize: "0.88rem",
+    fontWeight: 500,
     textDecoration: "none",
-    display: "flex",
-    alignItems: "center",
-    gap: "5px",
-    paddingBottom: "2px",
+    paddingBottom: 4,
+    letterSpacing: "-0.01em",
     transition: "color 0.2s",
   },
-  navLinkNum: { color: "#b5f60a", fontSize: "0.6rem", fontWeight: 700 },
   navUnderline: {
     position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
-    height: "1px",
-    background: "#b5f60a",
+    height: 1,
+    background: "var(--accent)",
     transformOrigin: "left",
     transform: "scaleX(0)",
+  },
+  cta: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 10,
+    fontFamily: "var(--font-sans)",
+    fontSize: "0.85rem",
+    fontWeight: 600,
+    color: "var(--cream)",
+    textDecoration: "none",
+    padding: "10px 18px",
+    border: "1px solid var(--line)",
+    borderRadius: 999,
+    background: "rgba(255,255,255,0.02)",
+    transition: "all 0.25s",
+    letterSpacing: "-0.01em",
+  },
+  ctaDot: {
+    display: "inline-block",
+    width: 7,
+    height: 7,
+    background: "var(--accent)",
+    borderRadius: "50%",
+    boxShadow: "0 0 10px var(--accent)",
   },
   burger: {
     background: "transparent",
     border: "none",
     cursor: "pointer",
-    padding: "4px",
+    padding: 6,
     display: "flex",
     alignItems: "center",
   },
@@ -299,21 +333,12 @@ const styles: Record<string, React.CSSProperties> = {
     right: 0,
     bottom: 0,
     zIndex: 90,
-    background: "#0a0a0a",
+    background: "var(--ink-950)",
     display: "flex",
     flexDirection: "column" as const,
-    justifyContent: "center",
-    padding: "100px 48px 48px",
-    borderTop: "1px solid #1a1a1a",
-  },
-  drawerCorner: {
-    position: "absolute",
-    top: "80px",
-    right: "48px",
-    width: "40px",
-    height: "40px",
-    borderTop: "1.5px solid #b5f60a",
-    borderRight: "1.5px solid #b5f60a",
+    justifyContent: "space-between",
+    padding: "100px 32px 40px",
+    borderTop: "1px solid var(--line)",
   },
   mobileList: {
     listStyle: "none",
@@ -321,42 +346,60 @@ const styles: Record<string, React.CSSProperties> = {
     padding: 0,
     display: "flex",
     flexDirection: "column" as const,
-    gap: "0",
   },
-  mobileItem: { borderBottom: "1px solid #1a1a1a" },
+  mobileItem: { borderBottom: "1px solid var(--line)" },
   mobileLink: {
     display: "flex",
     alignItems: "center",
-    gap: "16px",
-    padding: "22px 0",
-    fontFamily: "'Bebas Neue', sans-serif",
-    fontSize: "clamp(2rem, 8vw, 3.5rem)",
-    color: "#f0ede6",
+    gap: 18,
+    padding: "20px 0",
     textDecoration: "none",
-    letterSpacing: "0.06em",
-    transition: "color 0.2s",
   },
   mobileLinkNum: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.65rem",
-    color: "#b5f60a",
-    letterSpacing: "0.1em",
-    fontWeight: 700,
-    marginTop: "6px",
-    minWidth: "24px",
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.7rem",
+    color: "var(--accent)",
+    letterSpacing: "0.08em",
+    minWidth: 24,
+  },
+  mobileLinkText: {
+    fontFamily: "var(--font-display)",
+    fontSize: "clamp(2rem, 7vw, 2.8rem)",
+    color: "var(--cream)",
+    letterSpacing: "-0.02em",
+    fontWeight: 400,
   },
   mobileLinkArrow: {
     marginLeft: "auto",
-    fontSize: "1.2rem",
-    color: "#444",
-    fontFamily: "'Space Mono', monospace",
+    fontSize: "1.1rem",
+    color: "var(--muted-3)",
   },
-  drawerFooter: {
-    marginTop: "auto",
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "0.6rem",
-    color: "#444",
-    letterSpacing: "0.18em",
+  drawerFoot: {
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: 16,
+  },
+  drawerCta: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+    fontFamily: "var(--font-sans)",
+    fontSize: "0.9rem",
+    fontWeight: 600,
+    color: "var(--ink-950)",
+    background: "var(--accent)",
+    textDecoration: "none",
+    padding: "14px 24px",
+    borderRadius: 999,
+  },
+  drawerFooterText: {
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.68rem",
+    color: "var(--muted-2)",
+    letterSpacing: "0.12em",
+    textAlign: "center" as const,
+    margin: 0,
   },
 };
 
