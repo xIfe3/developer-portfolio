@@ -47,7 +47,7 @@ const About = () => (
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
-          <div style={s.photoWrap}>
+          <div style={s.photoWrap} className="about-photo-wrap">
             <Image
               src="/ifeanyi.png"
               alt="Ifeanyi Onyekwelu"
@@ -151,12 +151,25 @@ const About = () => (
 
     <style>{`
       @media (max-width: 1024px) {
-        .about-grid { grid-template-columns: 1fr !important; gap: 56px !important; }
-        .about-left { max-width: 480px !important; margin: 0 auto !important; }
+        .about-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+        .about-left {
+          position: static !important;
+          max-width: 520px !important;
+          margin: 0 auto !important;
+        }
+        .about-photo-wrap img {
+          max-height: 420px !important;
+          object-fit: cover !important;
+          object-position: top center !important;
+        }
       }
       @media (max-width: 640px) {
         .about-inner { padding: 96px 20px !important; }
         .about-facts { grid-template-columns: 1fr !important; }
+        .about-left { max-width: 100% !important; }
+        .about-photo-wrap img {
+          max-height: 320px !important;
+        }
       }
     `}</style>
   </section>

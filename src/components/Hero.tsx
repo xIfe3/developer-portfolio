@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaPaperPlane, FaDownload } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
-import Image from "next/image";
 import React from "react";
 
 const socials = [
@@ -120,47 +119,19 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Stats + portrait row */}
-        <div style={s.belowFold} className="hero-below">
-          {/* Stats */}
-          <motion.div
-            style={s.statsCol}
-            className="hero-stats"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.7 }}
-          >
-            <StatCell num="5+" label="Years engineering" />
-            <StatCell num="25+" label="Shipped projects" />
-            <StatCell num="10+" label="Production clients" />
-            <StatCell num="99.9%" label="Uptime delivered" last />
-          </motion.div>
-
-          {/* Portrait */}
-          <motion.div
-            style={s.portraitWrap}
-            className="hero-portrait"
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.35, duration: 0.9 }}
-          >
-            <div style={s.portraitRing} />
-            <div style={s.portraitFrame}>
-              <Image
-                src="/profile.jpg"
-                alt="Ifeanyi Onyekwelu"
-                width={520}
-                height={640}
-                priority
-                style={s.portraitImg}
-              />
-              <div style={s.portraitBadge}>
-                <span style={s.pulseDot} />
-                <span>Available — Q2 / Q3</span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+        {/* Stats row */}
+        <motion.div
+          style={s.statsCol}
+          className="hero-stats"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.7 }}
+        >
+          <StatCell num="5+" label="Years engineering" />
+          <StatCell num="25+" label="Shipped projects" />
+          <StatCell num="10+" label="Production clients" />
+          <StatCell num="99.9%" label="Uptime delivered" last />
+        </motion.div>
 
         {/* Trust strip */}
         <motion.div
@@ -183,10 +154,6 @@ const Hero = () => {
 
       <style>{`
         .hero-headline em { font-style: italic; font-weight: 400; }
-        @media (max-width: 1080px) {
-          .hero-below { grid-template-columns: 1fr !important; gap: 48px !important; }
-          .hero-portrait { max-width: 440px !important; margin: 0 auto !important; }
-        }
         @media (max-width: 720px) {
           .hero-container { padding: 120px 20px 72px !important; }
           .hero-cta-row { flex-wrap: wrap !important; gap: 14px !important; }
@@ -312,7 +279,7 @@ const s: Record<string, React.CSSProperties> = {
     alignItems: "center",
     gap: 16,
     flexWrap: "wrap" as const,
-    marginBottom: 72,
+    marginBottom: 56,
   },
   ctaPrimary: {
     display: "inline-flex",
@@ -364,13 +331,6 @@ const s: Record<string, React.CSSProperties> = {
     textDecoration: "none",
     transition: "all 0.2s",
   },
-  belowFold: {
-    display: "grid",
-    gridTemplateColumns: "1.3fr 1fr",
-    gap: 64,
-    alignItems: "center",
-    marginBottom: 64,
-  },
   statsCol: {
     display: "grid",
     gridTemplateColumns: "repeat(4, 1fr)",
@@ -379,6 +339,7 @@ const s: Record<string, React.CSSProperties> = {
     background:
       "linear-gradient(180deg, rgba(255,255,255,0.02), transparent)",
     overflow: "hidden",
+    marginBottom: 64,
   },
   statCell: {
     padding: "28px 24px",
@@ -401,63 +362,6 @@ const s: Record<string, React.CSSProperties> = {
     color: "var(--muted)",
     letterSpacing: "0.06em",
     textTransform: "uppercase" as const,
-  },
-  portraitWrap: {
-    position: "relative",
-    width: "100%",
-    maxWidth: 440,
-    aspectRatio: "4 / 5",
-    marginLeft: "auto",
-  },
-  portraitRing: {
-    position: "absolute",
-    inset: -12,
-    borderRadius: 24,
-    background:
-      "linear-gradient(135deg, var(--accent) 0%, transparent 40%, transparent 60%, var(--accent) 100%)",
-    opacity: 0.3,
-    filter: "blur(1px)",
-  },
-  portraitFrame: {
-    position: "relative",
-    width: "100%",
-    height: "100%",
-    borderRadius: 20,
-    overflow: "hidden",
-    border: "1px solid var(--line)",
-    background: "var(--ink-850)",
-  },
-  portraitImg: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover" as const,
-    objectPosition: "top center",
-    filter: "contrast(1.03) saturate(0.92)",
-  },
-  portraitBadge: {
-    position: "absolute",
-    left: 16,
-    bottom: 16,
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 10,
-    padding: "8px 14px",
-    background: "rgba(7,8,10,0.75)",
-    backdropFilter: "blur(10px)",
-    WebkitBackdropFilter: "blur(10px)",
-    border: "1px solid var(--line)",
-    borderRadius: 999,
-    fontFamily: "var(--font-mono)",
-    fontSize: "0.65rem",
-    color: "var(--cream-soft)",
-    letterSpacing: "0.05em",
-  },
-  pulseDot: {
-    width: 7,
-    height: 7,
-    borderRadius: "50%",
-    background: "var(--accent)",
-    boxShadow: "0 0 8px var(--accent)",
   },
   trust: {
     display: "flex",
