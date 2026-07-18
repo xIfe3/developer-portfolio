@@ -133,9 +133,19 @@ const Footer = () => (
 
     <div style={s.bottomBar}>
       <div style={s.bottomInner} className="footer-bottom-inner">
-        <span style={s.copy}>
-          © {new Date().getFullYear()} Ifeanyi Onyekwelu — All rights reserved.
-        </span>
+        <div style={s.bottomCopyGroup}>
+          <span style={s.copy}>
+            © {new Date().getFullYear()} Ifeanyi Onyekwelu — All rights reserved.
+          </span>
+          <a
+            href="https://zephra.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={s.bottomFounder}
+          >
+            Founder, Zephra Studio
+          </a>
+        </div>
         <div style={s.bottomRight} className="footer-bottom-right">
           <span style={s.bottomTag}>Designed &amp; built in Enugu</span>
           <a href="#home" style={s.toTop} aria-label="Back to top">
@@ -325,6 +335,18 @@ const s: Record<string, React.CSSProperties> = {
     alignItems: "center",
     flexWrap: "wrap" as const,
     gap: 12,
+  },
+  bottomCopyGroup: {
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: 8,
+  },
+  bottomFounder: {
+    color: "var(--accent)",
+    fontFamily: "var(--font-sans)",
+    fontSize: "0.9rem",
+    fontWeight: 600,
+    textDecoration: "none",
   },
   copy: {
     fontFamily: "var(--font-mono)",

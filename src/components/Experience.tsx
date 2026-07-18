@@ -5,6 +5,27 @@ import React from "react";
 
 const experiences = [
   {
+    role: "Founder · Engineering Lead",
+    company: "Zephra Studio",
+    location: "Remote",
+    period: "Mar 2026 — Present",
+    description:
+      "Leading Zephra Studio as a senior-led engineering practice for early-stage startups and growth teams. Building AI-enabled SaaS products, productizing LangChain workflows, and shipping platform-grade software with a focus on reliability and speed.",
+    achievements: [
+      "Established Zephra Studio as a production engineering partner for AI and SaaS teams",
+      "Delivered end-to-end web platforms and agency-grade delivery capabilities while maintaining a lean founder-led team",
+    ],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "LangChain",
+      "Prisma",
+      "PostgreSQL",
+      "Docker",
+    ],
+  },
+  {
     role: "Software Engineer · Full-Stack",
     company: "Babelos",
     location: "Remote",

@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
+import { Inter, Sora, JetBrains_Mono } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -7,11 +7,10 @@ const inter = Inter({
   variable: "--font-sans",
 });
 
-const fraunces = Fraunces({
+const sora = Sora({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-display",
-  axes: ["opsz", "SOFT"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -37,7 +36,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${sora.variable} ${jetbrainsMono.variable}`}
     >
       <body className="font-sans antialiased">{children}</body>
     </html>
