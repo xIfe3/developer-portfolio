@@ -6,7 +6,7 @@ import React from "react";
 
 const facts = [
   { label: "Name", value: "Ifeanyi Onyekwelu" },
-  { label: "Role", value: "Full-Stack Engineer" },
+  { label: "Role", value: "Full-Stack Applied AI Engineer" },
   { label: "Experience", value: "5+ years in production" },
   { label: "Based in", value: "Enugu, Nigeria (UTC+1)" },
   { label: "Focus", value: "Full-stack · AI integration" },
@@ -49,7 +49,7 @@ const About = () => (
         >
           <div style={s.photoWrap} className="about-photo-wrap">
             <Image
-              src="/ifeanyi.png"
+              src="/ifeanyi.JPEG"
               alt="Ifeanyi Onyekwelu"
               width={520}
               height={640}
@@ -93,18 +93,18 @@ const About = () => (
 
           <div style={s.body}>
             <p>
-              Over <strong>five years</strong> as a full-stack engineer, I&apos;ve
-              shipped products across fintech, SaaS, and education — the kind of
-              codebases where a 2am pager rotation is the real design review.
-              Lately, I&apos;m deep in AI integration: LangChain pipelines, RAG,
-              and LLM features wired into real product flows.
+              Over <strong>five years</strong> as a full-stack engineer,
+              I&apos;ve shipped products across fintech, SaaS, and education —
+              the kind of codebases where a 2am pager rotation is the real
+              design review. Lately, I&apos;m deep in AI integration: LangChain
+              pipelines, RAG, and LLM features wired into real product flows.
             </p>
             <p>
               My edge is judgement. I don&apos;t just close tickets; I reshape
               the parts of the system that keep failing, document the why, and
               leave the codebase in a better state than I found it. I&apos;ve
-              shipped light Web3 work too — on-chain minting, IPFS — but that&apos;s
-              past work, not my day-to-day focus.
+              shipped light Web3 work too — on-chain minting, IPFS — but
+              that&apos;s past work, not my day-to-day focus.
             </p>
           </div>
 

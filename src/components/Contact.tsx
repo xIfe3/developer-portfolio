@@ -36,14 +36,14 @@ const contactInfo = [
   {
     icon: <FaPhone />,
     label: "Phone",
-    value: "+234 811 320 8256",
+    value: "+234 816 619 0067",
     hint: "Scheduled calls only",
     href: "tel:+2348113208256",
   },
   {
     icon: <FaWhatsapp />,
     label: "WhatsApp",
-    value: "+234 811 320 8256",
+    value: "+234 816 619 0067",
     hint: "Fastest async reply",
     href: "https://wa.link/rlr1e3",
   },
@@ -53,10 +53,10 @@ const socials = [
   { icon: <FaGithub />, url: "https://github.com/xIfe3", label: "GitHub" },
   {
     icon: <FaLinkedin />,
-    url: "https://www.linkedin.com/in/ifeanyichukwu-onyekwelu",
+    url: "https://www.linkedin.com/in/ifeanyi-a-onyekwelu",
     label: "LinkedIn",
   },
-  { icon: <FaXTwitter />, url: "https://x.com/_xIfe3", label: "Twitter" },
+  { icon: <FaXTwitter />, url: "https://x.com/0xIFEANYI", label: "Twitter" },
 ];
 
 const Contact = () => {
@@ -119,7 +119,10 @@ const Contact = () => {
             border: "1px solid var(--line)",
           },
           success: {
-            iconTheme: { primary: "var(--accent)", secondary: "var(--ink-950)" },
+            iconTheme: {
+              primary: "var(--accent)",
+              secondary: "var(--ink-950)",
+            },
           },
           error: { iconTheme: { primary: "#ef4444", secondary: "#fff" } },
         }}
@@ -182,7 +185,11 @@ const Contact = () => {
                     key={label}
                     href={href || undefined}
                     target={href?.startsWith("http") ? "_blank" : undefined}
-                    rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
+                    rel={
+                      href?.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
                     style={{
                       ...s.channel,
                       pointerEvents: href ? "auto" : "none",
@@ -229,7 +236,9 @@ const Contact = () => {
               <form ref={formRef} onSubmit={sendEmail} style={s.form}>
                 <div style={s.formHead}>
                   <p style={s.formEyebrow}>Send a message</p>
-                  <h3 style={s.formTitle}>Let&apos;s talk about your project</h3>
+                  <h3 style={s.formTitle}>
+                    Let&apos;s talk about your project
+                  </h3>
                 </div>
 
                 <div style={s.inputRow} className="contact-input-row">
