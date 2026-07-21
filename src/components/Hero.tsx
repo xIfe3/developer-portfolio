@@ -21,8 +21,9 @@ const marks = [
   "Kedusoft",
   "World Brain Tech",
   "ReginaNostra",
-  "1010 Realty",
-  "Hedgeon Finance",
+  "Proxima",
+  "Zephra Studioss",
+  "Ricald AI",
 ];
 
 const Hero = () => {
@@ -60,8 +61,7 @@ const Hero = () => {
           </span>{" "}
           software
           <br />
-          for teams that{" "}
-          <span style={s.underline}>ship at scale</span>.
+          for teams that <span style={s.underline}>ship at scale</span>.
         </motion.h1>
 
         {/* Sub */}
@@ -72,14 +72,11 @@ const Hero = () => {
           transition={{ delay: 0.25, duration: 0.7 }}
         >
           I&apos;m <strong style={s.strong}>Ifeanyi Onyekwelu</strong> — a
-          full-stack engineer with{" "}
-          <strong style={s.strong}>5+ years</strong> building production web
-          platforms for fintech, SaaS, and education teams. Currently focused
-          on{" "}
-          <strong style={s.strong}>
-            AI-integrated products
-          </strong>{" "}
-          — LLMs, LangChain, and workflows that ship.
+          full-stack engineer with <strong style={s.strong}>5+ years</strong>{" "}
+          building production web platforms for fintech, SaaS, and education
+          teams. Currently focused on{" "}
+          <strong style={s.strong}>AI-integrated products</strong> — LLMs,
+          LangChain, and workflows that ship.
         </motion.p>
 
         {/* CTA row */}
@@ -174,7 +171,12 @@ const StatCell = ({
   label: string;
   last?: boolean;
 }) => (
-  <div style={{ ...s.statCell, borderRight: last ? "none" : s.statCell.borderRight }}>
+  <div
+    style={{
+      ...s.statCell,
+      borderRight: last ? "none" : s.statCell.borderRight,
+    }}
+  >
     <div style={s.statNum}>{num}</div>
     <div style={s.statLabel}>{label}</div>
   </div>
@@ -336,8 +338,7 @@ const s: Record<string, React.CSSProperties> = {
     gridTemplateColumns: "repeat(4, 1fr)",
     border: "1px solid var(--line)",
     borderRadius: 16,
-    background:
-      "linear-gradient(180deg, rgba(255,255,255,0.02), transparent)",
+    background: "linear-gradient(180deg, rgba(255,255,255,0.02), transparent)",
     overflow: "hidden",
     marginBottom: 64,
   },
