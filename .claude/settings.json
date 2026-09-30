@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash scripts/start-server.sh --project-dir \"C:/Users/ifeanyitheprogrammer/Hacker Space/My Space\" --open)",
+      "Bash(awk '/^const s[: ]/{exit} {print}' Contact.tsx)",
+      "Bash(npm install *)",
+      "Bash(echo \"exit $?\")",
+      "Bash(node -e \"const f='package.json';const p=require\\('./'+f\\);p.scripts.test='vitest run';p.scripts['test:watch']='vitest';require\\('fs'\\).writeFileSync\\(f,JSON.stringify\\(p,null,2\\)+'\\\\n'\\)\")",
+      "Bash(npx vitest *)",
+      "Bash(npm run *)",
+      "Bash(bash \"C:/Users/ifeanyitheprogrammer/.claude/plugins/synced/20b723d3-aa72-4b7c-b0c9-07e866e1cc38_518a128f-fe5e-43b8-bd73-436bcbbbff49/6ba53849-2ee0-4cf0-957e-31c122ea1dd1~g2/skills/executing-plans/scripts/task-start\" docs/superpowers/plans/2026-09-27-portfolio-overhaul.md 3)",
+      "Bash(echo \"build exit $?\")",
+      "Bash(bash \"C:/Users/ifeanyitheprogrammer/.claude/plugins/synced/20b723d3-aa72-4b7c-b0c9-07e866e1cc38_518a128f-fe5e-43b8-bd73-436bcbbbff49/6ba53849-2ee0-4cf0-957e-31c122ea1dd1~g2/skills/executing-plans/scripts/task-start\" docs/superpowers/plans/2026-09-27-portfolio-overhaul.md 6)",
+      "Bash(grep -oE \"\\(Error|error\\)[^<]{0,200}\")",
+      "Bash(bash \"C:/Users/ifeanyitheprogrammer/.claude/plugins/synced/20b723d3-aa72-4b7c-b0c9-07e866e1cc38_518a128f-fe5e-43b8-bd73-436bcbbbff49/6ba53849-2ee0-4cf0-957e-31c122ea1dd1~g2/skills/executing-plans/scripts/task-start\" docs/superpowers/plans/2026-09-27-portfolio-overhaul.md 10)"
+    ]
+  }
+}
