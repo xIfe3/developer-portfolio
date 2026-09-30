@@ -3,6 +3,8 @@ import { Fraunces, Inter } from "next/font/google";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import { MotionProvider } from "@/components/motion/MotionProvider";
+import { JsonLd } from "@/components/ui/JsonLd";
+import { organizationJsonLd, personJsonLd, rootMetadata } from "@/lib/seo";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -18,12 +20,7 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-export const metadata = {
-  title: "Ifeanyi Onyekwelu — Full-Stack Engineer · AI Integration",
-  description:
-    "Full-stack engineer with 5+ years building production web platforms, scalable backend systems, and AI-integrated products for fintech, SaaS, and education teams.",
-  icons: { icon: "/favicon.png" },
-};
+export const metadata = rootMetadata;
 
 export const viewport: Viewport = { themeColor: "#f3ede3" };
 
@@ -34,6 +31,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <noscript>
           <style>{`[data-reveal]{opacity:1!important;transform:none!important;clip-path:none!important}`}</style>
         </noscript>
+        <JsonLd data={personJsonLd()} />
+        <JsonLd data={organizationJsonLd()} />
       </head>
       <body className="bg-paper font-sans text-ink antialiased">
         <MotionProvider>{children}</MotionProvider>
