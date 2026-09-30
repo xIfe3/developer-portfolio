@@ -3,6 +3,8 @@ import { Fraunces, Inter } from "next/font/google";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import { MotionProvider } from "@/components/motion/MotionProvider";
+import { Footer } from "@/components/sections/Footer";
+import { Header } from "@/components/sections/Header";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { organizationJsonLd, personJsonLd, rootMetadata } from "@/lib/seo";
 
@@ -35,7 +37,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd data={organizationJsonLd()} />
       </head>
       <body className="bg-paper font-sans text-ink antialiased">
-        <MotionProvider>{children}</MotionProvider>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-paper"
+        >
+          Skip to content
+        </a>
+        <MotionProvider>
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

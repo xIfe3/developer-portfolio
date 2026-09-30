@@ -42,3 +42,4 @@ next-env.d.ts
 
 # brainstorming mockups
 .superpowers/
+/.next-verify/

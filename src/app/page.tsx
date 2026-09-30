@@ -1,39 +1,11 @@
-import React from "react";
+import { Hero } from "@/components/sections/Hero";
+import { IndustriesBand } from "@/components/sections/IndustriesBand";
 
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Agency from "@/components/Agency";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
-import Experience from "@/components/Experience";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import Testimonials from "@/components/Testimonials";
-
-const Portfolio = () => {
+export default function HomePage() {
   return (
-    <div
-      style={{
-        background: "var(--ink-950)",
-        color: "var(--cream)",
-        minHeight: "100vh",
-      }}
-    >
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Agency />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Testimonials />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Hero />
+      <IndustriesBand />
+    </>
   );
-};
-
-export default Portfolio;
+}
