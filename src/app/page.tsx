@@ -1,6 +1,9 @@
 import { Hero } from "@/components/sections/Hero";
 import { IndustriesBand } from "@/components/sections/IndustriesBand";
+import { Process } from "@/components/sections/Process";
+import { Story } from "@/components/sections/Story";
 import { Work } from "@/components/sections/Work";
+import { Zephra } from "@/components/sections/Zephra";
 
 export default function HomePage() {
   return (
@@ -8,6 +11,9 @@ export default function HomePage() {
       <Hero />
       <IndustriesBand />
       <Work />
+      <Story />
+      <Zephra />
+      <Process />
     </>
   );
 }
