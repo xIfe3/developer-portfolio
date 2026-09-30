@@ -15,18 +15,13 @@ describe("projects", () => {
     for (const s of slugs) expect(s).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
   });
 
-  it("features exactly Hedgeon, PayZeph, FlowAnalytics and ReginaNostra, in order", () => {
-    expect(getFeaturedProjects().map((p) => p.slug)).toEqual([
-      "hedgeon",
-      "payzeph",
-      "flowanalytics",
-      "reginanostra",
-    ]);
+  it("features ReginaNostra, PayZeph and FlowAnalytics, in order", () => {
+    expect(getFeaturedProjects().map((p) => p.slug)).toEqual(["reginanostra", "payzeph", "flowanalytics"]);
   });
 
   it("splits featured and other projects without overlap", () => {
     const other = getOtherProjects().map((p) => p.slug);
-    expect(other).toEqual(["mintverse", "1010-realty", "medibook", "savvio"]);
+    expect(other).toEqual(["mintverse", "medibook", "savvio", "1010-realty", "hedgeon"]);
   });
 
   it("finds a project by slug and returns undefined for unknown slugs", () => {

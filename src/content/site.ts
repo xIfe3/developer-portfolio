@@ -39,7 +39,7 @@ export const site = {
   email: "ifeanyi@xife3.space",
   phone: { display: "+234 816 619 0067", href: "tel:+2348166190067" },
   whatsapp: "https://wa.link/rlr1e3",
-  resume: "/IFEANYI%20ONYEKWELU.pdf",
+  resume: "/ifeanyi-onyekwelu-resume.pdf",
   twitterHandle: "@_xIfe3",
   portraits: {
     hero: {
@@ -67,9 +67,9 @@ export const site = {
     { value: "5+", label: "Years engineering" },
     { value: "25+", label: "Shipped projects" },
     { value: "10+", label: "Production clients" },
-    { value: "99.9%", label: "Uptime delivered" },
+    { value: "2022", label: "Shipping since" },
   ],
-  clients: ["Babelos", "Kedusoft", "World Brain Tech", "ReginaNostra", "Proxima", "Zephra Studio", "Ricald AI"],
+  clients: ["Babelos", "Kedusoft", "World Brain Tech", "ReginaNostra", "Proxima", "Ricald AI"],
   industries: ["Fintech", "SaaS platforms", "AI products", "Payments", "Education", "Real estate"],
   zephra: {
     name: "Zephra Studio",

@@ -29,7 +29,7 @@ describe("CaseStudy", () => {
 
   it("omits optional sections that have no content", () => {
     render(<CaseStudy project={base} next={next} />);
-    for (const name of [/the challenge/i, /what i built/i, /results/i, /screens/i]) {
+    for (const name of [/the challenge/i, /what i built/i, /results/i, /what i'd change next/i, /screens/i]) {
       expect(screen.queryByRole("heading", { name })).toBeNull();
     }
     expect(screen.queryByRole("link", { name: /source code/i })).toBeNull();
@@ -38,7 +38,7 @@ describe("CaseStudy", () => {
   it("shows results from impact and the extra fields when present", () => {
     render(
       <CaseStudy
-        project={{ ...base, impact: "Shipped in 14 days", challenge: "Old system was slow.", built: ["An API"], githubUrl: "https://github.com/x/y" }}
+        project={{ ...base, impact: "Shipped in 14 days", challenge: "Old system was slow.", built: ["An API"], learnings: ["Add a row lock"], githubUrl: "https://github.com/x/y" }}
         next={next}
       />,
     );
@@ -46,6 +46,8 @@ describe("CaseStudy", () => {
     expect(screen.getByText("Shipped in 14 days")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /the challenge/i })).toBeInTheDocument();
     expect(screen.getByText("An API")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /what i'd change next/i })).toBeInTheDocument();
+    expect(screen.getByText("Add a row lock")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /source code/i })).toHaveAttribute("href", "https://github.com/x/y");
   });
 
