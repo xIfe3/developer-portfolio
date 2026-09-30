@@ -16,7 +16,6 @@ export function ProjectCard({ project, size = "large" }: { project: Project; siz
     <Link
       href={`/work/${project.slug}`}
       className="group block rounded-2xl focus-visible:outline-offset-4"
-      aria-label={`${project.title} — read the case study`}
     >
       <div
         className={cn(
@@ -44,11 +43,9 @@ export function ProjectCard({ project, size = "large" }: { project: Project; siz
             </h3>
             {large && project.impact ? <p className="mt-2 text-sm">{project.impact}</p> : null}
           </div>
-          <span
-            aria-hidden
-            className="grid size-10 shrink-0 place-items-center rounded-full border border-current transition-transform duration-500 ease-spring group-hover:rotate-45"
-          >
-            ↗
+          <span className="grid size-10 shrink-0 place-items-center rounded-full border border-current transition-transform duration-500 ease-spring group-hover:rotate-45">
+            <span aria-hidden>↗</span>
+            <span className="sr-only">Read the case study</span>
           </span>
         </div>
       </div>

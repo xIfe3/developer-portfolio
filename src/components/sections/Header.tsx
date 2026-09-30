@@ -63,7 +63,7 @@ export function Header() {
           "mx-auto flex max-w-6xl items-center justify-between rounded-full border px-4 transition-all duration-500 ease-soft md:px-6",
           scrolled
             ? "border-line bg-paper/85 py-2.5 shadow-[0_18px_40px_-20px_rgba(31,26,23,0.35)] backdrop-blur-md"
-            : "border-transparent py-4",
+            : "border-line/70 bg-paper/80 py-3.5 backdrop-blur-md",
         )}
       >
         <Link href="/" className="group flex items-center gap-2.5 font-display text-xl font-semibold tracking-tight">

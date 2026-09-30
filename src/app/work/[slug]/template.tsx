@@ -1,17 +1,18 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import type { ReactNode } from "react";
 
 export default function WorkTemplate({ children }: { children: ReactNode }) {
   return (
-    <motion.div
+    // Slide only, no opacity: starting at opacity 0 hid the LCP image until hydration.
+    <m.div
       data-reveal
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ y: 24 }}
+      animate={{ y: 0 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

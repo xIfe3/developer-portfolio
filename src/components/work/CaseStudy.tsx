@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/motion/Reveal";
-import { RevealImage } from "@/components/motion/RevealImage";
 import { WordRise } from "@/components/motion/WordRise";
 import { Button } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
@@ -45,16 +44,18 @@ export function CaseStudy({ project: p, next }: { project: Project; next: Projec
       </header>
 
       <div className="container-page -mt-2 md:-mt-4">
-        <RevealImage
-          src={p.image}
-          alt={p.imageAlt}
-          width={1920}
-          height={970}
-          priority
-          sizes="(min-width: 1280px) 80rem, 100vw"
-          className="mt-10 rounded-3xl border border-line shadow-2xl"
-          imgClassName="object-top"
-        />
+        {/* The LCP image: visible from first paint (no JS-gated fade), CSS-only soft zoom. */}
+        <div className="mt-10 overflow-hidden rounded-3xl border border-line shadow-2xl">
+          <Image
+            src={p.image}
+            alt={p.imageAlt}
+            width={1920}
+            height={970}
+            priority
+            sizes="(min-width: 1280px) 80rem, 100vw"
+            className="size-full animate-soft-zoom object-cover object-top"
+          />
+        </div>
       </div>
 
       <div className="container-page py-16 md:py-24">

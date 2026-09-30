@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 
 export type Segment = { text: string; className?: string };
 
@@ -44,7 +44,7 @@ export function WordRise({ as: Tag = "h2", segments, className, id, animateOnMou
             {words[si].map((word, wi) => (
               <span key={wi}>
                 <span className="inline-block overflow-hidden pb-[0.1em] align-bottom">
-                  <motion.span
+                  <m.span
                     data-reveal
                     className="inline-block"
                     initial={{ y: "105%", opacity: 0 }}
@@ -52,7 +52,7 @@ export function WordRise({ as: Tag = "h2", segments, className, id, animateOnMou
                     transition={{ duration: 0.9, delay: (offsets[si] + wi) * 0.08, ease: EASE }}
                   >
                     {word}
-                  </motion.span>
+                  </m.span>
                 </span>
                 {wi < words[si].length - 1 ? " " : null}
               </span>

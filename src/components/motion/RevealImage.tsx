@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +17,7 @@ type Props = {
 
 export function RevealImage({ src, alt, width, height, priority, sizes, className, imgClassName }: Props) {
   return (
-    <motion.div
+    <m.div
       data-reveal
       className={cn("overflow-hidden", className)}
       initial={{ clipPath: "inset(14% 0% 0% 0%)", opacity: 0 }}
@@ -25,7 +25,7 @@ export function RevealImage({ src, alt, width, height, priority, sizes, classNam
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
     >
-      <motion.div
+      <m.div
         data-reveal
         initial={{ scale: 1.08 }}
         whileInView={{ scale: 1 }}
@@ -42,7 +42,7 @@ export function RevealImage({ src, alt, width, height, priority, sizes, classNam
           sizes={sizes ?? "(min-width: 1024px) 40vw, 100vw"}
           className={cn("size-full object-cover", imgClassName)}
         />
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }
