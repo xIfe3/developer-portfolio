@@ -11,7 +11,7 @@ export function Work() {
           id="work-title"
           eyebrow="Selected work"
           title={[{ text: "Products I've shipped, and the" }, { text: "stories", className: "italic font-light" }, { text: "behind them." }]}
-          intro="Live platforms used by real people, from payments and analytics to schools. Open any project for the full story."
+          intro="Client platforms in production and in-house studio products, each with the problem, what I built, and what I'd change next. Open any project for the full story."
         />
         <div className="mt-16 grid gap-8 md:grid-cols-2 md:gap-10">
           {getFeaturedProjects().map((p, i) => (

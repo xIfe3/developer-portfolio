@@ -23,7 +23,7 @@ export const skillGroups: SkillGroup[] = [
       { name: "Node.js / NestJS", icon: "/icons/nodejs.svg" },
       { name: "PostgreSQL", icon: "/icons/postgres.svg" },
       { name: "Python / FastAPI", icon: "/icons/fastapi.svg" },
-      { name: "Go", icon: "/icons/go.svg" },
+      { name: "Prisma / Drizzle" },
       { name: "Redis", icon: "/icons/redis.svg" },
     ],
   },

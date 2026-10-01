@@ -8,25 +8,20 @@ import {
 } from "./projects";
 
 describe("projects", () => {
-  it("has 8 projects with unique url-safe slugs", () => {
+  it("has 9 projects with unique url-safe slugs", () => {
     const slugs = getAllProjects().map((p) => p.slug);
-    expect(slugs).toHaveLength(8);
-    expect(new Set(slugs).size).toBe(8);
+    expect(slugs).toHaveLength(9);
+    expect(new Set(slugs).size).toBe(9);
     for (const s of slugs) expect(s).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
   });
 
-  it("features exactly Hedgeon, PayZeph, FlowAnalytics and ReginaNostra, in order", () => {
-    expect(getFeaturedProjects().map((p) => p.slug)).toEqual([
-      "hedgeon",
-      "payzeph",
-      "flowanalytics",
-      "reginanostra",
-    ]);
+  it("features BoxieAI, X2Factor, ReginaNostra and PayZeph, in order", () => {
+    expect(getFeaturedProjects().map((p) => p.slug)).toEqual(["boxieai", "x2factor", "reginanostra", "payzeph"]);
   });
 
   it("splits featured and other projects without overlap", () => {
     const other = getOtherProjects().map((p) => p.slug);
-    expect(other).toEqual(["mintverse", "1010-realty", "medibook", "savvio"]);
+    expect(other).toEqual(["flowanalytics", "mintverse", "medibook", "savvio", "1010-realty"]);
   });
 
   it("finds a project by slug and returns undefined for unknown slugs", () => {

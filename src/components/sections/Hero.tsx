@@ -23,18 +23,18 @@ export function Hero() {
             animateOnMount
             className="font-display text-[clamp(2.9rem,7.4vw,6.5rem)] leading-[0.98] font-[350] tracking-[-0.025em]"
             segments={[
-              { text: "I build software people" },
+              { text: "I build AI and fintech software that" },
               {
-                text: "quietly love",
+                text: "holds up",
                 className: "rounded-lg bg-saffron px-2 italic font-light [box-decoration-break:clone]",
               },
-              { text: "using." },
+              { text: "in production." },
             ]}
           />
           <Reveal delay={0.5}>
             <p className="mt-8 max-w-[46ch] text-lg leading-[1.7] text-ink-soft">
-              I&apos;m {site.name} — five years shipping fintech, SaaS and AI-integrated products, with a
-              studio behind me when you need a whole team.
+              I&apos;m {site.name} — LLM pipelines, wallets and payouts, and multi-tenant SaaS, shipped
+              for real users. Founder of Zephra, the studio behind me when you need a whole team.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Button href="/#contact">Start a project →</Button>

@@ -78,6 +78,11 @@ export function CaseStudy({ project: p, next }: { project: Project; next: Projec
             </ul>
           </Block>
         ) : null}
+        {p.learnings?.length ? (
+          <Block title="What I'd change next">
+            <ul className="list-disc space-y-2 pl-5">{p.learnings.map((l) => <li key={l}>{l}</li>)}</ul>
+          </Block>
+        ) : null}
         {p.gallery?.length ? (
           <Block title="Screens">
             <div className="grid gap-4 sm:grid-cols-2">
