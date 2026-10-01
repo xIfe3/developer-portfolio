@@ -247,22 +247,6 @@ export const projects: Project[] = [
     featured: false,
     tone: "forest",
   },
-  {
-    slug: "hedgeon",
-    title: "Hedgeon",
-    client: "Hedgeon Finance",
-    year: "2025",
-    category: "Fintech · Investment platform",
-    summary:
-      "Investment-plan platform with user and admin portals: plan subscriptions, KYC document review, withdrawal requests with admin approval, transactional email, and a scheduled job that accrues returns daily.",
-    technologies: ["Next.js", "Express", "TypeScript", "MongoDB", "Agenda"],
-    image: "/projects/hedgeon-finance.png",
-    imageAlt: "Hedgeon investment platform dashboard",
-    githubUrl: "https://github.com/xIfe3/hedgeon-finance",
-    liveUrl: "https://hedgeon-finance-ifekels-projects.vercel.app/",
-    featured: false,
-    tone: "saffron",
-  },
 ];
 
 export const getAllProjects = () => projects;

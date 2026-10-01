@@ -8,10 +8,10 @@ import {
 } from "./projects";
 
 describe("projects", () => {
-  it("has 10 projects with unique url-safe slugs", () => {
+  it("has 9 projects with unique url-safe slugs", () => {
     const slugs = getAllProjects().map((p) => p.slug);
-    expect(slugs).toHaveLength(10);
-    expect(new Set(slugs).size).toBe(10);
+    expect(slugs).toHaveLength(9);
+    expect(new Set(slugs).size).toBe(9);
     for (const s of slugs) expect(s).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
   });
 
@@ -21,7 +21,7 @@ describe("projects", () => {
 
   it("splits featured and other projects without overlap", () => {
     const other = getOtherProjects().map((p) => p.slug);
-    expect(other).toEqual(["flowanalytics", "mintverse", "medibook", "savvio", "1010-realty", "hedgeon"]);
+    expect(other).toEqual(["flowanalytics", "mintverse", "medibook", "savvio", "1010-realty"]);
   });
 
   it("finds a project by slug and returns undefined for unknown slugs", () => {
