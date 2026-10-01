@@ -26,6 +26,67 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "boxieai",
+    title: "BoxieAI",
+    client: "Zephra Studio (in-house product)",
+    year: "2026",
+    category: "AI · Email",
+    role: "Sole engineer, full stack",
+    summary:
+      "An AI inbox. It connects several Gmail accounts into one view, then classifies every email as Urgent, Opportunity or Noise, summarises it in a sentence or two, and drafts a reply. Live at boxieai.zephra.dev with Paystack subscriptions.",
+    challenge:
+      "Putting an LLM in front of someone's inbox means three hard constraints at once: it has to keep up with a continuous stream of mail without blocking the app, it has to hold OAuth access to private accounts safely, and every model call costs money, so the system has to know when not to call the model at all.",
+    built: [
+      "Background pipeline on BullMQ + Redis: a recurring job syncs each connected Gmail account, and every new email becomes its own processing job with retries, so a slow or failed model call never blocks sync or the UI.",
+      "User-defined rules run before the model. A matching rule classifies the email deterministically and skips the GPT-4o call entirely, which honours the user's intent and cuts API cost on obvious cases.",
+      "Structured model output: GPT-4o returns JSON (category, summary, suggested reply, confidence), which is validated before saving; an unrecognised category falls back to Noise instead of breaking the inbox.",
+      "Privacy by design: only the subject, sender and Gmail snippet are sent to the model, never the full body, and job logs record IDs only, never email content.",
+      "OAuth refresh tokens encrypted at rest with AES-256-GCM through a TypeORM column transformer; accounts whose tokens are revoked are flagged for re-authentication instead of failing silently.",
+      "Noise auto-archives after seven days, a daily briefing, and Pro-tier features (custom rules) gated through Paystack subscriptions with signature-verified webhooks.",
+    ],
+    impact: "Classify, summarise and draft a reply for every email",
+    results: [
+      "Rule matches skip the LLM call entirely",
+      "Unit-tested encryption, rule matching and core services",
+    ],
+    learnings: [
+      "Sync polls the 50 most recent inbox messages and de-duplicates by message ID. Gmail's history API (or push notifications via Pub/Sub) would make sync incremental and cut quota use as accounts grow.",
+      "Classification has no evaluation set yet. A labelled sample of real emails, scored on every prompt or model change, is the next step before tuning prompts further.",
+    ],
+    technologies: ["Next.js", "NestJS", "TypeScript", "PostgreSQL", "TypeORM", "BullMQ", "Redis", "OpenAI GPT-4o", "Gmail API", "Paystack"],
+    image: "/projects/boxieai.png",
+    imageAlt: "BoxieAI unified inbox with emails sorted into Urgent, Opportunity and Noise",
+    liveUrl: "https://boxieai.zephra.dev",
+    featured: true,
+    tone: "vermilion",
+  },
+  {
+    slug: "x2factor",
+    title: "X2Factor",
+    client: "X2Factor",
+    year: "2026",
+    category: "Fintech · Rewards platform",
+    role: "Lead engineer, full stack",
+    summary:
+      "A live rewards platform at x2factor.com. Users complete tasks with proof uploads, earn referral commissions and daily streak bonuses, and withdraw to their bank via Flutterwave. Operators run it from a permissioned admin console.",
+    challenge:
+      "The platform pays out real money, so every naira that enters or leaves a wallet has to be explainable after the fact, by the user and by the operators. Trust in the ledger is the product.",
+    built: [
+      "Three wallets per user (account, task earnings, referral) with a transaction ledger that records the balance before and after every movement, a unique reference, and the source of the money.",
+      "Withdrawal flow with configurable fees and limits: funds are reserved when the user requests, then the transfer goes out through Flutterwave, and failed transfers are refunded automatically.",
+      "Flutterwave webhooks verified by signature before any state changes; unknown event types are ignored rather than trusted.",
+      "Admin console with role-based permissions enforced by a guard on every endpoint, covering task review, withdrawals, wallets, plans, support tickets and site content, with an audit log that records old and new values for admin actions.",
+      "Hardened API: Helmet headers, request throttling, proof uploads to S3, and transactional email via Resend.",
+    ],
+    impact: "Live, paying out real money through Flutterwave",
+    technologies: ["Next.js", "NestJS", "TypeScript", "PostgreSQL (Neon)", "Drizzle ORM", "Flutterwave", "AWS S3", "Resend", "Turborepo"],
+    image: "/projects/x2factor.png",
+    imageAlt: "X2Factor dashboard showing wallets, tasks and earnings",
+    liveUrl: "https://x2factor.com",
+    featured: true,
+    tone: "forest",
+  },
+  {
     slug: "reginanostra",
     title: "ReginaNostra Schools",
     client: "ReginaNostra Schools",
@@ -118,7 +179,7 @@ export const projects: Project[] = [
     imageAlt: "FlowAnalytics revenue dashboard with subscription charts",
     githubUrl: "https://github.com/zephradev/flowanalytics",
     liveUrl: "https://flowanalytics-zephra.vercel.app/",
-    featured: true,
+    featured: false,
     tone: "forest",
   },
   {
