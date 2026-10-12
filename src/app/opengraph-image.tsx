@@ -8,8 +8,8 @@ export const contentType = "image/png";
 export default function Image() {
   return renderOgCard({
     eyebrow: "Full-stack engineer · Founder, Zephra",
-    title: "I build software people",
-    titleItalic: "quietly love using.",
+    title: "I build AI and fintech software that",
+    titleItalic: "holds up in production.",
     footer: "Fintech · SaaS · AI products",
   });
 }

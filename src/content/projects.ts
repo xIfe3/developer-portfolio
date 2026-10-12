@@ -7,6 +7,12 @@ export type Project = {
   year: string;
   category: string;
   summary: string;
+  /** One- or two-sentence pitch for the home-page card; falls back to summary. */
+  teaser?: string;
+  /** The three technologies worth naming on the card. */
+  keyStack?: string[];
+  /** Honest one-liner shown on the card: the first thing I'd fix next. */
+  nextFix?: string;
   impact?: string;
   technologies: string[];
   image: string;
@@ -27,6 +33,10 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "boxieai",
+    teaser:
+      "An AI inbox that unifies several Gmail accounts, triages every email as Urgent, Opportunity or Noise, and drafts the reply. Live with Paystack subscriptions.",
+    keyStack: ["NestJS", "BullMQ", "GPT-4o"],
+    nextFix: "Gmail history API for incremental sync",
     title: "BoxieAI",
     client: "Zephra Studio (in-house product)",
     year: "2026",
@@ -62,6 +72,9 @@ export const projects: Project[] = [
   },
   {
     slug: "x2factor",
+    teaser:
+      "A live rewards platform paying out real money through Flutterwave: three wallets per user and a ledger that explains every naira.",
+    keyStack: ["NestJS", "Drizzle", "Flutterwave"],
     title: "X2Factor",
     client: "X2Factor",
     year: "2026",
@@ -88,6 +101,10 @@ export const projects: Project[] = [
   },
   {
     slug: "reginanostra",
+    teaser:
+      "Public site, student portal and admin console that replaced a paper workflow for records, results and fees, with staff trained after launch.",
+    keyStack: ["React", "Express", "MongoDB"],
+    nextFix: "Payment gateway so fees reconcile automatically",
     title: "ReginaNostra Schools",
     client: "ReginaNostra Schools",
     year: "2025",
@@ -119,6 +136,10 @@ export const projects: Project[] = [
   },
   {
     slug: "payzeph",
+    teaser:
+      "Wallet funding and bill payments for airtime, data, power and TV, with automatic refunds when a provider call fails. Shipped in 14 days.",
+    keyStack: ["NestJS", "PostgreSQL", "Redis"],
+    nextFix: "Atomic wallet debit to rule out overdraws",
     title: "PayZeph",
     client: "Zephra Studio (in-house product)",
     year: "2026",

@@ -18,7 +18,7 @@ function existsExactCase(urlPath: string) {
 describe("every referenced public asset exists with exact filename case", () => {
   const paths = [
     site.portraits.hero.src,
-    ...site.portraits.story.map((p) => p.src),
+    site.portraits.story.src,
     site.resume,
     ...getAllProjects().map((p) => p.image),
     ...skillGroups.flatMap((g) => g.skills.map((s) => s.icon).filter((i): i is string => !!i)),

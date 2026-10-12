@@ -1,21 +1,22 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type Props = {
   items: readonly string[];
   className?: string;
   separatorClassName?: string;
+  separator?: ReactNode;
   duration?: number;
 };
 
-export function Marquee({ items, className, separatorClassName, duration = 30 }: Props) {
+export function Marquee({ items, className, separatorClassName, separator = "✺", duration = 30 }: Props) {
   const row = (hidden: boolean) => (
     <ul aria-hidden={hidden || undefined} className="flex shrink-0 items-center gap-10 pr-10">
       {items.map((item) => (
         <li key={item} className="flex items-center gap-10 whitespace-nowrap">
           <span>{item}</span>
           <span aria-hidden className={separatorClassName}>
-            ✺
+            {separator}
           </span>
         </li>
       ))}

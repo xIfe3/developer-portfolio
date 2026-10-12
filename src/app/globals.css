@@ -1,24 +1,23 @@
 @import "tailwindcss";
 
+/* "Ember" theme — mirrors the colour variables in the Figma file (collection "Ember"). */
 @theme {
-  --color-paper: #f3ede3;
-  --color-paper-2: #eae2d5;
-  --color-ink: #1f1a17;
-  --color-ink-soft: #5b514a;
-  --color-line: #d9cfc0;
-  --color-vermilion: #d63a22;
-  --color-vermilion-bright: #e8452c;
-  --color-vermilion-ink: #b8321c;
+  --color-bg: #0d0b0a;
+  --color-surface: #151210;
+  --color-surface-2: #1e1916;
+  --color-line: #2b2420;
+  --color-text: #f3ede3;
+  --color-muted: #9a8f86;
+  --color-faint: #6e645d;
+  --color-ember: #e8452c;
+  --color-ember-deep: #7a1c10;
   --color-saffron: #f2b33d;
-  --color-forest: #1f4d3a;
-  --color-forest-deep: #173b2c;
 
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
 
   --animate-marquee: marquee var(--marquee-duration, 30s) linear infinite;
-  --animate-spin-slow: spin 14s linear infinite;
-  --animate-float: float 6s ease-in-out infinite;
+  --animate-float: float 7s ease-in-out infinite;
   --animate-soft-zoom: soft-zoom 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 
   @keyframes marquee {
@@ -30,40 +29,55 @@
     to { transform: scale(1); }
   }
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-10px) rotate(-2deg); }
   }
 }
 
 @theme inline {
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 @utility container-page {
   width: 100%;
-  max-width: 80rem;
+  max-width: 76rem;
   margin-inline: auto;
-  padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
 }
 
-@utility grain {
-  position: relative;
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.15;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
-  }
+/* Mono eyebrow / meta label. */
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Hollow giant wordmark (hero + footer). */
+@utility text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--color-text) var(--outline-alpha, 8%), transparent);
+}
+
+/* Rounded-tile grid used behind the hero and on project media frames. */
+@utility tile-grid {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Crect x='4' y='4' width='88' height='88' rx='20' fill='%23ffe0d6' fill-opacity='.05' stroke='%23ffd2c7' stroke-opacity='.16'/%3E%3C/svg%3E");
+  background-size: var(--tile, 96px) var(--tile, 96px);
+}
+
+@utility ember-glow {
+  background-image: radial-gradient(closest-side, rgb(232 69 44 / 0.85), rgb(122 28 16 / 0.45) 45%, transparent);
 }
 
 @layer base {
   html {
-    background: var(--color-paper);
-    color: var(--color-ink);
+    background: var(--color-bg);
+    color: var(--color-text);
+    color-scheme: dark;
   }
   body {
     font-family: var(--font-sans);
@@ -71,14 +85,14 @@
     text-rendering: optimizeLegibility;
   }
   section[id] {
-    scroll-margin-top: 5rem;
+    scroll-margin-top: 6rem;
   }
   ::selection {
     background: var(--color-saffron);
-    color: var(--color-ink);
+    color: var(--color-bg);
   }
   :focus-visible {
-    outline: 2px solid var(--color-vermilion);
+    outline: 2px solid var(--color-ember);
     outline-offset: 3px;
   }
 }

@@ -43,25 +43,17 @@ export const site = {
   twitterHandle: "@_xIfe3",
   portraits: {
     hero: {
-      src: "/profile.jpg",
-      alt: "Portrait of Ifeanyi Onyekwelu, full-stack engineer",
-      width: 1024,
-      height: 1024,
+      src: "/ifeanyi.jpeg",
+      alt: "Portrait of Ifeanyi Onyekwelu, full-stack engineer, adjusting his glasses",
+      width: 726,
+      height: 1280,
     },
-    story: [
-      {
-        src: "/ifeanyi.jpeg",
-        alt: "Ifeanyi Onyekwelu smiling, photographed in warm light",
-        width: 896,
-        height: 970,
-      },
-      {
-        src: "/profile.jpg",
-        alt: "Ifeanyi Onyekwelu, founder of Zephra Studio",
-        width: 1024,
-        height: 1024,
-      },
-    ],
+    story: {
+      src: "/ifeanyi-side-flipped.jpg",
+      alt: "Ifeanyi Onyekwelu in profile against a dark background",
+      width: 650,
+      height: 898,
+    },
   },
   stats: [
     { value: "5+", label: "Years engineering" },
@@ -70,7 +62,22 @@ export const site = {
     { value: "2022", label: "Shipping since" },
   ],
   clients: ["Babelos", "Kedusoft", "World Brain Tech", "ReginaNostra", "Proxima", "Ricald AI"],
-  industries: ["Fintech", "SaaS platforms", "AI products", "Payments", "Education", "Real estate"],
+  stack: [
+    "Next.js",
+    "NestJS",
+    "TypeScript",
+    "PostgreSQL",
+    "Redis",
+    "BullMQ",
+    "LangChain",
+    "OpenAI",
+    "Prisma",
+    "Docker",
+    "Flutterwave",
+    "Paystack",
+    "Stripe",
+    "AWS",
+  ],
   zephra: {
     name: "Zephra Studio",
     url: "https://zephra.dev",
@@ -91,5 +98,6 @@ export const navLinks = [
   { label: "Work", href: "/#work" },
   { label: "Story", href: "/#story" },
   { label: "Zephra", href: "/#zephra" },
+  { label: "Process", href: "/#process" },
   { label: "Contact", href: "/#contact" },
 ] as const;

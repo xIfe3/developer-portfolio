@@ -1,5 +1,5 @@
 import type { Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Archivo, Fraunces, Geist_Mono, Inter } from "next/font/google";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import { MotionProvider } from "@/components/motion/MotionProvider";
@@ -16,6 +16,18 @@ const fraunces = Fraunces({
   variable: "--font-fraunces",
 });
 
+const archivo = Archivo({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-archivo",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-geist-mono",
+});
+
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -24,11 +36,11 @@ const inter = Inter({
 
 export const metadata = rootMetadata;
 
-export const viewport: Viewport = { themeColor: "#f3ede3" };
+export const viewport: Viewport = { themeColor: "#0d0b0a" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
+    <html lang="en" className={`${archivo.variable} ${fraunces.variable} ${inter.variable} ${geistMono.variable}`}>
       <head>
         <noscript>
           <style>{`[data-reveal]{opacity:1!important;transform:none!important;clip-path:none!important}`}</style>
@@ -36,10 +48,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd data={personJsonLd()} />
         <JsonLd data={organizationJsonLd()} />
       </head>
-      <body className="bg-paper font-sans text-ink antialiased">
+      <body className="bg-bg font-sans text-text antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-paper"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-text focus:px-5 focus:py-3 focus:text-bg"
         >
           Skip to content
         </a>
