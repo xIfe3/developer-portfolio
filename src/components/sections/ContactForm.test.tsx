@@ -13,8 +13,7 @@ const config = { serviceId: "s", templateId: "t", publicKey: "p" };
 async function fill(user: ReturnType<typeof userEvent.setup>) {
   await user.type(screen.getByLabelText(/your name/i), "Ada");
   await user.type(screen.getByLabelText(/email/i), "ada@example.com");
-  await user.type(screen.getByLabelText(/subject/i), "New SaaS");
-  await user.type(screen.getByLabelText(/message/i), "We need a dashboard.");
+  await user.type(screen.getByLabelText(/about the project/i), "We need a dashboard.");
 }
 
 describe("ContactForm", () => {
@@ -32,11 +31,16 @@ describe("ContactForm", () => {
     const user = userEvent.setup();
     render(<ContactForm config={config} />);
     await fill(user);
-    await user.click(screen.getByRole("button", { name: /send message/i }));
+    await user.click(screen.getByRole("button", { name: /send the message/i }));
     await waitFor(() => expect(send).toHaveBeenCalledTimes(1));
     expect(send.mock.calls[0][0]).toBe("s");
-    expect(send.mock.calls[0][2]).toMatchObject({ from_name: "Ada", reply_to: "ada@example.com" });
-    await waitFor(() => expect(screen.getByLabelText(/message/i)).toHaveValue(""));
+    expect(send.mock.calls[0][2]).toMatchObject({
+      from_name: "Ada",
+      reply_to: "ada@example.com",
+      subject: "Project enquiry from Ada",
+      message: "We need a dashboard.",
+    });
+    await waitFor(() => expect(screen.getByLabelText(/about the project/i)).toHaveValue(""));
   });
 
   it("keeps what the visitor typed when sending fails", async () => {
@@ -44,8 +48,23 @@ describe("ContactForm", () => {
     const user = userEvent.setup();
     render(<ContactForm config={config} />);
     await fill(user);
-    await user.click(screen.getByRole("button", { name: /send message/i }));
-    await waitFor(() => expect(screen.getByRole("button", { name: /send message/i })).toBeEnabled());
-    expect(screen.getByLabelText(/message/i)).toHaveValue("We need a dashboard.");
+    await user.click(screen.getByRole("button", { name: /send the message/i }));
+    await waitFor(() => expect(screen.getByRole("button", { name: /send the message/i })).toBeEnabled());
+    expect(screen.getByLabelText(/about the project/i)).toHaveValue("We need a dashboard.");
+  });
+
+  it("includes the chosen budget in the subject and the message", async () => {
+    send.mockResolvedValue({ status: 200 });
+    send.mockClear();
+    const user = userEvent.setup();
+    render(<ContactForm config={config} />);
+    await fill(user);
+    await user.click(screen.getByLabelText("$5k–$15k"));
+    await user.click(screen.getByRole("button", { name: /send the message/i }));
+    await waitFor(() => expect(send).toHaveBeenCalledTimes(1));
+    expect(send.mock.calls[0][2]).toMatchObject({
+      subject: "Project enquiry from Ada · $5k–$15k",
+      message: "We need a dashboard.\n\nBudget: $5k–$15k",
+    });
   });
 });

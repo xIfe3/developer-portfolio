@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { navLinks, site } from "@/content/site";
+import { LocalTime } from "@/components/ui/LocalTime";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -57,48 +58,52 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 md:px-6 md:pt-4">
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 md:px-6 md:pt-5">
       <div
         className={cn(
-          "mx-auto flex max-w-6xl items-center justify-between rounded-full border px-4 transition-all duration-500 ease-soft md:px-6",
+          "mx-auto flex max-w-[72rem] items-center justify-between rounded-full border py-2 pr-2 pl-2.5 backdrop-blur-xl transition-all duration-500 ease-soft",
           scrolled
-            ? "border-line bg-paper/85 py-2.5 shadow-[0_18px_40px_-20px_rgba(31,26,23,0.35)] backdrop-blur-md"
-            : "border-line/70 bg-paper/80 py-3.5 backdrop-blur-md",
+            ? "border-text/10 bg-surface/80 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.9)]"
+            : "border-text/[0.08] bg-surface/50",
         )}
       >
-        <Link href="/" className="group flex items-center gap-2.5 font-display text-xl font-semibold tracking-tight">
-          <span className="relative grid size-9 place-items-center rounded-full bg-forest text-sm text-saffron transition-transform duration-500 ease-spring group-hover:-rotate-12">
+        <Link href="/" className="group flex items-center gap-2.5 text-sm font-medium">
+          <span className="grid size-9 place-items-center rounded-full bg-ember font-display text-[0.8rem] font-semibold text-bg transition-transform duration-500 ease-spring group-hover:-rotate-12">
             IO
-            <span
-              aria-hidden
-              className="absolute -top-0.5 -right-0.5 size-2.5 rounded-full border-2 border-paper bg-vermilion-bright"
-            />
           </span>
-          {site.shortName}
+          <span className="hidden sm:inline">{site.name}</span>
+          <span className="sm:hidden">{site.shortName}</span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
           {navLinks.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-paper-2 hover:text-ink"
+              className="rounded-full px-4 py-2 text-sm text-muted transition-colors hover:bg-surface-2 hover:text-text"
             >
               {l.label}
             </Link>
           ))}
+        </nav>
+
+        <div className="hidden items-center gap-4 md:flex">
+          <span className="flex items-center gap-2 font-mono text-xs text-muted">
+            <span aria-hidden className="size-1.5 rounded-full bg-[#4cd97b]" />
+            <LocalTime />
+          </span>
           <Link
             href="/#contact"
-            className="ml-3 rounded-full bg-vermilion px-5 py-2.5 text-sm font-semibold text-white transition-transform duration-500 ease-spring hover:-translate-y-0.5 hover:-rotate-2"
+            className="inline-flex items-center gap-2 rounded-full bg-text px-5 py-2.5 text-sm font-medium text-bg transition-[transform,background-color] duration-500 ease-spring hover:-translate-y-0.5 hover:bg-saffron"
           >
-            Let&apos;s talk ✺
+            Start a project <span aria-hidden>↗</span>
           </Link>
-        </nav>
+        </div>
 
         <button
           ref={toggleRef}
           type="button"
-          className="rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper md:hidden"
+          className="rounded-full border border-line bg-surface-2 px-4 py-2 text-sm font-medium md:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label="Open menu"
@@ -115,27 +120,28 @@ export function Header() {
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
-          className="grain fixed inset-0 z-50 flex flex-col bg-forest px-6 pt-6 pb-10 text-paper md:hidden"
+          className="fixed inset-0 z-50 flex flex-col overflow-hidden bg-bg px-6 pt-6 pb-10 text-text md:hidden"
         >
-          <div className="flex items-center justify-between">
-            <span className="font-display text-xl font-semibold">{site.shortName}</span>
+          <div aria-hidden className="ember-glow pointer-events-none absolute -top-48 -right-40 size-[34rem] opacity-60" />
+          <div className="relative flex items-center justify-between">
+            <span className="font-display text-lg font-medium">{site.shortName}</span>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="rounded-full border border-paper/40 px-4 py-2 text-sm font-semibold"
+              className="rounded-full border border-line px-4 py-2 text-sm font-medium"
             >
               Close
             </button>
           </div>
-          <nav aria-label="Mobile" className="mt-16 flex flex-col gap-4">
+          <nav aria-label="Mobile" className="relative mt-16 flex flex-col gap-4">
             {navLinks.map((l, i) => (
               <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="flex items-baseline gap-4 font-display text-5xl font-[350] tracking-tight"
+                className="flex items-baseline gap-4 font-display text-5xl font-medium tracking-[-0.03em]"
               >
-                <span className="font-sans text-sm text-saffron">0{i + 1}</span>
+                <span className="font-mono text-xs text-ember">0{i + 1}</span>
                 {l.label}
               </Link>
             ))}
@@ -143,9 +149,9 @@ export function Header() {
           <Link
             href="/#contact"
             onClick={() => setOpen(false)}
-            className="mt-auto rounded-full bg-saffron px-6 py-4 text-center font-semibold text-ink"
+            className="relative mt-auto rounded-full bg-text px-6 py-4 text-center font-medium text-bg"
           >
-            Start a project →
+            Start a project ↗
           </Link>
         </div>
       ) : null}

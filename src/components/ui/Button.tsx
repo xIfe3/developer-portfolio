@@ -2,13 +2,12 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "outline" | "light" | "ghost-light";
+type Variant = "primary" | "ghost" | "ember";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-vermilion text-white hover:bg-vermilion-ink",
-  outline: "border border-ink text-ink hover:bg-ink hover:text-paper",
-  light: "bg-paper text-forest hover:bg-saffron hover:text-ink",
-  "ghost-light": "border border-paper/40 text-paper hover:bg-paper hover:text-forest",
+  primary: "bg-text text-bg hover:bg-saffron",
+  ghost: "border border-line text-text hover:border-text/40 hover:bg-surface-2",
+  ember: "bg-ember text-text hover:bg-[#ff5a3d]",
 };
 
 export function Button({
@@ -25,9 +24,8 @@ export function Button({
   children: ReactNode;
 }) {
   const cls = cn(
-    "inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[0.95rem] font-semibold",
-    "transition-[transform,background-color,color] duration-500 ease-spring",
-    "hover:-translate-y-[3px] hover:-rotate-[1.5deg]",
+    "inline-flex items-center gap-2.5 rounded-full px-6 py-3.5 text-sm font-medium",
+    "transition-[transform,background-color,border-color,color] duration-500 ease-spring hover:-translate-y-0.5",
     variants[variant],
     className,
   );

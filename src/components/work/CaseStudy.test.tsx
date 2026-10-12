@@ -17,7 +17,7 @@ const base: Project = {
   featured: true,
   tone: "saffron",
 };
-const next: Project = { ...base, slug: "next-one", title: "Next One" };
+const next: Project = { ...base, slug: "next-one", title: "Next One", summary: "The next summary." };
 
 describe("CaseStudy", () => {
   it("renders the title as the only h1 and the overview", () => {
