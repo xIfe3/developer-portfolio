@@ -53,6 +53,18 @@ describe("ContactForm", () => {
     expect(screen.getByLabelText(/about the project/i)).toHaveValue("We need a dashboard.");
   });
 
+  it("logs the EmailJS status and reason when sending fails", async () => {
+    const log = vi.spyOn(console, "error").mockImplementation(() => {});
+    send.mockRejectedValue({ status: 412, text: "Gmail_API: Invalid grant. Please reconnect your Gmail account" });
+    const user = userEvent.setup();
+    render(<ContactForm config={config} />);
+    await fill(user);
+    await user.click(screen.getByRole("button", { name: /send the message/i }));
+    await waitFor(() => expect(log).toHaveBeenCalled());
+    expect(log.mock.calls[0].join(" ")).toMatch(/412.*Invalid grant/);
+    log.mockRestore();
+  });
+
   it("includes the chosen budget in the subject and the message", async () => {
     send.mockResolvedValue({ status: 200 });
     send.mockClear();

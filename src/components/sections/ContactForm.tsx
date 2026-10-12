@@ -57,7 +57,10 @@ export function ContactForm({ config }: { config: EmailConfig | null }) {
       await emailjs.send(config.serviceId, config.templateId, params, { publicKey: config.publicKey });
       toast.success("Message sent — I'll get back to you within a business day.", { id, duration: 5000 });
       setForm(empty);
-    } catch {
+    } catch (err) {
+      // EmailJS rejects with { status, text } (e.g. 412 "Gmail_API: Invalid grant…"); keep the real reason visible in the console.
+      const { status, text } = (err ?? {}) as { status?: number; text?: string };
+      console.error("[contact] send failed:", status ?? "", text ?? err);
       toast.error(`Couldn't send. Please try again, or email ${site.email}.`, { id, duration: 6000 });
     } finally {
       setSending(false);
